@@ -3,7 +3,10 @@
 
 #include "user_conf.h"
 
-#define TASK    void
+#define TASK                          void
+#define GLOBAL_INTERRUPTS_DISABLE()   INTCONbits.GIE = 0
+#define GLOBAL_INTERRUPTS_ENABLE()    INTCONbits.GIE = 1
+
 
 typedef unsigned char byte;
 typedef unsigned int u_int;
