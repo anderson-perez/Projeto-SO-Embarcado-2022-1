@@ -1,0 +1,2188 @@
+
+
+Microchip MPLAB XC8 Assembler V2.20 build 20200408173844 
+                                                                                               Mon May 16 15:37:28 2022
+
+Microchip MPLAB XC8 C Compiler v2.20 (Free license) build 20200408173844 Og1 
+     1                           	processor	18F4520
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	bssBIGRAM,global,class=BIGRAM,space=1,delta=1,lowdata,noexec
+     7                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,lowdata,noexec
+     8                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     9                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text3,global,reloc=2,class=CODE,delta=1,group=1
+    13                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    18                           	psect	intcode,global,reloc=2,class=CODE,delta=1
+    19                           	psect	intcode_body,global,reloc=2,class=CODE,delta=1
+    20                           	psect	text10,global,reloc=2,class=CODE,delta=1
+    21                           	psect	text11,global,reloc=2,class=CODE,delta=1,group=1
+    22                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    23                           	psect	text12,global,reloc=2,class=CODE,delta=1,group=1
+    24                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    25                           	psect	temp,global,ovrld,common,class=COMRAM,space=1,delta=1
+    26                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=1,noexec
+    27                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    28  0000                     
+    29                           ; Version 2.40
+    30                           ; Generated 17/11/2021 GMT
+    31                           ; 
+    32                           ; Copyright © 2021, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    33                           ; All rights reserved.
+    34                           ; 
+    35                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    36                           ; 
+    37                           ; Redistribution and use in source and binary forms, with or without modification, are
+    38                           ; permitted provided that the following conditions are met:
+    39                           ; 
+    40                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    41                           ;        conditions and the following disclaimer.
+    42                           ; 
+    43                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    44                           ;        of conditions and the following disclaimer in the documentation and/or other
+    45                           ;        materials provided with the distribution. Publication is not required when
+    46                           ;        this file is used in an embedded application.
+    47                           ; 
+    48                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    49                           ;        software without specific prior written permission.
+    50                           ; 
+    51                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    52                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    53                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    54                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    55                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    56                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    57                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    58                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    59                           ; 
+    60                           ; 
+    61                           ; Code-generator required, PIC18F4520 Definitions
+    62                           ; 
+    63                           ; SFR Addresses
+    64  0000                     
+    65 ;;___wmul@product	offset	0
+    66 ;;___wmul@multiplier	offset=-2 (param)
+    67 ;;___wmul@multiplicand	offset=-4 (param)
+    68 ;;___wmul@product	offset	0
+    69 ;;___wmul@multiplier	offset=-2 (param)
+    70 ;;___wmul@multiplicand	offset=-4 (param)
+    71  0000                     _TOS	set	4093
+    72  0000                     _TRISBbits	set	3987
+    73  0000                     _STKPTR	set	4092
+    74  0000                     _STATUS	set	4056
+    75  0000                     _WREG	set	4072
+    76  0000                     _BSR	set	4064
+    77  0000                     _INTCONbits	set	4082
+    78  0000                     _PORTDbits	set	3971
+    79  0000                     _LATDbits	set	3980
+    80  0000                     _TRISDbits	set	3989
+    81                           
+    82                           ; #config settings
+    83                           
+    84                           	psect	cinit
+    85  00065E                     __pcinit:
+    86                           	callstack 0
+    87  00065E                     start_initialization:
+    88                           	callstack 0
+    89  00065E                     __initialization:
+    90                           	callstack 0
+    91                           
+    92                           ; Clear objects allocated to BIGRAM (460 bytes)
+    93  00065E  EE00  F0F2         	lfsr	0,__pbssBIGRAM
+    94  000662  EE21 F0CC          	lfsr	2,460
+    95  000666                     clear_0:
+    96  000666  6AEE               	clrf	postinc0,c
+    97  000668  50DD               	movf	postdec2,w,c
+    98  00066A  50D9               	movf	fsr2l,w,c
+    99  00066C  E1FC               	bnz	clear_0
+   100  00066E  50DA               	movf	fsr2h,w,c
+   101  000670  E1FA               	bnz	clear_0
+   102  000672                     end_of_initialization:
+   103                           	callstack 0
+   104  000672                     __end_of__initialization:
+   105                           	callstack 0
+   106  000672  0100               	movlb	0
+   107  000674  EF62  F002         	goto	_main	;jump to C main() function
+   108                           
+   109                           	psect	bssBIGRAM
+   110  0000F2                     __pbssBIGRAM:
+   111                           	callstack 0
+   112  0000F2                     _ready_queue:
+   113                           	callstack 0
+   114  0000F2                     	ds	460
+   115                           
+   116                           	psect	cstackBANK0
+   117  000080                     __pcstackBANK0:
+   118                           	callstack 0
+   119  000080                     create_task@new_task:
+   120                           	callstack 0
+   121                           
+   122                           ; 114 bytes @ 0x0
+   123  000080                     	ds	114
+   124                           
+   125                           	psect	cstackCOMRAM
+   126  000001                     __pcstackCOMRAM:
+   127                           	callstack 0
+   128  000001                     ?___lwmod:
+   129                           	callstack 0
+   130  000001                     ___lwmod@dividend:
+   131                           	callstack 0
+   132                           
+   133                           ; 2 bytes @ 0x0
+   134  000001                     	ds	2
+   135  000003                     ___lwmod@divisor:
+   136                           	callstack 0
+   137                           
+   138                           ; 2 bytes @ 0x2
+   139  000003                     	ds	2
+   140  000005                     ___lwmod@counter:
+   141                           	callstack 0
+   142                           
+   143                           ; 1 bytes @ 0x4
+   144  000005                     	ds	1
+   145  000006                     ?_FIFO_scheduler:
+   146                           	callstack 0
+   147                           
+   148                           ; 2 bytes @ 0x5
+   149  000006                     	ds	2
+   150  000008                     ??_FIFO_scheduler:
+   151                           
+   152                           ; 1 bytes @ 0x7
+   153  000008                     	ds	2
+   154  00000A                     FIFO_scheduler@task_to_run:
+   155                           	callstack 0
+   156                           
+   157                           ; 2 bytes @ 0x9
+   158  00000A                     	ds	2
+   159  00000C                     ??_isr_INTERRUPTS:
+   160                           
+   161                           ; 1 bytes @ 0xB
+   162  00000C                     	ds	12
+   163  000018                     isr_INTERRUPTS@p_context:
+   164                           	callstack 0
+   165                           
+   166                           ; 2 bytes @ 0x17
+   167  000018                     	ds	2
+   168  00001A                     isr_INTERRUPTS@p_context_384:
+   169                           	callstack 0
+   170                           
+   171                           ; 2 bytes @ 0x19
+   172  00001A                     	ds	2
+   173  00001C                     isr_INTERRUPTS@task_pos:
+   174                           	callstack 0
+   175                           
+   176                           ; 2 bytes @ 0x1B
+   177  00001C                     	ds	2
+   178  00001E                     isr_INTERRUPTS@task_pos_383:
+   179                           	callstack 0
+   180                           
+   181                           ; 2 bytes @ 0x1D
+   182  00001E                     	ds	2
+   183  000020                     create_task@id:
+   184                           	callstack 0
+   185                           
+   186                           ; 2 bytes @ 0x1F
+   187  000020                     	ds	2
+   188  000022                     create_task@prior:
+   189                           	callstack 0
+   190                           
+   191                           ; 2 bytes @ 0x21
+   192  000022                     	ds	2
+   193  000024                     create_task@task:
+   194                           	callstack 0
+   195                           
+   196                           ; 2 bytes @ 0x23
+   197  000024                     	ds	2
+   198  000026                     ??_create_task:
+   199                           
+   200                           ; 1 bytes @ 0x25
+   201  000026                     	ds	2
+   202  000028                     
+   203                           ; 1 bytes @ 0x27
+   204 ;;
+   205 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   206 ;;
+   207 ;; *************** function _main *****************
+   208 ;; Defined at:
+   209 ;;		line 3 in file "main.c"
+   210 ;; Parameters:    Size  Location     Type
+   211 ;;		None
+   212 ;; Auto vars:     Size  Location     Type
+   213 ;;		None
+   214 ;; Return value:  Size  Location     Type
+   215 ;;                  2   16[None  ] int 
+   216 ;; Registers used:
+   217 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, btemp, btemp+1, btemp+11, prodl, prodh, cstack
+   218 ;; Tracked objects:
+   219 ;;		On entry : 0/0
+   220 ;;		On exit  : 0/0
+   221 ;;		Unchanged: 0/0
+   222 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   223 ;;      Params:         0       0       0       0       0       0       0
+   224 ;;      Locals:         0       0       0       0       0       0       0
+   225 ;;      Temps:          0       0       0       0       0       0       0
+   226 ;;      Totals:         0       0       0       0       0       0       0
+   227 ;;Total ram usage:        0 bytes
+   228 ;; Hardware stack levels required when called:    6
+   229 ;; This function calls:
+   230 ;;		_config_os
+   231 ;;		_create_task
+   232 ;;		_start_os
+   233 ;; This function is called by:
+   234 ;;		Startup code after reset
+   235 ;; This function uses a non-reentrant model
+   236 ;;
+   237                           
+   238                           	psect	text0
+   239  0004C4                     __ptext0:
+   240                           	callstack 0
+   241  0004C4                     _main:
+   242                           	callstack 25
+   243  0004C4                     
+   244                           ;main.c: 6:    config_os();
+   245  0004C4  EC1D  F003         	call	_config_os	;wreg free
+   246  0004C8                     
+   247                           ;main.c: 9:    create_task(1, 1, task_1);
+   248  0004C8  0E00               	movlw	0
+   249  0004CA  6E21               	movwf	(create_task@id+1)^0,c
+   250  0004CC  0E01               	movlw	1
+   251  0004CE  6E20               	movwf	create_task@id^0,c
+   252  0004D0  0E00               	movlw	0
+   253  0004D2  6E23               	movwf	(create_task@prior+1)^0,c
+   254  0004D4  0E01               	movlw	1
+   255  0004D6  6E22               	movwf	create_task@prior^0,c
+   256  0004D8  0E14               	movlw	low _task_1
+   257  0004DA  6E24               	movwf	create_task@task^0,c
+   258  0004DC  0E06               	movlw	high _task_1
+   259  0004DE  6E25               	movwf	(create_task@task+1)^0,c
+   260  0004E0  EC2C  F002         	call	_create_task	;wreg free
+   261  0004E4                     
+   262                           ;main.c: 10:    create_task(2, 1, task_2);
+   263  0004E4  0E00               	movlw	0
+   264  0004E6  6E21               	movwf	(create_task@id+1)^0,c
+   265  0004E8  0E02               	movlw	2
+   266  0004EA  6E20               	movwf	create_task@id^0,c
+   267  0004EC  0E00               	movlw	0
+   268  0004EE  6E23               	movwf	(create_task@prior+1)^0,c
+   269  0004F0  0E01               	movlw	1
+   270  0004F2  6E22               	movwf	create_task@prior^0,c
+   271  0004F4  0EEC               	movlw	low _task_2
+   272  0004F6  6E24               	movwf	create_task@task^0,c
+   273  0004F8  0E05               	movlw	high _task_2
+   274  0004FA  6E25               	movwf	(create_task@task+1)^0,c
+   275  0004FC  EC2C  F002         	call	_create_task	;wreg free
+   276  000500                     
+   277                           ;main.c: 11:    create_task(3, 1, task_3);
+   278  000500  0E00               	movlw	0
+   279  000502  6E21               	movwf	(create_task@id+1)^0,c
+   280  000504  0E03               	movlw	3
+   281  000506  6E20               	movwf	create_task@id^0,c
+   282  000508  0E00               	movlw	0
+   283  00050A  6E23               	movwf	(create_task@prior+1)^0,c
+   284  00050C  0E01               	movlw	1
+   285  00050E  6E22               	movwf	create_task@prior^0,c
+   286  000510  0EC2               	movlw	low _task_3
+   287  000512  6E24               	movwf	create_task@task^0,c
+   288  000514  0E05               	movlw	high _task_3
+   289  000516  6E25               	movwf	(create_task@task+1)^0,c
+   290  000518  EC2C  F002         	call	_create_task	;wreg free
+   291  00051C                     
+   292                           ;main.c: 14:    start_os();
+   293  00051C  EC40  F003         	call	_start_os	;wreg free
+   294  000520                     l17:
+   295  000520  EF90  F002         	goto	l17
+   296  000524  EF06  F000         	goto	start
+   297  000528                     __end_of_main:
+   298                           	callstack 0
+   299                           
+   300 ;; *************** function _start_os *****************
+   301 ;; Defined at:
+   302 ;;		line 62 in file "kernel.c"
+   303 ;; Parameters:    Size  Location     Type
+   304 ;;		None
+   305 ;; Auto vars:     Size  Location     Type
+   306 ;;		None
+   307 ;; Return value:  Size  Location     Type
+   308 ;;                  1    wreg      void 
+   309 ;; Registers used:
+   310 ;;		None
+   311 ;; Tracked objects:
+   312 ;;		On entry : 0/0
+   313 ;;		On exit  : 0/0
+   314 ;;		Unchanged: 0/0
+   315 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   316 ;;      Params:         0       0       0       0       0       0       0
+   317 ;;      Locals:         0       0       0       0       0       0       0
+   318 ;;      Temps:          0       0       0       0       0       0       0
+   319 ;;      Totals:         0       0       0       0       0       0       0
+   320 ;;Total ram usage:        0 bytes
+   321 ;; Hardware stack levels used:    1
+   322 ;; Hardware stack levels required when called:    4
+   323 ;; This function calls:
+   324 ;;		Nothing
+   325 ;; This function is called by:
+   326 ;;		_main
+   327 ;; This function uses a non-reentrant model
+   328 ;;
+   329                           
+   330                           	psect	text1
+   331  000680                     __ptext1:
+   332                           	callstack 0
+   333  000680                     _start_os:
+   334                           	callstack 26
+   335  000680                     
+   336                           ;kernel.c: 65:    INTCONbits.GIE = 1;
+   337  000680  8EF2               	bsf	242,7,c	;volatile
+   338  000682  0012               	return		;funcret
+   339  000684                     __end_of_start_os:
+   340                           	callstack 0
+   341                           
+   342 ;; *************** function _create_task *****************
+   343 ;; Defined at:
+   344 ;;		line 42 in file "kernel.c"
+   345 ;; Parameters:    Size  Location     Type
+   346 ;;  id              2   31[COMRAM] unsigned int 
+   347 ;;  prior           2   33[COMRAM] unsigned int 
+   348 ;;  task            2   35[COMRAM] PTR FTN()void 
+   349 ;;		 -> task_3(1), task_2(1), task_1(1), 
+   350 ;; Auto vars:     Size  Location     Type
+   351 ;;  new_task      114    0[BANK0 ] struct TCB
+   352 ;; Return value:  Size  Location     Type
+   353 ;;                  1    wreg      void 
+   354 ;; Registers used:
+   355 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, btemp, btemp+1, btemp+11, prodl, prodh
+   356 ;; Tracked objects:
+   357 ;;		On entry : 0/0
+   358 ;;		On exit  : 0/0
+   359 ;;		Unchanged: 0/0
+   360 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   361 ;;      Params:         6       0       0       0       0       0       0
+   362 ;;      Locals:         0     114       0       0       0       0       0
+   363 ;;      Temps:          2       0       0       0       0       0       0
+   364 ;;      Totals:         8     114       0       0       0       0       0
+   365 ;;Total ram usage:      122 bytes
+   366 ;; Hardware stack levels used:    1
+   367 ;; Hardware stack levels required when called:    5
+   368 ;; This function calls:
+   369 ;;		___wmul
+   370 ;; This function is called by:
+   371 ;;		_main
+   372 ;; This function uses a non-reentrant model
+   373 ;;
+   374                           
+   375                           	psect	text2
+   376  000458                     __ptext2:
+   377                           	callstack 0
+   378  000458                     _create_task:
+   379                           	callstack 25
+   380  000458                     
+   381                           ;kernel.c: 42: void create_task(u_int id, u_int prior, f_task task);kernel.c: 43: {;kern
+      +                          el.c: 44:    TCB_t new_task;;kernel.c: 47:    new_task.task_ID = id;
+   382  000458  C020  F080         	movff	create_task@id,create_task@new_task
+   383  00045C  C021  F081         	movff	create_task@id+1,create_task@new_task+1
+   384                           
+   385                           ;kernel.c: 48:    new_task.task_PRIOR = prior;
+   386  000460  C022  F082         	movff	create_task@prior,create_task@new_task+2
+   387  000464  C023  F083         	movff	create_task@prior+1,create_task@new_task+3
+   388  000468                     
+   389                           ;kernel.c: 49:    new_task.task_PTR = task;
+   390  000468  C024  F084         	movff	create_task@task,create_task@new_task+4
+   391  00046C  C025  F085         	movff	create_task@task+1,create_task@new_task+5
+   392  000470                     
+   393                           ;kernel.c: 50:    new_task.task_STATE = READY;
+   394  000470  0E00               	movlw	0
+   395  000472  0100               	movlb	0	; () banked
+   396  000474  6FF1               	movwf	(create_task@new_task+113)& (0+255),b
+   397  000476                     
+   398                           ; BSR set to: 0
+   399                           ;kernel.c: 51:    new_task.task_stack_real_size = 0;
+   400  000476  0E00               	movlw	0
+   401  000478  6FF0               	movwf	(create_task@new_task+112)& (0+255),b
+   402  00047A  0E00               	movlw	0
+   403  00047C  6FEF               	movwf	(create_task@new_task+111)& (0+255),b
+   404  00047E                     
+   405                           ; BSR set to: 0
+   406                           ;kernel.c: 53:    ready_queue.tasks_list[ready_queue.tasks_installed] = new_task;
+   407  00047E  0E72               	movlw	114
+   408  000480  6EE6               	movwf	postinc1,c
+   409  000482  0E00               	movlw	0
+   410  000484  6EE6               	movwf	postinc1,c
+   411  000486  EE22  F0BA         	lfsr	2,_ready_queue+456
+   412  00048A  CFDE F026          	movff	postinc2,??_create_task
+   413  00048E  CFDD F027          	movff	postdec2,??_create_task+1
+   414  000492  C026  FFE6         	movff	??_create_task,postinc1
+   415  000496  C027  FFE6         	movff	??_create_task+1,postinc1
+   416  00049A  ECE1  F001         	call	___wmul	;wreg free
+   417  00049E  0EF2               	movlw	low _ready_queue
+   418  0004A0  2428               	addwf	btemp^0,w,c
+   419  0004A2  6EE9               	movwf	fsr0l,c
+   420  0004A4  0E00               	movlw	high _ready_queue
+   421  0004A6  2029               	addwfc	(btemp+1)^0,w,c
+   422  0004A8  6EEA               	movwf	fsr0h,c
+   423  0004AA  EE20  F080         	lfsr	2,create_task@new_task
+   424  0004AE  0E71               	movlw	113
+   425  0004B0                     u161:
+   426  0004B0  CFDB FFEB          	movff	plusw2,plusw0
+   427  0004B4  06E8               	decf	wreg,f,c
+   428  0004B6  E2FC               	bc	u161
+   429  0004B8                     
+   430                           ;kernel.c: 54:    ready_queue.tasks_installed += 1;
+   431  0004B8  EE22  F0BA         	lfsr	2,_ready_queue+456
+   432  0004BC  2ADE               	incf	postinc2,f,c
+   433  0004BE  0E00               	movlw	0
+   434  0004C0  22DD               	addwfc	postdec2,f,c
+   435  0004C2  0012               	return		;funcret
+   436  0004C4                     __end_of_create_task:
+   437                           	callstack 0
+   438                           
+   439 ;; *************** function ___wmul *****************
+   440 ;; Defined at:
+   441 ;;		line 15 in file "C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\Umul16.c"
+   442 ;; Parameters:    Size  Location     Type
+   443 ;;  multiplier      2  [STACK] unsigned int 
+   444 ;;  multiplicand    2  [STACK] unsigned int 
+   445 ;; Auto vars:     Size  Location     Type
+   446 ;;  product         2  [STACK] unsigned int 
+   447 ;; Return value:  Size  Location     Type
+   448 ;;                  2  [STACK] unsigned int 
+   449 ;; Registers used:
+   450 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, btemp, btemp+1, btemp+11, prodl, prodh
+   451 ;; Tracked objects:
+   452 ;;		On entry : 0/0
+   453 ;;		On exit  : 0/0
+   454 ;;		Unchanged: 0/0
+   455 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   456 ;;      Params:         0       0       0       0       0       0       0
+   457 ;;      Locals:         0       0       0       0       0       0       0
+   458 ;;      Temps:          0       0       0       0       0       0       0
+   459 ;;      Totals:         0       0       0       0       0       0       0
+   460 ;;Total ram usage:        0 bytes
+   461 ;; Hardware stack levels used:    1
+   462 ;; Hardware stack levels required when called:    4
+   463 ;; This function calls:
+   464 ;;		Nothing
+   465 ;; This function is called by:
+   466 ;;		_isr_INTERRUPTS
+   467 ;;		_create_task
+   468 ;; This function uses a reentrant model
+   469 ;;
+   470                           
+   471                           	psect	text3
+   472  0003C2                     __ptext3:
+   473                           	callstack 0
+   474  0003C2                     ___wmul:
+   475                           	callstack 0
+   476                           
+   477                           ; autosize = 2, savesize = 0, parsavesize = 0, tempsize = 0 parsize = 4, argsize = 4 var
+      +                          gsize = 0, retsize = 0 argfudge = 0
+   478  0003C2  52E6               	movf	postinc1,f,c
+   479  0003C4  52E6               	movf	postinc1,f,c
+   480  0003C6                     
+   481                           ;stkvar	___wmul@multiplicand @ sp[(-2)+-4]
+   482  0003C6  0EFA               	movlw	-6
+   483  0003C8  CFE3 F033          	movff	plusw1,btemp+11
+   484                           
+   485                           ;stkvar	___wmul@multiplier @ sp[(-2)+-2]
+   486  0003CC  0EFC               	movlw	-4
+   487  0003CE  50E3               	movf	plusw1,w,c
+   488  0003D0  0233               	mulwf	(btemp+11)^0,c
+   489                           
+   490                           ;stkvar	___wmul@product @ sp[(-2)+0]
+   491  0003D2  0EFE               	movlw	-2
+   492  0003D4  CFF3 FFE3          	movff	prodl,plusw1
+   493  0003D8  0EFF               	movlw	-1
+   494  0003DA  CFF4 FFE3          	movff	prodh,plusw1
+   495  0003DE                     
+   496                           ;stkvar	___wmul@multiplicand @ sp[(-2)+-4]
+   497  0003DE  0EFB               	movlw	251
+   498  0003E0  24E1               	addwf	fsr1l,w,c
+   499  0003E2  6ED9               	movwf	fsr2l,c
+   500  0003E4  0EFF               	movlw	255
+   501  0003E6  20E2               	addwfc	fsr1h,w,c
+   502  0003E8  6EDA               	movwf	fsr2h,c
+   503  0003EA  50DF               	movf	indf2,w,c
+   504  0003EC  6E33               	movwf	(btemp+11)^0,c
+   505                           
+   506                           ;stkvar	___wmul@multiplier @ sp[(-2)+-2]
+   507  0003EE  0EFC               	movlw	-4
+   508  0003F0  50E3               	movf	plusw1,w,c
+   509  0003F2  0233               	mulwf	(btemp+11)^0,c
+   510  0003F4  CFF3 FFF4          	movff	prodl,prodh
+   511  0003F8  6AF3               	clrf	243,c
+   512                           
+   513                           ;stkvar	___wmul@product @ sp[(-2)+0]
+   514  0003FA  50E1               	movf	fsr1l,w,c
+   515  0003FC  0FFE               	addlw	-2
+   516  0003FE  6ED9               	movwf	fsr2l,c
+   517  000400  50E2               	movf	fsr1h,w,c
+   518  000402  6EDA               	movwf	fsr2h,c
+   519  000404  0EFF               	movlw	255
+   520  000406  22DA               	addwfc	fsr2h,f,c
+   521  000408  50F3               	movf	243,w,c
+   522  00040A  26DE               	addwf	postinc2,f,c
+   523  00040C  50F4               	movf	244,w,c
+   524  00040E  22DD               	addwfc	postdec2,f,c
+   525  000410                     
+   526                           ;stkvar	___wmul@multiplicand @ sp[(-2)+-4]
+   527  000410  0EFA               	movlw	-6
+   528  000412  CFE3 F033          	movff	plusw1,btemp+11
+   529                           
+   530                           ;stkvar	___wmul@multiplier @ sp[(-2)+-2]
+   531  000416  0EFD               	movlw	253
+   532  000418  24E1               	addwf	fsr1l,w,c
+   533  00041A  6ED9               	movwf	fsr2l,c
+   534  00041C  0EFF               	movlw	255
+   535  00041E  20E2               	addwfc	fsr1h,w,c
+   536  000420  6EDA               	movwf	fsr2h,c
+   537  000422  50DF               	movf	indf2,w,c
+   538  000424  0233               	mulwf	(btemp+11)^0,c
+   539  000426  CFF3 FFF4          	movff	prodl,prodh
+   540  00042A  6AF3               	clrf	243,c
+   541                           
+   542                           ;stkvar	___wmul@product @ sp[(-2)+0]
+   543  00042C  50E1               	movf	fsr1l,w,c
+   544  00042E  0FFE               	addlw	-2
+   545  000430  6ED9               	movwf	fsr2l,c
+   546  000432  50E2               	movf	fsr1h,w,c
+   547  000434  6EDA               	movwf	fsr2h,c
+   548  000436  0EFF               	movlw	255
+   549  000438  22DA               	addwfc	fsr2h,f,c
+   550  00043A  50F3               	movf	243,w,c
+   551  00043C  26DE               	addwf	postinc2,f,c
+   552  00043E  50F4               	movf	244,w,c
+   553  000440  22DD               	addwfc	postdec2,f,c
+   554  000442                     
+   555                           ;stkvar	___wmul@product @ sp[(-2)+0]
+   556  000442  0EFE               	movlw	-2
+   557  000444  CFE3 F028          	movff	plusw1,btemp
+   558  000448  0EFF               	movlw	-1
+   559  00044A  CFE3 F029          	movff	plusw1,btemp+1
+   560  00044E                     
+   561                           ; ___wmul: autosize = 2, savesize = 0, parsavesize = 0, tempsize = 0 parsize = 4, argsiz
+      +                          e = 4, vargsize = 0
+   562  00044E  0EFA               	movlw	250
+   563  000450  26E1               	addwf	fsr1l,f,c
+   564  000452  0EFF               	movlw	255
+   565  000454  22E2               	addwfc	fsr1h,f,c
+   566  000456  0012               	return		;funcret
+   567  000458                     __end_of___wmul:
+   568                           	callstack 0
+   569                           
+   570 ;; *************** function _config_os *****************
+   571 ;; Defined at:
+   572 ;;		line 25 in file "kernel.c"
+   573 ;; Parameters:    Size  Location     Type
+   574 ;;		None
+   575 ;; Auto vars:     Size  Location     Type
+   576 ;;		None
+   577 ;; Return value:  Size  Location     Type
+   578 ;;                  1    wreg      void 
+   579 ;; Registers used:
+   580 ;;		cstack
+   581 ;; Tracked objects:
+   582 ;;		On entry : 0/0
+   583 ;;		On exit  : 0/0
+   584 ;;		Unchanged: 0/0
+   585 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   586 ;;      Params:         0       0       0       0       0       0       0
+   587 ;;      Locals:         0       0       0       0       0       0       0
+   588 ;;      Temps:          0       0       0       0       0       0       0
+   589 ;;      Totals:         0       0       0       0       0       0       0
+   590 ;;Total ram usage:        0 bytes
+   591 ;; Hardware stack levels used:    1
+   592 ;; Hardware stack levels required when called:    5
+   593 ;; This function calls:
+   594 ;;		_config_tasks
+   595 ;; This function is called by:
+   596 ;;		_main
+   597 ;; This function uses a non-reentrant model
+   598 ;;
+   599                           
+   600                           	psect	text4
+   601  00063A                     __ptext4:
+   602                           	callstack 0
+   603  00063A                     _config_os:
+   604                           	callstack 25
+   605  00063A                     
+   606                           ;kernel.c: 28:    ready_queue.task_running = 0;
+   607  00063A  0E00               	movlw	0
+   608  00063C  CFE8 F2BC          	movff	wreg,_ready_queue+458
+   609  000640  0E00               	movlw	0
+   610  000642  CFE8 F2BD          	movff	wreg,_ready_queue+459
+   611                           
+   612                           ;kernel.c: 29:    ready_queue.tasks_installed = 0;
+   613  000646  0E00               	movlw	0
+   614  000648  CFE8 F2BA          	movff	wreg,_ready_queue+456
+   615  00064C  0E00               	movlw	0
+   616  00064E  CFE8 F2BB          	movff	wreg,_ready_queue+457
+   617                           
+   618                           ;kernel.c: 32:    TRISBbits.RB0 = 1;
+   619  000652  8093               	bsf	147,0,c	;volatile
+   620                           
+   621                           ;kernel.c: 33:    INTCONbits.INT0IE = 1;
+   622  000654  88F2               	bsf	242,4,c	;volatile
+   623                           
+   624                           ;kernel.c: 34:    INTCONbits.INT0IF = 0;
+   625  000656  92F2               	bcf	242,1,c	;volatile
+   626  000658                     
+   627                           ;kernel.c: 37:    config_tasks();
+   628  000658  EC3C  F003         	call	_config_tasks	;wreg free
+   629  00065C  0012               	return		;funcret
+   630  00065E                     __end_of_config_os:
+   631                           	callstack 0
+   632                           
+   633 ;; *************** function _config_tasks *****************
+   634 ;; Defined at:
+   635 ;;		line 3 in file "user_tasks.c"
+   636 ;; Parameters:    Size  Location     Type
+   637 ;;		None
+   638 ;; Auto vars:     Size  Location     Type
+   639 ;;		None
+   640 ;; Return value:  Size  Location     Type
+   641 ;;                  1    wreg      void 
+   642 ;; Registers used:
+   643 ;;		None
+   644 ;; Tracked objects:
+   645 ;;		On entry : 0/0
+   646 ;;		On exit  : 0/0
+   647 ;;		Unchanged: 0/0
+   648 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   649 ;;      Params:         0       0       0       0       0       0       0
+   650 ;;      Locals:         0       0       0       0       0       0       0
+   651 ;;      Temps:          0       0       0       0       0       0       0
+   652 ;;      Totals:         0       0       0       0       0       0       0
+   653 ;;Total ram usage:        0 bytes
+   654 ;; Hardware stack levels used:    1
+   655 ;; Hardware stack levels required when called:    4
+   656 ;; This function calls:
+   657 ;;		Nothing
+   658 ;; This function is called by:
+   659 ;;		_config_os
+   660 ;; This function uses a non-reentrant model
+   661 ;;
+   662                           
+   663                           	psect	text5
+   664  000678                     __ptext5:
+   665                           	callstack 0
+   666  000678                     _config_tasks:
+   667                           	callstack 25
+   668  000678                     
+   669                           ;user_tasks.c: 5:    TRISDbits.RD0 = 0;
+   670  000678  9095               	bcf	149,0,c	;volatile
+   671                           
+   672                           ;user_tasks.c: 6:    TRISDbits.RD1 = 0;
+   673  00067A  9295               	bcf	149,1,c	;volatile
+   674                           
+   675                           ;user_tasks.c: 7:    TRISDbits.RD2 = 0;
+   676  00067C  9495               	bcf	149,2,c	;# 
+   677  00067E  0012               	return		;funcret
+   678  000680                     __end_of_config_tasks:
+   679                           	callstack 0
+   680                           
+   681 ;; *************** function _task_1 *****************
+   682 ;; Defined at:
+   683 ;;		line 13 in file "user_tasks.c"
+   684 ;; Parameters:    Size  Location     Type
+   685 ;;		None
+   686 ;; Auto vars:     Size  Location     Type
+   687 ;;		None
+   688 ;; Return value:  Size  Location     Type
+   689 ;;                  1  [STACK] void 
+   690 ;; Registers used:
+   691 ;;		wreg, status,2, status,0, btemp+11
+   692 ;; Tracked objects:
+   693 ;;		On entry : 0/0
+   694 ;;		On exit  : 0/0
+   695 ;;		Unchanged: 0/0
+   696 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   697 ;;      Params:         0       0       0       0       0       0       0
+   698 ;;      Locals:         0       0       0       0       0       0       0
+   699 ;;      Temps:          0       0       0       0       0       0       0
+   700 ;;      Totals:         0       0       0       0       0       0       0
+   701 ;;Total ram usage:        0 bytes
+   702 ;; Hardware stack levels used:    1
+   703 ;; Hardware stack levels required when called:    3
+   704 ;; This function calls:
+   705 ;;		Nothing
+   706 ;; This function is called by:
+   707 ;;		_main
+   708 ;; This function uses a reentrant model
+   709 ;;
+   710                           
+   711                           	psect	text6
+   712  000614                     __ptext6:
+   713                           	callstack 0
+   714  000614                     _task_1:
+   715                           	callstack 25
+   716  000614                     l32:
+   717  000614                     
+   718                           ;user_tasks.c: 16:       LATDbits.LATD0 = ~PORTDbits.RD0;
+   719  000614  B083               	btfsc	131,0,c	;volatile
+   720  000616  EF0F  F003         	goto	u5_21
+   721  00061A  EF12  F003         	goto	u5_20
+   722  00061E                     u5_21:
+   723  00061E  0E01               	movlw	1
+   724  000620  EF13  F003         	goto	u5_26
+   725  000624                     u5_20:
+   726  000624  0E00               	movlw	0
+   727  000626                     u5_26:
+   728  000626  0AFF               	xorlw	255
+   729  000628  6E33               	movwf	(btemp+11)^0,c
+   730  00062A  508C               	movf	140,w,c	;volatile
+   731  00062C  1833               	xorwf	(btemp+11)^0,w,c
+   732  00062E  0BFE               	andlw	-2
+   733  000630  1833               	xorwf	(btemp+11)^0,w,c
+   734  000632  6E8C               	movwf	140,c	;volatile
+   735  000634  EF0A  F003         	goto	l32
+   736                           
+   737                           ; _task_1: autosize = 0, savesize = 0, parsavesize = 0, tempsize = 0 parsize = 0, argsiz
+      +                          e = 0, vargsize = 0
+   738  000638  0012               	return		;funcret
+   739  00063A                     __end_of_task_1:
+   740                           	callstack 0
+   741                           
+   742 ;; *************** function _task_2 *****************
+   743 ;; Defined at:
+   744 ;;		line 20 in file "user_tasks.c"
+   745 ;; Parameters:    Size  Location     Type
+   746 ;;		None
+   747 ;; Auto vars:     Size  Location     Type
+   748 ;;		None
+   749 ;; Return value:  Size  Location     Type
+   750 ;;                  1  [STACK] void 
+   751 ;; Registers used:
+   752 ;;		wreg, status,2, status,0, btemp+11
+   753 ;; Tracked objects:
+   754 ;;		On entry : 0/0
+   755 ;;		On exit  : 0/0
+   756 ;;		Unchanged: 0/0
+   757 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   758 ;;      Params:         0       0       0       0       0       0       0
+   759 ;;      Locals:         0       0       0       0       0       0       0
+   760 ;;      Temps:          0       0       0       0       0       0       0
+   761 ;;      Totals:         0       0       0       0       0       0       0
+   762 ;;Total ram usage:        0 bytes
+   763 ;; Hardware stack levels used:    1
+   764 ;; Hardware stack levels required when called:    3
+   765 ;; This function calls:
+   766 ;;		Nothing
+   767 ;; This function is called by:
+   768 ;;		_main
+   769 ;; This function uses a reentrant model
+   770 ;;
+   771                           
+   772                           	psect	text7
+   773  0005EC                     __ptext7:
+   774                           	callstack 0
+   775  0005EC                     _task_2:
+   776                           	callstack 25
+   777  0005EC                     l38:
+   778  0005EC                     
+   779                           ;user_tasks.c: 23:       LATDbits.LATD1 = ~PORTDbits.RD1;
+   780  0005EC  B283               	btfsc	131,1,c	;volatile
+   781  0005EE  EFFB  F002         	goto	u6_21
+   782  0005F2  EFFE  F002         	goto	u6_20
+   783  0005F6                     u6_21:
+   784  0005F6  0E01               	movlw	1
+   785  0005F8  EFFF  F002         	goto	u6_26
+   786  0005FC                     u6_20:
+   787  0005FC  0E00               	movlw	0
+   788  0005FE                     u6_26:
+   789  0005FE  0AFF               	xorlw	255
+   790  000600  6E33               	movwf	(btemp+11)^0,c
+   791  000602  4633               	rlncf	(btemp+11)^0,f,c
+   792  000604  508C               	movf	140,w,c	;volatile
+   793  000606  1833               	xorwf	(btemp+11)^0,w,c
+   794  000608  0BFD               	andlw	-3
+   795  00060A  1833               	xorwf	(btemp+11)^0,w,c
+   796  00060C  6E8C               	movwf	140,c	;volatile
+   797  00060E  EFF6  F002         	goto	l38
+   798                           
+   799                           ; _task_2: autosize = 0, savesize = 0, parsavesize = 0, tempsize = 0 parsize = 0, argsiz
+      +                          e = 0, vargsize = 0
+   800  000612  0012               	return		;funcret
+   801  000614                     __end_of_task_2:
+   802                           	callstack 0
+   803                           
+   804 ;; *************** function _task_3 *****************
+   805 ;; Defined at:
+   806 ;;		line 27 in file "user_tasks.c"
+   807 ;; Parameters:    Size  Location     Type
+   808 ;;		None
+   809 ;; Auto vars:     Size  Location     Type
+   810 ;;		None
+   811 ;; Return value:  Size  Location     Type
+   812 ;;                  1  [STACK] void 
+   813 ;; Registers used:
+   814 ;;		wreg, status,2, status,0, btemp+11
+   815 ;; Tracked objects:
+   816 ;;		On entry : 0/0
+   817 ;;		On exit  : 0/0
+   818 ;;		Unchanged: 0/0
+   819 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   820 ;;      Params:         0       0       0       0       0       0       0
+   821 ;;      Locals:         0       0       0       0       0       0       0
+   822 ;;      Temps:          0       0       0       0       0       0       0
+   823 ;;      Totals:         0       0       0       0       0       0       0
+   824 ;;Total ram usage:        0 bytes
+   825 ;; Hardware stack levels used:    1
+   826 ;; Hardware stack levels required when called:    3
+   827 ;; This function calls:
+   828 ;;		Nothing
+   829 ;; This function is called by:
+   830 ;;		_main
+   831 ;; This function uses a reentrant model
+   832 ;;
+   833                           
+   834                           	psect	text8
+   835  0005C2                     __ptext8:
+   836                           	callstack 0
+   837  0005C2                     _task_3:
+   838                           	callstack 25
+   839  0005C2                     l44:
+   840  0005C2                     
+   841                           ;user_tasks.c: 30:       LATDbits.LATD2 = ~PORTDbits.RD2;
+   842  0005C2  B483               	btfsc	131,2,c	;volatile
+   843  0005C4  EFE6  F002         	goto	u7_21
+   844  0005C8  EFE9  F002         	goto	u7_20
+   845  0005CC                     u7_21:
+   846  0005CC  0E01               	movlw	1
+   847  0005CE  EFEA  F002         	goto	u7_26
+   848  0005D2                     u7_20:
+   849  0005D2  0E00               	movlw	0
+   850  0005D4                     u7_26:
+   851  0005D4  0AFF               	xorlw	255
+   852  0005D6  6E33               	movwf	(btemp+11)^0,c
+   853  0005D8  4633               	rlncf	(btemp+11)^0,f,c
+   854  0005DA  4633               	rlncf	(btemp+11)^0,f,c
+   855  0005DC  508C               	movf	140,w,c	;volatile
+   856  0005DE  1833               	xorwf	(btemp+11)^0,w,c
+   857  0005E0  0BFB               	andlw	-5
+   858  0005E2  1833               	xorwf	(btemp+11)^0,w,c
+   859  0005E4  6E8C               	movwf	140,c	;volatile
+   860  0005E6  EFE1  F002         	goto	l44
+   861                           
+   862                           ; _task_3: autosize = 0, savesize = 0, parsavesize = 0, tempsize = 0 parsize = 0, argsiz
+      +                          e = 0, vargsize = 0
+   863  0005EA  0012               	return		;funcret
+   864  0005EC                     __end_of_task_3:
+   865                           	callstack 0
+   866                           
+   867 ;; *************** function _isr_INTERRUPTS *****************
+   868 ;; Defined at:
+   869 ;;		line 10 in file "kernel.c"
+   870 ;; Parameters:    Size  Location     Type
+   871 ;;		None
+   872 ;; Auto vars:     Size  Location     Type
+   873 ;;  task_pos        2   29[COMRAM] unsigned int 
+   874 ;;  p_context       2   25[COMRAM] unsigned int 
+   875 ;;  task_pos        2   27[COMRAM] unsigned int 
+   876 ;;  p_context       2   23[COMRAM] unsigned int 
+   877 ;; Return value:  Size  Location     Type
+   878 ;;                  1    wreg      void 
+   879 ;; Registers used:
+   880 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, btemp, btemp+1, btemp+11, prodl, prodh, cstack
+   881 ;; Tracked objects:
+   882 ;;		On entry : 0/0
+   883 ;;		On exit  : 0/0
+   884 ;;		Unchanged: 0/0
+   885 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   886 ;;      Params:         0       0       0       0       0       0       0
+   887 ;;      Locals:         8       0       0       0       0       0       0
+   888 ;;      Temps:         12       0       0       0       0       0       0
+   889 ;;      Totals:        20       0       0       0       0       0       0
+   890 ;;Total ram usage:       20 bytes
+   891 ;; Hardware stack levels used:    1
+   892 ;; Hardware stack levels required when called:    2
+   893 ;; This function calls:
+   894 ;;		_FIFO_scheduler
+   895 ;;		___wmul
+   896 ;; This function is called by:
+   897 ;;		Interrupt level 2
+   898 ;; This function uses a non-reentrant model
+   899 ;;
+   900                           
+   901                           	psect	intcode
+   902  000008                     __pintcode:
+   903                           	callstack 0
+   904  000008                     _isr_INTERRUPTS:
+   905                           	callstack 25
+   906                           
+   907                           ;incstack = 0
+   908  000008  ED0A  F000         	call	int_func,f	;refresh shadow registers
+   909                           
+   910                           	psect	intcode_body
+   911  000014                     __pintcode_body:
+   912                           	callstack 25
+   913  000014                     int_func:
+   914                           	callstack 25
+   915  000014  0006               	pop		; remove dummy address from shadow register refresh
+   916  000016  CFE1 F00F          	movff	fsr1l,??_isr_INTERRUPTS+3
+   917  00001A  CFE2 F010          	movff	fsr1h,??_isr_INTERRUPTS+4
+   918  00001E  CFD9 F011          	movff	fsr2l,??_isr_INTERRUPTS+5
+   919  000022  CFDA F012          	movff	fsr2h,??_isr_INTERRUPTS+6
+   920  000026  CFF3 F013          	movff	prodl,??_isr_INTERRUPTS+7
+   921  00002A  CFF4 F014          	movff	prodh,??_isr_INTERRUPTS+8
+   922  00002E  C028  F015         	movff	btemp,??_isr_INTERRUPTS+9
+   923  000032  C029  F016         	movff	btemp+1,??_isr_INTERRUPTS+10
+   924  000036  C033  F017         	movff	btemp+11,??_isr_INTERRUPTS+11
+   925  00003A  EE13  F0D4         	lfsr	1,___inthi_sp
+   926  00003E                     
+   927                           ;kernel.c: 13:    if (INTCONbits.INT0IF) {
+   928  00003E  A2F2               	btfss	242,1,c	;volatile
+   929  000040  EF24  F000         	goto	i2u17_41
+   930  000044  EF26  F000         	goto	i2u17_40
+   931  000048                     i2u17_41:
+   932  000048  EFCE  F001         	goto	i2l85
+   933  00004C                     i2u17_40:
+   934  00004C                     
+   935                           ;kernel.c: 14:       INTCONbits.INT0IF = 0;
+   936  00004C  92F2               	bcf	242,1,c	;volatile
+   937  00004E                     
+   938                           ;kernel.c: 17:       { u_int p_context = 0, task_pos = ready_queue.task_running;do { INT
+      +                          CONbits.GIE = 0; if (ready_queue.tasks_list[task_pos].task_STATE == RUNNING) { ready_que
+      +                          ue.tasks_list[task_pos].task_BSR_reg = BSR; ready_queue.tasks_list[task_pos].task_WORK_r
+      +                          eg = WREG; ready_queue.tasks_list[task_pos].task_STATUS_reg = STATUS; do { ready_queue.t
+      +                          asks_list[task_pos].task_CONTEXT[p_context] = TOS; __asm("POP"); p_context += 1; } while
+      +                           (STKPTR); ready_queue.tasks_list[task_pos].task_stack_real_size = p_context; ready_queu
+      +                          e.tasks_list[task_pos].task_STATE = READY; } INTCONbits.GIE = 1; } while(0); };
+   939  00004E  0E00               	movlw	0
+   940  000050  6E19               	movwf	(isr_INTERRUPTS@p_context+1)^0,c
+   941  000052  0E00               	movlw	0
+   942  000054  6E18               	movwf	isr_INTERRUPTS@p_context^0,c
+   943  000056  C2BC  F01C         	movff	_ready_queue+458,isr_INTERRUPTS@task_pos
+   944  00005A  C2BD  F01D         	movff	_ready_queue+459,isr_INTERRUPTS@task_pos+1
+   945  00005E  9EF2               	bcf	242,7,c	;volatile
+   946  000060  0E72               	movlw	114
+   947  000062  6EE6               	movwf	postinc1,c
+   948  000064  0E00               	movlw	0
+   949  000066  6EE6               	movwf	postinc1,c
+   950  000068  C01C  FFE6         	movff	isr_INTERRUPTS@task_pos,postinc1
+   951  00006C  C01D  FFE6         	movff	isr_INTERRUPTS@task_pos+1,postinc1
+   952  000070  ECE1  F001         	call	___wmul	;wreg free
+   953  000074  0E63               	movlw	low (_ready_queue+113)
+   954  000076  2428               	addwf	btemp^0,w,c
+   955  000078  6ED9               	movwf	fsr2l,c
+   956  00007A  0E01               	movlw	high (_ready_queue+113)
+   957  00007C  2029               	addwfc	(btemp+1)^0,w,c
+   958  00007E  6EDA               	movwf	fsr2h,c
+   959  000080  04DE               	decf	postinc2,w,c
+   960  000082  A4D8               	btfss	status,2,c
+   961  000084  EF46  F000         	goto	i2u18_41
+   962  000088  EF48  F000         	goto	i2u18_40
+   963  00008C                     i2u18_41:
+   964  00008C  EFF2  F000         	goto	i2l966
+   965  000090                     i2u18_40:
+   966  000090  50E0               	movf	224,w,c	;volatile
+   967  000092  6E0C               	movwf	??_isr_INTERRUPTS^0,c
+   968  000094  6A0D               	clrf	(??_isr_INTERRUPTS+1)^0,c
+   969  000096  6A0E               	clrf	(??_isr_INTERRUPTS+2)^0,c
+   970  000098  0E72               	movlw	114
+   971  00009A  6EE6               	movwf	postinc1,c
+   972  00009C  0E00               	movlw	0
+   973  00009E  6EE6               	movwf	postinc1,c
+   974  0000A0  C01C  FFE6         	movff	isr_INTERRUPTS@task_pos,postinc1
+   975  0000A4  C01D  FFE6         	movff	isr_INTERRUPTS@task_pos+1,postinc1
+   976  0000A8  ECE1  F001         	call	___wmul	;wreg free
+   977  0000AC  0E58               	movlw	low (_ready_queue+102)
+   978  0000AE  2428               	addwf	btemp^0,w,c
+   979  0000B0  6ED9               	movwf	fsr2l,c
+   980  0000B2  0E01               	movlw	high (_ready_queue+102)
+   981  0000B4  2029               	addwfc	(btemp+1)^0,w,c
+   982  0000B6  6EDA               	movwf	fsr2h,c
+   983  0000B8  C00C  FFDE         	movff	??_isr_INTERRUPTS,postinc2
+   984  0000BC  C00D  FFDE         	movff	??_isr_INTERRUPTS+1,postinc2
+   985  0000C0  C00E  FFDE         	movff	??_isr_INTERRUPTS+2,postinc2
+   986  0000C4  6E0C               	movwf	??_isr_INTERRUPTS^0,c
+   987  0000C6  6A0D               	clrf	(??_isr_INTERRUPTS+1)^0,c
+   988  0000C8  6A0E               	clrf	(??_isr_INTERRUPTS+2)^0,c
+   989  0000CA  0E72               	movlw	114
+   990  0000CC  6EE6               	movwf	postinc1,c
+   991  0000CE  0E00               	movlw	0
+   992  0000D0  6EE6               	movwf	postinc1,c
+   993  0000D2  C01C  FFE6         	movff	isr_INTERRUPTS@task_pos,postinc1
+   994  0000D6  C01D  FFE6         	movff	isr_INTERRUPTS@task_pos+1,postinc1
+   995  0000DA  ECE1  F001         	call	___wmul	;wreg free
+   996  0000DE  0E5B               	movlw	low (_ready_queue+105)
+   997  0000E0  2428               	addwf	btemp^0,w,c
+   998  0000E2  6ED9               	movwf	fsr2l,c
+   999  0000E4  0E01               	movlw	high (_ready_queue+105)
+  1000  0000E6  2029               	addwfc	(btemp+1)^0,w,c
+  1001  0000E8  6EDA               	movwf	fsr2h,c
+  1002  0000EA  C00C  FFDE         	movff	??_isr_INTERRUPTS,postinc2
+  1003  0000EE  C00D  FFDE         	movff	??_isr_INTERRUPTS+1,postinc2
+  1004  0000F2  C00E  FFDE         	movff	??_isr_INTERRUPTS+2,postinc2
+  1005  0000F6  50D8               	movf	216,w,c	;volatile
+  1006  0000F8  6E0C               	movwf	??_isr_INTERRUPTS^0,c
+  1007  0000FA  6A0D               	clrf	(??_isr_INTERRUPTS+1)^0,c
+  1008  0000FC  6A0E               	clrf	(??_isr_INTERRUPTS+2)^0,c
+  1009  0000FE  0E72               	movlw	114
+  1010  000100  6EE6               	movwf	postinc1,c
+  1011  000102  0E00               	movlw	0
+  1012  000104  6EE6               	movwf	postinc1,c
+  1013  000106  C01C  FFE6         	movff	isr_INTERRUPTS@task_pos,postinc1
+  1014  00010A  C01D  FFE6         	movff	isr_INTERRUPTS@task_pos+1,postinc1
+  1015  00010E  ECE1  F001         	call	___wmul	;wreg free
+  1016  000112  0E5E               	movlw	low (_ready_queue+108)
+  1017  000114  2428               	addwf	btemp^0,w,c
+  1018  000116  6ED9               	movwf	fsr2l,c
+  1019  000118  0E01               	movlw	high (_ready_queue+108)
+  1020  00011A  2029               	addwfc	(btemp+1)^0,w,c
+  1021  00011C  6EDA               	movwf	fsr2h,c
+  1022  00011E  C00C  FFDE         	movff	??_isr_INTERRUPTS,postinc2
+  1023  000122  C00D  FFDE         	movff	??_isr_INTERRUPTS+1,postinc2
+  1024  000126  C00E  FFDE         	movff	??_isr_INTERRUPTS+2,postinc2
+  1025  00012A                     i2l75:
+  1026  00012A  0E72               	movlw	114
+  1027  00012C  6EE6               	movwf	postinc1,c
+  1028  00012E  0E00               	movlw	0
+  1029  000130  6EE6               	movwf	postinc1,c
+  1030  000132  C01C  FFE6         	movff	isr_INTERRUPTS@task_pos,postinc1
+  1031  000136  C01D  FFE6         	movff	isr_INTERRUPTS@task_pos+1,postinc1
+  1032  00013A  ECE1  F001         	call	___wmul	;wreg free
+  1033  00013E  0EF2               	movlw	low _ready_queue
+  1034  000140  6E0C               	movwf	??_isr_INTERRUPTS^0,c
+  1035  000142  0E00               	movlw	high _ready_queue
+  1036  000144  6E0D               	movwf	(??_isr_INTERRUPTS+1)^0,c
+  1037  000146  0E06               	movlw	6
+  1038  000148  260C               	addwf	??_isr_INTERRUPTS^0,f,c
+  1039  00014A  0E00               	movlw	0
+  1040  00014C  220D               	addwfc	(??_isr_INTERRUPTS+1)^0,f,c
+  1041  00014E  5028               	movf	btemp^0,w,c
+  1042  000150  260C               	addwf	??_isr_INTERRUPTS^0,f,c
+  1043  000152  5029               	movf	(btemp+1)^0,w,c
+  1044  000154  220D               	addwfc	(??_isr_INTERRUPTS+1)^0,f,c
+  1045  000156  0E03               	movlw	3
+  1046  000158  6EE6               	movwf	postinc1,c
+  1047  00015A  0E00               	movlw	0
+  1048  00015C  6EE6               	movwf	postinc1,c
+  1049  00015E  C018  FFE6         	movff	isr_INTERRUPTS@p_context,postinc1
+  1050  000162  C019  FFE6         	movff	isr_INTERRUPTS@p_context+1,postinc1
+  1051  000166  ECE1  F001         	call	___wmul	;wreg free
+  1052  00016A  5028               	movf	btemp^0,w,c
+  1053  00016C  240C               	addwf	??_isr_INTERRUPTS^0,w,c
+  1054  00016E  6ED9               	movwf	fsr2l,c
+  1055  000170  5029               	movf	(btemp+1)^0,w,c
+  1056  000172  200D               	addwfc	(??_isr_INTERRUPTS+1)^0,w,c
+  1057  000174  6EDA               	movwf	fsr2h,c
+  1058  000176  CFFD FFDE          	movff	tosl,postinc2	;volatile
+  1059  00017A  CFFE FFDE          	movff	tosh,postinc2	;volatile
+  1060  00017E  CFFF FFDE          	movff	tosu,postinc2	;volatile
+  1061  000182  0006               	pop		;# 
+  1062  000184  4A18               	infsnz	isr_INTERRUPTS@p_context^0,f,c
+  1063  000186  2A19               	incf	(isr_INTERRUPTS@p_context+1)^0,f,c
+  1064  000188  50FC               	movf	252,w,c	;volatile
+  1065  00018A  A4D8               	btfss	status,2,c
+  1066  00018C  EFCA  F000         	goto	i2u19_41
+  1067  000190  EFCC  F000         	goto	i2u19_40
+  1068  000194                     i2u19_41:
+  1069  000194  EF95  F000         	goto	i2l75
+  1070  000198                     i2u19_40:
+  1071  000198  0E72               	movlw	114
+  1072  00019A  6EE6               	movwf	postinc1,c
+  1073  00019C  0E00               	movlw	0
+  1074  00019E  6EE6               	movwf	postinc1,c
+  1075  0001A0  C01C  FFE6         	movff	isr_INTERRUPTS@task_pos,postinc1
+  1076  0001A4  C01D  FFE6         	movff	isr_INTERRUPTS@task_pos+1,postinc1
+  1077  0001A8  ECE1  F001         	call	___wmul	;wreg free
+  1078  0001AC  0E61               	movlw	low (_ready_queue+111)
+  1079  0001AE  2428               	addwf	btemp^0,w,c
+  1080  0001B0  6ED9               	movwf	fsr2l,c
+  1081  0001B2  0E01               	movlw	high (_ready_queue+111)
+  1082  0001B4  2029               	addwfc	(btemp+1)^0,w,c
+  1083  0001B6  6EDA               	movwf	fsr2h,c
+  1084  0001B8  C018  FFDE         	movff	isr_INTERRUPTS@p_context,postinc2
+  1085  0001BC  C019  FFDD         	movff	isr_INTERRUPTS@p_context+1,postdec2
+  1086  0001C0  0E72               	movlw	114
+  1087  0001C2  6EE6               	movwf	postinc1,c
+  1088  0001C4  0E00               	movlw	0
+  1089  0001C6  6EE6               	movwf	postinc1,c
+  1090  0001C8  C01C  FFE6         	movff	isr_INTERRUPTS@task_pos,postinc1
+  1091  0001CC  C01D  FFE6         	movff	isr_INTERRUPTS@task_pos+1,postinc1
+  1092  0001D0  ECE1  F001         	call	___wmul	;wreg free
+  1093  0001D4  0E63               	movlw	low (_ready_queue+113)
+  1094  0001D6  2428               	addwf	btemp^0,w,c
+  1095  0001D8  6ED9               	movwf	fsr2l,c
+  1096  0001DA  0E01               	movlw	high (_ready_queue+113)
+  1097  0001DC  2029               	addwfc	(btemp+1)^0,w,c
+  1098  0001DE  6EDA               	movwf	fsr2h,c
+  1099  0001E0  0E00               	movlw	0
+  1100  0001E2  6EDF               	movwf	indf2,c
+  1101  0001E4                     i2l966:
+  1102  0001E4  8EF2               	bsf	242,7,c	;volatile
+  1103  0001E6                     
+  1104                           ;kernel.c: 19:       ready_queue.task_running = FIFO_scheduler();
+  1105  0001E6  ECC6  F002         	call	_FIFO_scheduler	;wreg free
+  1106  0001EA  C006  F2BC         	movff	?_FIFO_scheduler,_ready_queue+458
+  1107  0001EE  C007  F2BD         	movff	?_FIFO_scheduler+1,_ready_queue+459
+  1108  0001F2                     
+  1109                           ;kernel.c: 21:       { u_int task_pos = ready_queue.task_running;u_int p_context = ready
+      +                          _queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if
+      +                           (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_l
+      +                          ist[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATU
+      +                          S = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1
+      +                          ; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } els
+      +                          e { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_
+      +                          list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+  1110  0001F2  C2BC  F01E         	movff	_ready_queue+458,isr_INTERRUPTS@task_pos_383
+  1111  0001F6  C2BD  F01F         	movff	_ready_queue+459,isr_INTERRUPTS@task_pos_383+1
+  1112  0001FA  0E72               	movlw	114
+  1113  0001FC  6EE6               	movwf	postinc1,c
+  1114  0001FE  0E00               	movlw	0
+  1115  000200  6EE6               	movwf	postinc1,c
+  1116  000202  C01E  FFE6         	movff	isr_INTERRUPTS@task_pos_383,postinc1
+  1117  000206  C01F  FFE6         	movff	isr_INTERRUPTS@task_pos_383+1,postinc1
+  1118  00020A  ECE1  F001         	call	___wmul	;wreg free
+  1119  00020E  0E61               	movlw	low (_ready_queue+111)
+  1120  000210  2428               	addwf	btemp^0,w,c
+  1121  000212  6ED9               	movwf	fsr2l,c
+  1122  000214  0E01               	movlw	high (_ready_queue+111)
+  1123  000216  2029               	addwfc	(btemp+1)^0,w,c
+  1124  000218  6EDA               	movwf	fsr2h,c
+  1125  00021A  CFDE F01A          	movff	postinc2,isr_INTERRUPTS@p_context_384
+  1126  00021E  CFDD F01B          	movff	postdec2,isr_INTERRUPTS@p_context_384+1
+  1127  000222  9EF2               	bcf	242,7,c	;volatile
+  1128  000224  0E00               	movlw	0
+  1129  000226  6EFC               	movwf	252,c	;volatile
+  1130  000228  0E72               	movlw	114
+  1131  00022A  6EE6               	movwf	postinc1,c
+  1132  00022C  0E00               	movlw	0
+  1133  00022E  6EE6               	movwf	postinc1,c
+  1134  000230  C01E  FFE6         	movff	isr_INTERRUPTS@task_pos_383,postinc1
+  1135  000234  C01F  FFE6         	movff	isr_INTERRUPTS@task_pos_383+1,postinc1
+  1136  000238  ECE1  F001         	call	___wmul	;wreg free
+  1137  00023C  0E61               	movlw	low (_ready_queue+111)
+  1138  00023E  2428               	addwf	btemp^0,w,c
+  1139  000240  6ED9               	movwf	fsr2l,c
+  1140  000242  0E01               	movlw	high (_ready_queue+111)
+  1141  000244  2029               	addwfc	(btemp+1)^0,w,c
+  1142  000246  6EDA               	movwf	fsr2h,c
+  1143  000248  50DE               	movf	postinc2,w,c
+  1144  00024A  10DE               	iorwf	postinc2,w,c
+  1145  00024C  B4D8               	btfsc	status,2,c
+  1146  00024E  EF2B  F001         	goto	i2u20_41
+  1147  000252  EF2D  F001         	goto	i2u20_40
+  1148  000256                     i2u20_41:
+  1149  000256  EFA1  F001         	goto	i2l79
+  1150  00025A                     i2u20_40:
+  1151  00025A  0E72               	movlw	114
+  1152  00025C  6EE6               	movwf	postinc1,c
+  1153  00025E  0E00               	movlw	0
+  1154  000260  6EE6               	movwf	postinc1,c
+  1155  000262  C01E  FFE6         	movff	isr_INTERRUPTS@task_pos_383,postinc1
+  1156  000266  C01F  FFE6         	movff	isr_INTERRUPTS@task_pos_383+1,postinc1
+  1157  00026A  ECE1  F001         	call	___wmul	;wreg free
+  1158  00026E  0E58               	movlw	low (_ready_queue+102)
+  1159  000270  2428               	addwf	btemp^0,w,c
+  1160  000272  6ED9               	movwf	fsr2l,c
+  1161  000274  0E01               	movlw	high (_ready_queue+102)
+  1162  000276  2029               	addwfc	(btemp+1)^0,w,c
+  1163  000278  6EDA               	movwf	fsr2h,c
+  1164  00027A  50DF               	movf	indf2,w,c
+  1165  00027C  6EE0               	movwf	224,c	;volatile
+  1166  00027E  0E72               	movlw	114
+  1167  000280  6EE6               	movwf	postinc1,c
+  1168  000282  0E00               	movlw	0
+  1169  000284  6EE6               	movwf	postinc1,c
+  1170  000286  C01E  FFE6         	movff	isr_INTERRUPTS@task_pos_383,postinc1
+  1171  00028A  C01F  FFE6         	movff	isr_INTERRUPTS@task_pos_383+1,postinc1
+  1172  00028E  ECE1  F001         	call	___wmul	;wreg free
+  1173  000292  0E5B               	movlw	low (_ready_queue+105)
+  1174  000294  2428               	addwf	btemp^0,w,c
+  1175  000296  6ED9               	movwf	fsr2l,c
+  1176  000298  0E01               	movlw	high (_ready_queue+105)
+  1177  00029A  2029               	addwfc	(btemp+1)^0,w,c
+  1178  00029C  6EDA               	movwf	fsr2h,c
+  1179  00029E  50DF               	movf	indf2,w,c
+  1180  0002A0  6E0C               	movwf	??_isr_INTERRUPTS^0,c
+  1181  0002A2  500C               	movf	??_isr_INTERRUPTS^0,w,c
+  1182  0002A4  0E72               	movlw	114
+  1183  0002A6  6EE6               	movwf	postinc1,c
+  1184  0002A8  0E00               	movlw	0
+  1185  0002AA  6EE6               	movwf	postinc1,c
+  1186  0002AC  C01E  FFE6         	movff	isr_INTERRUPTS@task_pos_383,postinc1
+  1187  0002B0  C01F  FFE6         	movff	isr_INTERRUPTS@task_pos_383+1,postinc1
+  1188  0002B4  ECE1  F001         	call	___wmul	;wreg free
+  1189  0002B8  0E5E               	movlw	low (_ready_queue+108)
+  1190  0002BA  2428               	addwf	btemp^0,w,c
+  1191  0002BC  6ED9               	movwf	fsr2l,c
+  1192  0002BE  0E01               	movlw	high (_ready_queue+108)
+  1193  0002C0  2029               	addwfc	(btemp+1)^0,w,c
+  1194  0002C2  6EDA               	movwf	fsr2h,c
+  1195  0002C4  50DF               	movf	indf2,w,c
+  1196  0002C6  6ED8               	movwf	216,c	;volatile
+  1197  0002C8  EF96  F001         	goto	i2l986
+  1198  0002CC                     i2l982:
+  1199  0002CC  061A               	decf	isr_INTERRUPTS@p_context_384^0,f,c
+  1200  0002CE  A0D8               	btfss	status,0,c
+  1201  0002D0  061B               	decf	(isr_INTERRUPTS@p_context_384+1)^0,f,c
+  1202  0002D2  0005               	push		;# 
+  1203  0002D4  0E72               	movlw	114
+  1204  0002D6  6EE6               	movwf	postinc1,c
+  1205  0002D8  0E00               	movlw	0
+  1206  0002DA  6EE6               	movwf	postinc1,c
+  1207  0002DC  C01E  FFE6         	movff	isr_INTERRUPTS@task_pos_383,postinc1
+  1208  0002E0  C01F  FFE6         	movff	isr_INTERRUPTS@task_pos_383+1,postinc1
+  1209  0002E4  ECE1  F001         	call	___wmul	;wreg free
+  1210  0002E8  0EF2               	movlw	low _ready_queue
+  1211  0002EA  6E0C               	movwf	??_isr_INTERRUPTS^0,c
+  1212  0002EC  0E00               	movlw	high _ready_queue
+  1213  0002EE  6E0D               	movwf	(??_isr_INTERRUPTS+1)^0,c
+  1214  0002F0  0E06               	movlw	6
+  1215  0002F2  260C               	addwf	??_isr_INTERRUPTS^0,f,c
+  1216  0002F4  0E00               	movlw	0
+  1217  0002F6  220D               	addwfc	(??_isr_INTERRUPTS+1)^0,f,c
+  1218  0002F8  5028               	movf	btemp^0,w,c
+  1219  0002FA  260C               	addwf	??_isr_INTERRUPTS^0,f,c
+  1220  0002FC  5029               	movf	(btemp+1)^0,w,c
+  1221  0002FE  220D               	addwfc	(??_isr_INTERRUPTS+1)^0,f,c
+  1222  000300  0E03               	movlw	3
+  1223  000302  6EE6               	movwf	postinc1,c
+  1224  000304  0E00               	movlw	0
+  1225  000306  6EE6               	movwf	postinc1,c
+  1226  000308  C01A  FFE6         	movff	isr_INTERRUPTS@p_context_384,postinc1
+  1227  00030C  C01B  FFE6         	movff	isr_INTERRUPTS@p_context_384+1,postinc1
+  1228  000310  ECE1  F001         	call	___wmul	;wreg free
+  1229  000314  5028               	movf	btemp^0,w,c
+  1230  000316  240C               	addwf	??_isr_INTERRUPTS^0,w,c
+  1231  000318  6ED9               	movwf	fsr2l,c
+  1232  00031A  5029               	movf	(btemp+1)^0,w,c
+  1233  00031C  200D               	addwfc	(??_isr_INTERRUPTS+1)^0,w,c
+  1234  00031E  6EDA               	movwf	fsr2h,c
+  1235  000320  CFDE FFFD          	movff	postinc2,tosl	;volatile
+  1236  000324  CFDE FFFE          	movff	postinc2,tosh	;volatile
+  1237  000328  CFDD FFFF          	movff	postdec2,tosu	;volatile
+  1238  00032C                     i2l986:
+  1239  00032C  501A               	movf	isr_INTERRUPTS@p_context_384^0,w,c
+  1240  00032E  101B               	iorwf	(isr_INTERRUPTS@p_context_384+1)^0,w,c
+  1241  000330  A4D8               	btfss	status,2,c
+  1242  000332  EF9D  F001         	goto	i2u21_41
+  1243  000336  EF9F  F001         	goto	i2u21_40
+  1244  00033A                     i2u21_41:
+  1245  00033A  EF66  F001         	goto	i2l982
+  1246  00033E                     i2u21_40:
+  1247  00033E  EFBB  F001         	goto	i2l83
+  1248  000342                     i2l79:
+  1249  000342  0005               	push		;# 
+  1250  000344  0E72               	movlw	114
+  1251  000346  6EE6               	movwf	postinc1,c
+  1252  000348  0E00               	movlw	0
+  1253  00034A  6EE6               	movwf	postinc1,c
+  1254  00034C  C01E  FFE6         	movff	isr_INTERRUPTS@task_pos_383,postinc1
+  1255  000350  C01F  FFE6         	movff	isr_INTERRUPTS@task_pos_383+1,postinc1
+  1256  000354  ECE1  F001         	call	___wmul	;wreg free
+  1257  000358  0EF6               	movlw	low (_ready_queue+4)
+  1258  00035A  2428               	addwf	btemp^0,w,c
+  1259  00035C  6ED9               	movwf	fsr2l,c
+  1260  00035E  0E00               	movlw	high (_ready_queue+4)
+  1261  000360  2029               	addwfc	(btemp+1)^0,w,c
+  1262  000362  6EDA               	movwf	fsr2h,c
+  1263  000364  CFDE F00C          	movff	postinc2,??_isr_INTERRUPTS
+  1264  000368  CFDD F00D          	movff	postdec2,??_isr_INTERRUPTS+1
+  1265  00036C  C00C  FFFD         	movff	??_isr_INTERRUPTS,tosl	;volatile
+  1266  000370  C00D  FFFE         	movff	??_isr_INTERRUPTS+1,tosh	;volatile
+  1267  000374  6AFF               	clrf	255,c	;volatile
+  1268  000376                     i2l83:
+  1269  000376  0E72               	movlw	114
+  1270  000378  6EE6               	movwf	postinc1,c
+  1271  00037A  0E00               	movlw	0
+  1272  00037C  6EE6               	movwf	postinc1,c
+  1273  00037E  C01E  FFE6         	movff	isr_INTERRUPTS@task_pos_383,postinc1
+  1274  000382  C01F  FFE6         	movff	isr_INTERRUPTS@task_pos_383+1,postinc1
+  1275  000386  ECE1  F001         	call	___wmul	;wreg free
+  1276  00038A  0E63               	movlw	low (_ready_queue+113)
+  1277  00038C  2428               	addwf	btemp^0,w,c
+  1278  00038E  6ED9               	movwf	fsr2l,c
+  1279  000390  0E01               	movlw	high (_ready_queue+113)
+  1280  000392  2029               	addwfc	(btemp+1)^0,w,c
+  1281  000394  6EDA               	movwf	fsr2h,c
+  1282  000396  0E01               	movlw	1
+  1283  000398  6EDF               	movwf	indf2,c
+  1284  00039A  8EF2               	bsf	242,7,c	;volatile
+  1285  00039C                     i2l85:
+  1286  00039C  C017  F033         	movff	??_isr_INTERRUPTS+11,btemp+11
+  1287  0003A0  C016  F029         	movff	??_isr_INTERRUPTS+10,btemp+1
+  1288  0003A4  C015  F028         	movff	??_isr_INTERRUPTS+9,btemp
+  1289  0003A8  C014  FFF4         	movff	??_isr_INTERRUPTS+8,prodh
+  1290  0003AC  C013  FFF3         	movff	??_isr_INTERRUPTS+7,prodl
+  1291  0003B0  C012  FFDA         	movff	??_isr_INTERRUPTS+6,fsr2h
+  1292  0003B4  C011  FFD9         	movff	??_isr_INTERRUPTS+5,fsr2l
+  1293  0003B8  C010  FFE2         	movff	??_isr_INTERRUPTS+4,fsr1h
+  1294  0003BC  C00F  FFE1         	movff	??_isr_INTERRUPTS+3,fsr1l
+  1295  0003C0  0011               	retfie		f
+  1296  0003C2                     __end_of_isr_INTERRUPTS:
+  1297                           	callstack 0
+  1298                           
+  1299 ;; *************** function _FIFO_scheduler *****************
+  1300 ;; Defined at:
+  1301 ;;		line 21 in file "scheduler.c"
+  1302 ;; Parameters:    Size  Location     Type
+  1303 ;;		None
+  1304 ;; Auto vars:     Size  Location     Type
+  1305 ;;  task_to_run     2    9[COMRAM] unsigned int 
+  1306 ;; Return value:  Size  Location     Type
+  1307 ;;                  2    5[COMRAM] unsigned int 
+  1308 ;; Registers used:
+  1309 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+  1310 ;; Tracked objects:
+  1311 ;;		On entry : 0/0
+  1312 ;;		On exit  : 0/0
+  1313 ;;		Unchanged: 0/0
+  1314 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1315 ;;      Params:         2       0       0       0       0       0       0
+  1316 ;;      Locals:         2       0       0       0       0       0       0
+  1317 ;;      Temps:          2       0       0       0       0       0       0
+  1318 ;;      Totals:         6       0       0       0       0       0       0
+  1319 ;;Total ram usage:        6 bytes
+  1320 ;; Hardware stack levels used:    1
+  1321 ;; Hardware stack levels required when called:    1
+  1322 ;; This function calls:
+  1323 ;;		___lwmod
+  1324 ;; This function is called by:
+  1325 ;;		_isr_INTERRUPTS
+  1326 ;; This function uses a non-reentrant model
+  1327 ;;
+  1328                           
+  1329                           	psect	text10
+  1330  00058C                     __ptext10:
+  1331                           	callstack 0
+  1332  00058C                     _FIFO_scheduler:
+  1333                           	callstack 25
+  1334  00058C                     
+  1335                           ;scheduler.c: 23:    u_int task_to_run;;scheduler.c: 26:    task_to_run = (ready_queue.t
+      +                          ask_running + 1) % ready_queue.tasks_installed;
+  1336  00058C  EE22  F0BC         	lfsr	2,_ready_queue+458
+  1337  000590  CFDE F008          	movff	postinc2,??_FIFO_scheduler
+  1338  000594  CFDD F009          	movff	postdec2,??_FIFO_scheduler+1
+  1339  000598  0E01               	movlw	1
+  1340  00059A  2408               	addwf	??_FIFO_scheduler^0,w,c
+  1341  00059C  6E01               	movwf	___lwmod@dividend^0,c
+  1342  00059E  0E00               	movlw	0
+  1343  0005A0  2009               	addwfc	(??_FIFO_scheduler+1)^0,w,c
+  1344  0005A2  6E02               	movwf	(___lwmod@dividend+1)^0,c
+  1345  0005A4  C2BA  F003         	movff	_ready_queue+456,___lwmod@divisor
+  1346  0005A8  C2BB  F004         	movff	_ready_queue+457,___lwmod@divisor+1
+  1347  0005AC  EC94  F002         	call	___lwmod	;wreg free
+  1348  0005B0  C001  F00A         	movff	?___lwmod,FIFO_scheduler@task_to_run
+  1349  0005B4  C002  F00B         	movff	?___lwmod+1,FIFO_scheduler@task_to_run+1
+  1350  0005B8                     
+  1351                           ;scheduler.c: 28:    return task_to_run;
+  1352  0005B8  C00A  F006         	movff	FIFO_scheduler@task_to_run,?_FIFO_scheduler
+  1353  0005BC  C00B  F007         	movff	FIFO_scheduler@task_to_run+1,?_FIFO_scheduler+1
+  1354  0005C0  0012               	return		;funcret
+  1355  0005C2                     __end_of_FIFO_scheduler:
+  1356                           	callstack 0
+  1357                           
+  1358 ;; *************** function ___lwmod *****************
+  1359 ;; Defined at:
+  1360 ;;		line 7 in file "C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\lwmod.c"
+  1361 ;; Parameters:    Size  Location     Type
+  1362 ;;  dividend        2    0[COMRAM] unsigned int 
+  1363 ;;  divisor         2    2[COMRAM] unsigned int 
+  1364 ;; Auto vars:     Size  Location     Type
+  1365 ;;  counter         1    4[COMRAM] unsigned char 
+  1366 ;; Return value:  Size  Location     Type
+  1367 ;;                  2    0[COMRAM] unsigned int 
+  1368 ;; Registers used:
+  1369 ;;		wreg, status,2, status,0
+  1370 ;; Tracked objects:
+  1371 ;;		On entry : 0/0
+  1372 ;;		On exit  : 0/0
+  1373 ;;		Unchanged: 0/0
+  1374 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1375 ;;      Params:         4       0       0       0       0       0       0
+  1376 ;;      Locals:         1       0       0       0       0       0       0
+  1377 ;;      Temps:          0       0       0       0       0       0       0
+  1378 ;;      Totals:         5       0       0       0       0       0       0
+  1379 ;;Total ram usage:        5 bytes
+  1380 ;; Hardware stack levels used:    1
+  1381 ;; This function calls:
+  1382 ;;		Nothing
+  1383 ;; This function is called by:
+  1384 ;;		_FIFO_scheduler
+  1385 ;; This function uses a non-reentrant model
+  1386 ;;
+  1387                           
+  1388                           	psect	text11
+  1389  000528                     __ptext11:
+  1390                           	callstack 0
+  1391  000528                     ___lwmod:
+  1392                           	callstack 25
+  1393  000528  5003               	movf	___lwmod@divisor^0,w,c
+  1394  00052A  1004               	iorwf	(___lwmod@divisor+1)^0,w,c
+  1395  00052C  B4D8               	btfsc	status,2,c
+  1396  00052E  EF9B  F002         	goto	i2u13_41
+  1397  000532  EF9D  F002         	goto	i2u13_40
+  1398  000536                     i2u13_41:
+  1399  000536  EFC1  F002         	goto	i2l612
+  1400  00053A                     i2u13_40:
+  1401  00053A  0E01               	movlw	1
+  1402  00053C  6E05               	movwf	___lwmod@counter^0,c
+  1403  00053E  EFA5  F002         	goto	i2l908
+  1404  000542                     i2l906:
+  1405  000542  90D8               	bcf	status,0,c
+  1406  000544  3603               	rlcf	___lwmod@divisor^0,f,c
+  1407  000546  3604               	rlcf	(___lwmod@divisor+1)^0,f,c
+  1408  000548  2A05               	incf	___lwmod@counter^0,f,c
+  1409  00054A                     i2l908:
+  1410  00054A  AE04               	btfss	(___lwmod@divisor+1)^0,7,c
+  1411  00054C  EFAA  F002         	goto	i2u14_41
+  1412  000550  EFAC  F002         	goto	i2u14_40
+  1413  000554                     i2u14_41:
+  1414  000554  EFA1  F002         	goto	i2l906
+  1415  000558                     i2u14_40:
+  1416  000558                     i2l910:
+  1417  000558  5003               	movf	___lwmod@divisor^0,w,c
+  1418  00055A  5C01               	subwf	___lwmod@dividend^0,w,c
+  1419  00055C  5004               	movf	(___lwmod@divisor+1)^0,w,c
+  1420  00055E  5802               	subwfb	(___lwmod@dividend+1)^0,w,c
+  1421  000560  A0D8               	btfss	status,0,c
+  1422  000562  EFB5  F002         	goto	i2u15_41
+  1423  000566  EFB7  F002         	goto	i2u15_40
+  1424  00056A                     i2u15_41:
+  1425  00056A  EFBB  F002         	goto	i2l914
+  1426  00056E                     i2u15_40:
+  1427  00056E  5003               	movf	___lwmod@divisor^0,w,c
+  1428  000570  5E01               	subwf	___lwmod@dividend^0,f,c
+  1429  000572  5004               	movf	(___lwmod@divisor+1)^0,w,c
+  1430  000574  5A02               	subwfb	(___lwmod@dividend+1)^0,f,c
+  1431  000576                     i2l914:
+  1432  000576  90D8               	bcf	status,0,c
+  1433  000578  3204               	rrcf	(___lwmod@divisor+1)^0,f,c
+  1434  00057A  3203               	rrcf	___lwmod@divisor^0,f,c
+  1435  00057C  2E05               	decfsz	___lwmod@counter^0,f,c
+  1436  00057E  EFAC  F002         	goto	i2l910
+  1437  000582                     i2l612:
+  1438  000582  C001  F001         	movff	___lwmod@dividend,?___lwmod
+  1439  000586  C002  F002         	movff	___lwmod@dividend+1,?___lwmod+1
+  1440  00058A  0012               	return		;funcret
+  1441  00058C                     __end_of___lwmod:
+  1442                           	callstack 0
+  1443  0000                     
+  1444                           	psect	text12
+  1445  000000                     __ptext12:
+  1446                           	callstack 0
+  1447  000000                     
+  1448                           	psect	rparam
+  1449  0000                     
+  1450                           	psect	temp
+  1451  000028                     btemp:
+  1452                           	callstack 0
+  1453  000028                     	ds	32
+  1454  0000                     wtemp0	set	btemp
+  1455  0000                     wtemp1	set	btemp+2
+  1456  0000                     wtemp2	set	btemp+4
+  1457  0000                     wtemp3	set	btemp+6
+  1458  0000                     wtemp4	set	btemp+8
+  1459  0000                     wtemp5	set	btemp+10
+  1460  0000                     wtemp8	set	btemp+1
+  1461  0000                     ttemp0	set	btemp
+  1462  0000                     ttemp1	set	btemp+3
+  1463  0000                     ttemp2	set	btemp+6
+  1464  0000                     ttemp3	set	btemp+9
+  1465  0000                     ttemp5	set	btemp+1
+  1466  0000                     ttemp6	set	btemp+4
+  1467  0000                     ttemp7	set	btemp+8
+  1468  0000                     ltemp0	set	btemp
+  1469  0000                     ltemp1	set	btemp+4
+  1470  0000                     ltemp2	set	btemp+8
+  1471  0000                     lltemp0	set	btemp
+  1472  0000                     lltemp1	set	btemp+8
+  1473  0000                     lltemp2	set	btemp+16
+  1474  0000                     lltemp3	set	btemp+24
+  1475                           
+  1476                           	psect	idloc
+  1477                           
+  1478                           ;Config register IDLOC0 @ 0x200000
+  1479                           ;	unspecified, using default values
+  1480  200000                     	org	2097152
+  1481  200000  FF                 	db	255
+  1482                           
+  1483                           ;Config register IDLOC1 @ 0x200001
+  1484                           ;	unspecified, using default values
+  1485  200001                     	org	2097153
+  1486  200001  FF                 	db	255
+  1487                           
+  1488                           ;Config register IDLOC2 @ 0x200002
+  1489                           ;	unspecified, using default values
+  1490  200002                     	org	2097154
+  1491  200002  FF                 	db	255
+  1492                           
+  1493                           ;Config register IDLOC3 @ 0x200003
+  1494                           ;	unspecified, using default values
+  1495  200003                     	org	2097155
+  1496  200003  FF                 	db	255
+  1497                           
+  1498                           ;Config register IDLOC4 @ 0x200004
+  1499                           ;	unspecified, using default values
+  1500  200004                     	org	2097156
+  1501  200004  FF                 	db	255
+  1502                           
+  1503                           ;Config register IDLOC5 @ 0x200005
+  1504                           ;	unspecified, using default values
+  1505  200005                     	org	2097157
+  1506  200005  FF                 	db	255
+  1507                           
+  1508                           ;Config register IDLOC6 @ 0x200006
+  1509                           ;	unspecified, using default values
+  1510  200006                     	org	2097158
+  1511  200006  FF                 	db	255
+  1512                           
+  1513                           ;Config register IDLOC7 @ 0x200007
+  1514                           ;	unspecified, using default values
+  1515  200007                     	org	2097159
+  1516  200007  FF                 	db	255
+  1517                           
+  1518                           	psect	config
+  1519                           
+  1520                           ; Padding undefined space
+  1521  300000                     	org	3145728
+  1522  300000  FF                 	db	255
+  1523                           
+  1524                           ;Config register CONFIG1H @ 0x300001
+  1525                           ;	unspecified, using default values
+  1526                           ;	Oscillator Selection bits
+  1527                           ;	OSC = 0x7, unprogrammed default
+  1528                           ;	Fail-Safe Clock Monitor Enable bit
+  1529                           ;	FCMEN = 0x0, unprogrammed default
+  1530                           ;	Internal/External Oscillator Switchover bit
+  1531                           ;	IESO = 0x0, unprogrammed default
+  1532  300001                     	org	3145729
+  1533  300001  07                 	db	7
+  1534                           
+  1535                           ;Config register CONFIG2L @ 0x300002
+  1536                           ;	unspecified, using default values
+  1537                           ;	Power-up Timer Enable bit
+  1538                           ;	PWRT = 0x1, unprogrammed default
+  1539                           ;	Brown-out Reset Enable bits
+  1540                           ;	BOREN = 0x3, unprogrammed default
+  1541                           ;	Brown Out Reset Voltage bits
+  1542                           ;	BORV = 0x3, unprogrammed default
+  1543  300002                     	org	3145730
+  1544  300002  1F                 	db	31
+  1545                           
+  1546                           ;Config register CONFIG2H @ 0x300003
+  1547                           ;	Watchdog Timer Enable bit
+  1548                           ;	WDT = OFF, WDT disabled (control is placed on the SWDTEN bit)
+  1549                           ;	Watchdog Timer Postscale Select bits
+  1550                           ;	WDTPS = 0xF, unprogrammed default
+  1551  300003                     	org	3145731
+  1552  300003  1E                 	db	30
+  1553                           
+  1554                           ; Padding undefined space
+  1555  300004                     	org	3145732
+  1556  300004  FF                 	db	255
+  1557                           
+  1558                           ;Config register CONFIG3H @ 0x300005
+  1559                           ;	CCP2 MUX bit
+  1560                           ;	CCP2MX = 0x1, unprogrammed default
+  1561                           ;	PORTB A/D Enable bit
+  1562                           ;	PBADEN = OFF, PORTB<4:0> pins are configured as digital I/O on Reset
+  1563                           ;	Low-Power Timer1 Oscillator Enable bit
+  1564                           ;	LPT1OSC = 0x0, unprogrammed default
+  1565                           ;	MCLR Pin Enable bit
+  1566                           ;	MCLRE = 0x1, unprogrammed default
+  1567  300005                     	org	3145733
+  1568  300005  81                 	db	129
+  1569                           
+  1570                           ;Config register CONFIG4L @ 0x300006
+  1571                           ;	unspecified, using default values
+  1572                           ;	Stack Full/Underflow Reset Enable bit
+  1573                           ;	STVREN = 0x1, unprogrammed default
+  1574                           ;	Single-Supply ICSP Enable bit
+  1575                           ;	LVP = 0x1, unprogrammed default
+  1576                           ;	Extended Instruction Set Enable bit
+  1577                           ;	XINST = 0x0, unprogrammed default
+  1578                           ;	Background Debugger Enable bit
+  1579                           ;	DEBUG = 0x1, unprogrammed default
+  1580  300006                     	org	3145734
+  1581  300006  85                 	db	133
+  1582                           
+  1583                           ; Padding undefined space
+  1584  300007                     	org	3145735
+  1585  300007  FF                 	db	255
+  1586                           
+  1587                           ;Config register CONFIG5L @ 0x300008
+  1588                           ;	unspecified, using default values
+  1589                           ;	Code Protection bit
+  1590                           ;	CP0 = 0x1, unprogrammed default
+  1591                           ;	Code Protection bit
+  1592                           ;	CP1 = 0x1, unprogrammed default
+  1593                           ;	Code Protection bit
+  1594                           ;	CP2 = 0x1, unprogrammed default
+  1595                           ;	Code Protection bit
+  1596                           ;	CP3 = 0x1, unprogrammed default
+  1597  300008                     	org	3145736
+  1598  300008  0F                 	db	15
+  1599                           
+  1600                           ;Config register CONFIG5H @ 0x300009
+  1601                           ;	unspecified, using default values
+  1602                           ;	Boot Block Code Protection bit
+  1603                           ;	CPB = 0x1, unprogrammed default
+  1604                           ;	Data EEPROM Code Protection bit
+  1605                           ;	CPD = 0x1, unprogrammed default
+  1606  300009                     	org	3145737
+  1607  300009  C0                 	db	192
+  1608                           
+  1609                           ;Config register CONFIG6L @ 0x30000A
+  1610                           ;	unspecified, using default values
+  1611                           ;	Write Protection bit
+  1612                           ;	WRT0 = 0x1, unprogrammed default
+  1613                           ;	Write Protection bit
+  1614                           ;	WRT1 = 0x1, unprogrammed default
+  1615                           ;	Write Protection bit
+  1616                           ;	WRT2 = 0x1, unprogrammed default
+  1617                           ;	Write Protection bit
+  1618                           ;	WRT3 = 0x1, unprogrammed default
+  1619  30000A                     	org	3145738
+  1620  30000A  0F                 	db	15
+  1621                           
+  1622                           ;Config register CONFIG6H @ 0x30000B
+  1623                           ;	unspecified, using default values
+  1624                           ;	Configuration Register Write Protection bit
+  1625                           ;	WRTC = 0x1, unprogrammed default
+  1626                           ;	Boot Block Write Protection bit
+  1627                           ;	WRTB = 0x1, unprogrammed default
+  1628                           ;	Data EEPROM Write Protection bit
+  1629                           ;	WRTD = 0x1, unprogrammed default
+  1630  30000B                     	org	3145739
+  1631  30000B  E0                 	db	224
+  1632                           
+  1633                           ;Config register CONFIG7L @ 0x30000C
+  1634                           ;	unspecified, using default values
+  1635                           ;	Table Read Protection bit
+  1636                           ;	EBTR0 = 0x1, unprogrammed default
+  1637                           ;	Table Read Protection bit
+  1638                           ;	EBTR1 = 0x1, unprogrammed default
+  1639                           ;	Table Read Protection bit
+  1640                           ;	EBTR2 = 0x1, unprogrammed default
+  1641                           ;	Table Read Protection bit
+  1642                           ;	EBTR3 = 0x1, unprogrammed default
+  1643  30000C                     	org	3145740
+  1644  30000C  0F                 	db	15
+  1645                           
+  1646                           ;Config register CONFIG7H @ 0x30000D
+  1647                           ;	unspecified, using default values
+  1648                           ;	Boot Block Table Read Protection bit
+  1649                           ;	EBTRB = 0x1, unprogrammed default
+  1650  30000D                     	org	3145741
+  1651  30000D  40                 	db	64
+  1652                           tosu	equ	0xFFF
+  1653                           tosh	equ	0xFFE
+  1654                           tosl	equ	0xFFD
+  1655                           stkptr	equ	0xFFC
+  1656                           pclatu	equ	0xFFB
+  1657                           pclath	equ	0xFFA
+  1658                           pcl	equ	0xFF9
+  1659                           tblptru	equ	0xFF8
+  1660                           tblptrh	equ	0xFF7
+  1661                           tblptrl	equ	0xFF6
+  1662                           tablat	equ	0xFF5
+  1663                           prodh	equ	0xFF4
+  1664                           prodl	equ	0xFF3
+  1665                           indf0	equ	0xFEF
+  1666                           postinc0	equ	0xFEE
+  1667                           postdec0	equ	0xFED
+  1668                           preinc0	equ	0xFEC
+  1669                           plusw0	equ	0xFEB
+  1670                           fsr0h	equ	0xFEA
+  1671                           fsr0l	equ	0xFE9
+  1672                           wreg	equ	0xFE8
+  1673                           indf1	equ	0xFE7
+  1674                           postinc1	equ	0xFE6
+  1675                           postdec1	equ	0xFE5
+  1676                           preinc1	equ	0xFE4
+  1677                           plusw1	equ	0xFE3
+  1678                           fsr1h	equ	0xFE2
+  1679                           fsr1l	equ	0xFE1
+  1680                           bsr	equ	0xFE0
+  1681                           indf2	equ	0xFDF
+  1682                           postinc2	equ	0xFDE
+  1683                           postdec2	equ	0xFDD
+  1684                           preinc2	equ	0xFDC
+  1685                           plusw2	equ	0xFDB
+  1686                           fsr2h	equ	0xFDA
+  1687                           fsr2l	equ	0xFD9
+  1688                           status	equ	0xFD8
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         460
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95     39      39
+    BANK0           128    114     114
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+
+Pointer List with Targets:
+
+    create_task@task	PTR FTN()void  size(2) Largest target is 1
+		 -> task_3(), task_2(), task_1(), 
+
+    new_task.task_PTR	PTR FTN()void  size(2) Largest target is 1
+		 -> task_3(), task_2(), task_1(), 
+
+    S232TCB$task_PTR	PTR FTN()void  size(2) Largest target is 1
+		 -> task_3(), task_2(), task_1(), 
+
+    ready_queue.tasks_list.task_PTR	PTR FTN()void  size(2) Largest target is 1
+		 -> task_3(), task_2(), task_1(), 
+
+
+Critical Paths under _main in COMRAM
+
+    _main->_create_task
+
+Critical Paths under _task_1 in COMRAM
+
+    None.
+
+Critical Paths under _task_2 in COMRAM
+
+    None.
+
+Critical Paths under _task_3 in COMRAM
+
+    None.
+
+Critical Paths under _task_1 in COMRAM
+
+    None.
+
+Critical Paths under _task_2 in COMRAM
+
+    None.
+
+Critical Paths under _task_3 in COMRAM
+
+    None.
+
+Critical Paths under _isr_INTERRUPTS in COMRAM
+
+    _isr_INTERRUPTS->_FIFO_scheduler
+    _FIFO_scheduler->___lwmod
+
+Critical Paths under _main in BANK0
+
+    _main->_create_task
+
+Critical Paths under _task_1 in BANK0
+
+    None.
+
+Critical Paths under _task_2 in BANK0
+
+    None.
+
+Critical Paths under _task_3 in BANK0
+
+    None.
+
+Critical Paths under _task_1 in BANK0
+
+    None.
+
+Critical Paths under _task_2 in BANK0
+
+    None.
+
+Critical Paths under _task_3 in BANK0
+
+    None.
+
+Critical Paths under _isr_INTERRUPTS in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _task_1 in BANK1
+
+    None.
+
+Critical Paths under _task_2 in BANK1
+
+    None.
+
+Critical Paths under _task_3 in BANK1
+
+    None.
+
+Critical Paths under _task_1 in BANK1
+
+    None.
+
+Critical Paths under _task_2 in BANK1
+
+    None.
+
+Critical Paths under _task_3 in BANK1
+
+    None.
+
+Critical Paths under _isr_INTERRUPTS in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _task_1 in BANK2
+
+    None.
+
+Critical Paths under _task_2 in BANK2
+
+    None.
+
+Critical Paths under _task_3 in BANK2
+
+    None.
+
+Critical Paths under _task_1 in BANK2
+
+    None.
+
+Critical Paths under _task_2 in BANK2
+
+    None.
+
+Critical Paths under _task_3 in BANK2
+
+    None.
+
+Critical Paths under _isr_INTERRUPTS in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _task_1 in BANK3
+
+    None.
+
+Critical Paths under _task_2 in BANK3
+
+    None.
+
+Critical Paths under _task_3 in BANK3
+
+    None.
+
+Critical Paths under _task_1 in BANK3
+
+    None.
+
+Critical Paths under _task_2 in BANK3
+
+    None.
+
+Critical Paths under _task_3 in BANK3
+
+    None.
+
+Critical Paths under _isr_INTERRUPTS in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _task_1 in BANK4
+
+    None.
+
+Critical Paths under _task_2 in BANK4
+
+    None.
+
+Critical Paths under _task_3 in BANK4
+
+    None.
+
+Critical Paths under _task_1 in BANK4
+
+    None.
+
+Critical Paths under _task_2 in BANK4
+
+    None.
+
+Critical Paths under _task_3 in BANK4
+
+    None.
+
+Critical Paths under _isr_INTERRUPTS in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _task_1 in BANK5
+
+    None.
+
+Critical Paths under _task_2 in BANK5
+
+    None.
+
+Critical Paths under _task_3 in BANK5
+
+    None.
+
+Critical Paths under _task_1 in BANK5
+
+    None.
+
+Critical Paths under _task_2 in BANK5
+
+    None.
+
+Critical Paths under _task_3 in BANK5
+
+    None.
+
+Critical Paths under _isr_INTERRUPTS in BANK5
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0    1370
+                          _config_os
+                        _create_task
+                           _start_os
+ ---------------------------------------------------------------------------------
+ (1) _start_os                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _create_task                                        122   116      6    1370
+                                             31 COMRAM     8     2      6
+                                              0 BANK0    114   114      0
+                             ___wmul
+ ---------------------------------------------------------------------------------
+ (5) ___wmul                                               6     2      4     501
+ ---------------------------------------------------------------------------------
+ (1) _config_os                                            0     0      0       0
+                       _config_tasks
+ ---------------------------------------------------------------------------------
+ (2) _config_tasks                                         0     0      0       0
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _task_1                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _task_2                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _task_3                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _task_1                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _task_2                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _task_3                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (4) _isr_INTERRUPTS                                      20    20      0    1259
+                                             11 COMRAM    20    20      0
+                     _FIFO_scheduler
+                             ___wmul
+ ---------------------------------------------------------------------------------
+ (5) ___wmul                                               6     2      4     501
+ ---------------------------------------------------------------------------------
+ (5) _FIFO_scheduler                                       6     4      2     334
+                                              5 COMRAM     6     4      2
+                            ___lwmod
+ ---------------------------------------------------------------------------------
+ (6) ___lwmod                                              5     1      4     311
+                                              0 COMRAM     5     1      4
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 6
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _config_os
+     _config_tasks
+   _create_task
+     ___wmul
+   _start_os
+
+ _task_1 (ROOT)
+
+ _task_2 (ROOT)
+
+ _task_3 (ROOT)
+
+ _task_1 (ROOT)
+
+ _task_2 (ROOT)
+
+ _task_3 (ROOT)
+
+ _isr_INTERRUPTS (ROOT)
+   _FIFO_scheduler
+     ___lwmod
+   ___wmul
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             5FF      0     1CC      17       30.0%
+EEDATA             100      0       0       0        0.0%
+BITBANK5           100      0       0      16        0.0%
+BANK5              100      0       0      14        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            80      0       0       4        0.0%
+BANK0               80     72      72       5       89.1%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F     27      27       1       41.1%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       4       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      99      15        0.0%
+DATA                 0      0     269       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.20 build 20200408173844 
+Symbol Table                                                                                   Mon May 16 15:37:28 2022
+
+                         l32 0614                           l17 0520                           l18 0520  
+                         l44 05C2                           l29 067E                           l38 05EC  
+                         l91 04C2                           l88 065C                           l97 0682  
+                        l111 044E                          l802 063A                          l804 0658  
+                        l830 0410                          l832 0442                          l920 0468  
+                        l850 05C2                          l826 03C6                          l922 0470  
+                        l818 0680                          l828 03DE                          l924 0476  
+                        l940 04E4                          l846 0614                          l926 047E  
+                        l918 0458                          l942 0500                          l848 05EC  
+                        l784 0678                          l928 04B8                          l944 051C  
+                        l936 04C4                          l938 04C8                          _BSR 000FE0  
+                        u161 04B0                          _TOS 000FFD                create_task@id 0020  
+                        wreg 000FE8                         i2l83 0376                         i2l75 012A  
+                       i2l85 039C                         i2l79 0342                         _WREG 000FE8  
+                       u5_20 0624                         u5_21 061E                         u5_26 0626  
+                       u6_20 05FC                         u6_21 05F6                         u6_26 05FE  
+                       u7_20 05D2                         u7_21 05CC                         u7_26 05D4  
+                       _main 04C4                         fsr1h 000FE2                         fsr2h 000FDA  
+                       fsr0l 000FE9                         indf2 000FDF                         fsr1l 000FE1  
+                       fsr2l 000FD9                         btemp 0028                         prodh 000FF4  
+                       prodl 000FF3                         start 000C               ??_config_tasks 0020  
+               ___param_bank 000000                        ?_main 0001              __end_of___lwmod 058C  
+                      i2l108 05C0                        i2l612 0582                        i2l619 058A  
+                      i2l910 0558                        i2l902 0528                        i2l912 056E  
+                      i2l904 053A                        i2l914 0576                        i2l906 0542  
+                      i2l930 058C                        i2l916 057C                        i2l908 054A  
+                      i2l932 05B8                        i2l950 004E                        i2l960 0184  
+                      i2l952 0056                        i2l970 01F2                        i2l962 0188  
+                      i2l954 005E                        i2l946 003E                        i2l980 025A  
+                      i2l972 01FA                        i2l964 0198                        i2l956 0060  
+                      i2l948 004C                        i2l990 039A                        i2l982 02CC  
+                      i2l974 0222                        i2l958 0090                        i2l966 01E4  
+                      i2l984 02D4                        i2l976 0224                        i2l968 01E6  
+                      i2l986 032C                        i2l978 0228                        i2l988 0344  
+            create_task@task 0024                        ltemp0 0028                        ltemp1 002C  
+                      ltemp2 0030                        plusw0 000FEB                        plusw1 000FE3  
+                      plusw2 000FDB                        ttemp0 0028                        ttemp1 002B  
+                      ttemp2 002E                        ttemp3 0031                        ttemp5 0029  
+                      ttemp6 002C                        ttemp7 0030                        status 000FD8  
+                      wtemp0 0028                        wtemp1 002A                        wtemp2 002C  
+                      wtemp3 002E                        wtemp4 0030                        wtemp5 0032  
+                      wtemp8 0029              __initialization 065E                 __end_of_main 0528  
+                     ??_main 0028                __activetblptr 000000   isr_INTERRUPTS@task_pos_383 001E  
+                     _STATUS 000FD8                       _STKPTR 000FFC         __size_of_create_task 006C  
+                     ___wmul 03C2                    ??___lwmod 0005                       clear_0 0666  
+                     _task_1 0614                       _task_2 05EC                       _task_3 05C2  
+           create_task@prior 0022                       lltemp0 0028                       lltemp1 0030  
+                     lltemp2 0038                       lltemp3 0040         __end_of_config_tasks 0680  
+           __end_of_start_os 0684                   __accesstop 0080      __end_of__initialization 0672  
+              ___rparam_used 000001               __pcstackCOMRAM 0001                   ___inthi_sp 03D4  
+    __size_of_isr_INTERRUPTS 03BA           __size_of_config_os 0024                      i2u20_40 025A  
+                    i2u20_41 0256                      i2u13_40 053A                      i2u21_40 033E  
+                    i2u13_41 0536                      i2u21_41 033A                      i2u14_40 0558  
+                    i2u14_41 0554                      i2u15_40 056E                      i2u15_41 056A  
+                    i2u17_40 004C                      i2u17_41 0048                      i2u18_40 0090  
+                    i2u18_41 008C                      i2u19_40 0198                      i2u19_41 0194  
+  FIFO_scheduler@task_to_run 000A      __size_of_FIFO_scheduler 0036                      __Hparam 0000  
+                    __Lparam 0000            __end_of_config_os 065E              __size_of___wmul 0096  
+                    ___lwmod 0528                    ?_start_os 0001                      __pcinit 065E  
+      __size_of_config_tasks 0008                      __ramtop 0600              __size_of_task_1 0026  
+            __size_of_task_2 0028              __size_of_task_3 002A                      __ptext0 04C4  
+                    __ptext1 0680                      __ptext2 0458                      __ptext3 03C2  
+                    __ptext4 063A                      __ptext5 0678                      __ptext6 0614  
+                    __ptext7 05EC                      __ptext8 05C2               __pintcode_body 0014  
+       end_of_initialization 0672                      int_func 0014                 _config_tasks 0678  
+                    postdec2 000FDD                      postinc0 000FEE                      postinc1 000FE6  
+                    postinc2 000FDE                   ??_start_os 0020                    _PORTDbits 000F83  
+             _isr_INTERRUPTS 0008                    _TRISBbits 000F93                    _TRISDbits 000F95  
+              ??_create_task 0026      isr_INTERRUPTS@p_context 0018               __end_of___wmul 0458  
+     __end_of_isr_INTERRUPTS 03C2               __end_of_task_1 063A               __end_of_task_2 0614  
+             __end_of_task_3 05EC          start_initialization 065E               _FIFO_scheduler 058C  
+        __end_of_create_task 04C4              ?_isr_INTERRUPTS 0001                  __pbssBIGRAM 00F2  
+              __pcstackBANK0 0080       __end_of_FIFO_scheduler 05C2                    __pintcode 0008  
+                   ?___lwmod 0001                    _config_os 063A            __size_of_start_os 0004  
+            ?_FIFO_scheduler 0006                  _create_task 0458                     _LATDbits 000F8C  
+        create_task@new_task 0080                   ?_config_os 0001                    fp__task_1 0000  
+                  fp__task_2 0000                    fp__task_3 0000       isr_INTERRUPTS@task_pos 001C  
+                   __Hrparam 0000                     __Lrparam 0000  isr_INTERRUPTS@p_context_384 001A  
+           __size_of___lwmod 0064                     __ptext10 058C                     __ptext11 0528  
+                   __ptext12 0000                __size_of_main 0064                  _ready_queue 00F2  
+           ??_isr_INTERRUPTS 000C                     _start_os 0680                  ??_config_os 0020  
+                 _INTCONbits 000FF2                     intlevel1 0000                     intlevel2 0000  
+           ___lwmod@dividend 0001             ??_FIFO_scheduler 0008              ___lwmod@divisor 0003  
+            ___lwmod@counter 0005                 ?_create_task 0020                ?_config_tasks 0001  
