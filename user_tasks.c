@@ -1,4 +1,5 @@
 #include "user_tasks.h"
+#include "kernel.h"
 
 void config_tasks()
 {
@@ -20,14 +21,16 @@ TASK task_1()
 TASK task_2()
 {
    while (1) {
-      LATDbits.LATD1 = ~PORTDbits.RD1;      
+      LATDbits.LATD1 = ~PORTDbits.RD1;
+      //delay_task(500);
    }
 }
 
 TASK task_3()
 {
    while (1) {
-      LATDbits.LATD2 = ~PORTDbits.RD2;      
+      LATDbits.LATD2 = ~PORTDbits.RD2;
+      delay_task(30);
    }
 }
 

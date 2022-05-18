@@ -4619,16 +4619,14 @@ unsigned char __t3rd16on(void);
 # 4 "./user_conf.h" 2
 
 
+# 1 "./types.h" 1
+# 6 "./user_conf.h" 2
+
+
 #pragma config PBADEN = OFF
 #pragma config WDT = OFF
 # 4 "./types.h" 2
-
-
-
-
-
-
-
+# 14 "./types.h"
 typedef unsigned char byte;
 typedef unsigned int u_int;
 typedef void(*f_task)(void);
@@ -4644,6 +4642,7 @@ typedef struct TCB {
     __uint24 task_STATUS_reg;
     u_int task_stack_real_size;
     state_t task_STATE;
+    u_int delay_waiting;
 } TCB_t;
 
 typedef struct READY_queue {
@@ -4667,6 +4666,9 @@ void config_os();
 void create_task(u_int id, u_int prior, f_task task);
 void change_task_state(state_t new_state);
 void start_os();
+void exit_task();
+void task_idle();
+void delay_task(u_int time);
 # 1 "kernel.c" 2
 
 # 1 "./user_tasks.h" 1
@@ -4688,15 +4690,18 @@ void task_3();
 
 
 
+
+
 u_int RR_scheduler();
 u_int PRIOR_scheduler();
 u_int FIFO_scheduler();
+u_int scheduler();
 # 3 "kernel.c" 2
 
 
 
 READY_queue_t ready_queue;
-
+u_int rr_quantum_control = 8;
 
 
 void __attribute__((picinterrupt(("")))) isr_INTERRUPTS()
@@ -4704,13 +4709,33 @@ void __attribute__((picinterrupt(("")))) isr_INTERRUPTS()
 
    if (INTCONbits.INT0IF) {
       INTCONbits.INT0IF = 0;
+   }
+   else if (INTCONbits.TMR0IF) {
+      INTCONbits.TMR0IF = 0;
+      TMR0 = 64;
 
 
-      { u_int p_context = 0, task_pos = ready_queue.task_running;do { INTCONbits.GIE = 0; if (ready_queue.tasks_list[task_pos].task_STATE == RUNNING) { ready_queue.tasks_list[task_pos].task_BSR_reg = BSR; ready_queue.tasks_list[task_pos].task_WORK_reg = WREG; ready_queue.tasks_list[task_pos].task_STATUS_reg = STATUS; do { ready_queue.tasks_list[task_pos].task_CONTEXT[p_context] = TOS; __asm("POP"); p_context += 1; } while (STKPTR); ready_queue.tasks_list[task_pos].task_stack_real_size = p_context; ready_queue.tasks_list[task_pos].task_STATE = READY; } INTCONbits.GIE = 1; } while(0); };
+      int i;
+      for (i = 0; i < ready_queue.tasks_installed; i++) {
+         if (ready_queue.tasks_list[i].delay_waiting > 0) {
+            ready_queue.tasks_list[i].delay_waiting -= 1;
+            if (ready_queue.tasks_list[i].delay_waiting == 0) {
+               ready_queue.tasks_list[i].task_STATE = READY;
+            }
+         }
+      }
 
-      ready_queue.task_running = FIFO_scheduler();
+      rr_quantum_control -= 1;
+      if (rr_quantum_control == 0) {
+         rr_quantum_control = 8;
 
-      { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+         { u_int p_context = 0, task_pos = ready_queue.task_running;do { INTCONbits.GIE = 0; if (ready_queue.tasks_list[task_pos].task_STATE == RUNNING) { ready_queue.tasks_list[task_pos].task_BSR_reg = BSR; ready_queue.tasks_list[task_pos].task_WORK_reg = WREG; ready_queue.tasks_list[task_pos].task_STATUS_reg = STATUS; do { ready_queue.tasks_list[task_pos].task_CONTEXT[p_context] = TOS; __asm("POP"); p_context += 1; } while (STKPTR); ready_queue.tasks_list[task_pos].task_stack_real_size = p_context; ready_queue.tasks_list[task_pos].task_STATE = READY; } INTCONbits.GIE = 1; } while(0); };
+
+         ready_queue.task_running = scheduler();
+
+         { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+      }
+
    }
 }
 
@@ -4721,9 +4746,18 @@ void config_os()
    ready_queue.tasks_installed = 0;
 
 
+
    TRISBbits.RB0 = 1;
    INTCONbits.INT0IE = 1;
    INTCONbits.INT0IF = 0;
+
+   INTCONbits.PEIE = 1;
+   INTCONbits.TMR0IE = 1;
+   INTCONbits.TMR0IF = 0;
+   T0CONbits.TMR0ON = 0;
+   T0CONbits.T0CS = 0;
+   T0CONbits.PSA = 0;
+   T0CONbits.T0PS = 0b101;
 
 
    config_tasks();
@@ -4741,6 +4775,7 @@ void create_task(u_int id, u_int prior, f_task task)
    new_task.task_PTR = task;
    new_task.task_STATE = READY;
    new_task.task_stack_real_size = 0;
+   new_task.delay_waiting = 0;
 
    ready_queue.tasks_list[ready_queue.tasks_installed] = new_task;
    ready_queue.tasks_installed += 1;
@@ -4751,8 +4786,35 @@ void change_task_state(state_t new_state)
 
 }
 
+void exit_task()
+{
+   INTCONbits.GIE = 0;
+   ready_queue.tasks_list[ready_queue.task_running].task_STATE = TERMINATED;
+   ready_queue.task_running = scheduler();
+   { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+}
+
 void start_os()
 {
 
    INTCONbits.GIE = 1;
+
+   T0CONbits.TMR0ON = 1;
+   TMR0 = 64;
+}
+
+void task_idle()
+{
+   while (1) {
+      __nop();
+   }
+}
+
+void delay_task(u_int time)
+{
+   INTCONbits.GIE = 0;
+   ready_queue.tasks_list[ready_queue.task_running].delay_waiting = time;
+   { u_int p_context = 0, task_pos = ready_queue.task_running;do { INTCONbits.GIE = 0; if (ready_queue.tasks_list[task_pos].task_STATE == RUNNING) { ready_queue.tasks_list[task_pos].task_BSR_reg = BSR; ready_queue.tasks_list[task_pos].task_WORK_reg = WREG; ready_queue.tasks_list[task_pos].task_STATUS_reg = STATUS; do { ready_queue.tasks_list[task_pos].task_CONTEXT[p_context] = TOS; __asm("POP"); p_context += 1; } while (STKPTR); ready_queue.tasks_list[task_pos].task_stack_real_size = p_context; ready_queue.tasks_list[task_pos].task_STATE = WAITING; } INTCONbits.GIE = 1; } while(0); };
+   ready_queue.task_running = scheduler();
+   { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
 }

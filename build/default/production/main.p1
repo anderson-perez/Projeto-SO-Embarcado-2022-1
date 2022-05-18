@@ -3,22 +3,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12 ./kernel.h
 [; ;./kernel.h: 12: void config_os();
 [v _config_os `(v ~T0 @X0 0 e? ]
-[v F2591 `(v ~T0 @X0 0 tf ]
+[v F2592 `(v ~T0 @X0 0 tf ]
 "16
 [; ;./kernel.h: 16: void create_task(u_int id, u_int prior, f_task task);
-[v _create_task `(v ~T0 @X0 0 ef3`ui`ui`*F2591 ]
+[v _create_task `(v ~T0 @X0 0 ef3`ui`ui`*F2592 ]
 "8 ./user_tasks.h
 [; ;./user_tasks.h: 8: void task_1();
 [v _task_1 `(v ~T0 @X0 0 e? ]
-[v F2600 `(v ~T0 @X0 0 tf ]
+[v F2605 `(v ~T0 @X0 0 tf ]
 "9
 [; ;./user_tasks.h: 9: void task_2();
 [v _task_2 `(v ~T0 @X0 0 e? ]
-[v F2602 `(v ~T0 @X0 0 tf ]
+[v F2607 `(v ~T0 @X0 0 tf ]
 "10
 [; ;./user_tasks.h: 10: void task_3();
 [v _task_3 `(v ~T0 @X0 0 e? ]
-[v F2604 `(v ~T0 @X0 0 tf ]
+[v F2609 `(v ~T0 @X0 0 tf ]
 "18 ./kernel.h
 [; ;./kernel.h: 18: void start_os();
 [v _start_os `(v ~T0 @X0 0 e? ]
@@ -436,9 +436,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7002
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 7002: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"6 ./user_conf.h
+"8 ./user_conf.h
 [p x PBADEN = OFF ]
-"7
+"9
 [p x WDT    = OFF ]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "3 main.c
@@ -453,14 +453,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 6:    config_os();
 [e ( _config_os ..  ]
 "9
-[; ;main.c: 9:    create_task(1, 1, task_1);
-[e ( _create_task (3 , , -> -> 1 `i `ui -> -> 1 `i `ui -> &U _task_1 `*F2600 ]
+[; ;main.c: 9:    create_task(1, 3, task_1);
+[e ( _create_task (3 , , -> -> 1 `i `ui -> -> 3 `i `ui -> &U _task_1 `*F2605 ]
 "10
-[; ;main.c: 10:    create_task(2, 1, task_2);
-[e ( _create_task (3 , , -> -> 2 `i `ui -> -> 1 `i `ui -> &U _task_2 `*F2602 ]
+[; ;main.c: 10:    create_task(2, 2, task_2);
+[e ( _create_task (3 , , -> -> 2 `i `ui -> -> 2 `i `ui -> &U _task_2 `*F2607 ]
 "11
 [; ;main.c: 11:    create_task(3, 1, task_3);
-[e ( _create_task (3 , , -> -> 3 `i `ui -> -> 1 `i `ui -> &U _task_3 `*F2604 ]
+[e ( _create_task (3 , , -> -> 3 `i `ui -> -> 1 `i `ui -> &U _task_3 `*F2609 ]
 "14
 [; ;main.c: 14:    start_os();
 [e ( _start_os ..  ]

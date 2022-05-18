@@ -4619,16 +4619,14 @@ unsigned char __t3rd16on(void);
 # 4 "./user_conf.h" 2
 
 
+# 1 "./types.h" 1
+# 6 "./user_conf.h" 2
+
+
 #pragma config PBADEN = OFF
 #pragma config WDT = OFF
 # 4 "./types.h" 2
-
-
-
-
-
-
-
+# 14 "./types.h"
 typedef unsigned char byte;
 typedef unsigned int u_int;
 typedef void(*f_task)(void);
@@ -4644,6 +4642,7 @@ typedef struct TCB {
     __uint24 task_STATUS_reg;
     u_int task_stack_real_size;
     state_t task_STATE;
+    u_int delay_waiting;
 } TCB_t;
 
 typedef struct READY_queue {
@@ -4654,9 +4653,12 @@ typedef struct READY_queue {
 # 4 "./scheduler.h" 2
 
 
+
+
 u_int RR_scheduler();
 u_int PRIOR_scheduler();
 u_int FIFO_scheduler();
+u_int scheduler();
 # 1 "scheduler.c" 2
 
 
@@ -4668,12 +4670,30 @@ u_int RR_scheduler()
 {
    u_int task_to_run;
 
+   do {
+
+      task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
+   } while (ready_queue.tasks_list[task_to_run].task_STATE != READY);
+
    return task_to_run;
 }
 
 u_int PRIOR_scheduler()
 {
-   u_int task_to_run;
+   u_int task_to_run, menor_prioridade;
+
+
+
+   u_int x, y;
+   task_to_run = 0;
+   menor_prioridade = ready_queue.tasks_list[task_to_run].task_PRIOR;
+   for (y = 1; y < ready_queue.tasks_installed; y++) {
+       if ((ready_queue.tasks_list[y].task_PRIOR < menor_prioridade) &&
+          (ready_queue.tasks_list[y].task_STATE == READY)) {
+            menor_prioridade = ready_queue.tasks_list[y].task_PRIOR;
+            task_to_run = y;
+         }
+   }
 
    return task_to_run;
 }
@@ -4684,6 +4704,21 @@ u_int FIFO_scheduler()
 
 
    task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
+
+   return task_to_run;
+}
+
+u_int scheduler()
+{
+   u_int task_to_run;
+
+
+
+
+   task_to_run = PRIOR_scheduler();
+
+
+
 
    return task_to_run;
 }

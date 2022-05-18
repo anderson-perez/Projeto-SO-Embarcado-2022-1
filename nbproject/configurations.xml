@@ -153,7 +153,7 @@
         <property key="remove-unused-sections" value="true"/>
       </HI-TECH-LINK>
       <XC8-CO>
-        <property key="coverage-enable" value=""/>
+        <property key="coverage-enable" value="-mcodecov=ram"/>
         <property key="stack-guidance" value="false"/>
       </XC8-CO>
       <XC8-config-global>
@@ -167,7 +167,7 @@
         <property key="stack-size-high" value="auto"/>
         <property key="stack-size-low" value="auto"/>
         <property key="stack-size-main" value="auto"/>
-        <property key="stack-type" value="hybrid"/>
+        <property key="stack-type" value="compiled"/>
         <property key="user-pack-device-support" value=""/>
         <property key="wpo-lto" value="false"/>
       </XC8-config-global>

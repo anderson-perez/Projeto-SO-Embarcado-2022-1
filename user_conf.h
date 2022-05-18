@@ -12,7 +12,7 @@
 #define MAX_TASKS_SCHEDULER         4
 #define STACK_SIZE                  32
 
-#define DEFAULT_SCHEDULER           FIFO_SCHEDULER
+#define DEFAULT_SCHEDULER           PRIOR_SCHEDULER
 
 
 #endif	/* USER_CONF_H */

@@ -5,7 +5,6 @@
 #include "user_conf.h"
 #include "user_tasks.h"
 #include "kernel.h"
-//#include "hardware_conf.h"
 
 #endif	/* SO_H */
 

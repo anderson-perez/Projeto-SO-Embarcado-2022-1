@@ -52,6 +52,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "670
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 670: extern volatile PORTDbits_t PORTDbits __attribute__((address(0xF83)));
 [v _PORTDbits `VS28 ~T0 @X0 0 e@3971 ]
+"21 ./kernel.h
+[; ;./kernel.h: 21: void delay_task(u_int time);
+[v _delay_task `(v ~T0 @X0 0 ef1`ui ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 55: __asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
@@ -466,106 +469,109 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7002
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 7002: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"6 ./user_conf.h
+"8 ./user_conf.h
 [p x PBADEN = OFF ]
-"7
+"9
 [p x WDT    = OFF ]
-"3 user_tasks.c
-[; ;user_tasks.c: 3: void config_tasks()
+"4 user_tasks.c
+[; ;user_tasks.c: 4: void config_tasks()
 [v _config_tasks `(v ~T0 @X0 1 ef ]
-"4
-[; ;user_tasks.c: 4: {
+"5
+[; ;user_tasks.c: 5: {
 {
 [e :U _config_tasks ]
 [f ]
-"5
-[; ;user_tasks.c: 5:    TRISDbits.RD0 = 0;
-[e = . . _TRISDbits 1 0 -> -> 0 `i `uc ]
 "6
-[; ;user_tasks.c: 6:    TRISDbits.RD1 = 0;
-[e = . . _TRISDbits 1 1 -> -> 0 `i `uc ]
+[; ;user_tasks.c: 6:    TRISDbits.RD0 = 0;
+[e = . . _TRISDbits 1 0 -> -> 0 `i `uc ]
 "7
-[; ;user_tasks.c: 7:    TRISDbits.RD2 = 0;
+[; ;user_tasks.c: 7:    TRISDbits.RD1 = 0;
+[e = . . _TRISDbits 1 1 -> -> 0 `i `uc ]
+"8
+[; ;user_tasks.c: 8:    TRISDbits.RD2 = 0;
 [e = . . _TRISDbits 1 2 -> -> 0 `i `uc ]
-"10
-[; ;user_tasks.c: 10:    __asm("GLOBAL _task_1, _task_2, _task_3");
-[; <" GLOBAL _task_1, _task_2, _task_3 ;# ">
 "11
-[; ;user_tasks.c: 11: }
+[; ;user_tasks.c: 11:    __asm("GLOBAL _task_1, _task_2, _task_3");
+[; <" GLOBAL _task_1, _task_2, _task_3 ;# ">
+"12
+[; ;user_tasks.c: 12: }
 [e :UE 283 ]
 }
-"13
-[; ;user_tasks.c: 13: void task_1()
-[v _task_1 `(v ~T0 @X0 1 ef ]
 "14
-[; ;user_tasks.c: 14: {
+[; ;user_tasks.c: 14: void task_1()
+[v _task_1 `(v ~T0 @X0 1 ef ]
+"15
+[; ;user_tasks.c: 15: {
 {
 [e :U _task_1 ]
 [f ]
-"15
-[; ;user_tasks.c: 15:    while (1) {
+"16
+[; ;user_tasks.c: 16:    while (1) {
 [e :U 286 ]
 {
-"16
-[; ;user_tasks.c: 16:       LATDbits.LATD0 = ~PORTDbits.RD0;
-[e = . . _LATDbits 0 0 -> ~ -> . . _PORTDbits 0 0 `i `uc ]
 "17
-[; ;user_tasks.c: 17:    }
+[; ;user_tasks.c: 17:       LATDbits.LATD0 = ~PORTDbits.RD0;
+[e = . . _LATDbits 0 0 -> ~ -> . . _PORTDbits 0 0 `i `uc ]
+"18
+[; ;user_tasks.c: 18:    }
 }
 [e :U 285 ]
 [e $U 286  ]
 [e :U 287 ]
-"18
-[; ;user_tasks.c: 18: }
+"19
+[; ;user_tasks.c: 19: }
 [e :UE 284 ]
 }
-"20
-[; ;user_tasks.c: 20: void task_2()
-[v _task_2 `(v ~T0 @X0 1 ef ]
 "21
-[; ;user_tasks.c: 21: {
+[; ;user_tasks.c: 21: void task_2()
+[v _task_2 `(v ~T0 @X0 1 ef ]
+"22
+[; ;user_tasks.c: 22: {
 {
 [e :U _task_2 ]
 [f ]
-"22
-[; ;user_tasks.c: 22:    while (1) {
+"23
+[; ;user_tasks.c: 23:    while (1) {
 [e :U 290 ]
 {
-"23
-[; ;user_tasks.c: 23:       LATDbits.LATD1 = ~PORTDbits.RD1;
-[e = . . _LATDbits 0 1 -> ~ -> . . _PORTDbits 0 1 `i `uc ]
 "24
-[; ;user_tasks.c: 24:    }
+[; ;user_tasks.c: 24:       LATDbits.LATD1 = ~PORTDbits.RD1;
+[e = . . _LATDbits 0 1 -> ~ -> . . _PORTDbits 0 1 `i `uc ]
+"26
+[; ;user_tasks.c: 26:    }
 }
 [e :U 289 ]
 [e $U 290  ]
 [e :U 291 ]
-"25
-[; ;user_tasks.c: 25: }
+"27
+[; ;user_tasks.c: 27: }
 [e :UE 288 ]
 }
-"27
-[; ;user_tasks.c: 27: void task_3()
+"29
+[; ;user_tasks.c: 29: void task_3()
 [v _task_3 `(v ~T0 @X0 1 ef ]
-"28
-[; ;user_tasks.c: 28: {
+"30
+[; ;user_tasks.c: 30: {
 {
 [e :U _task_3 ]
 [f ]
-"29
-[; ;user_tasks.c: 29:    while (1) {
+"31
+[; ;user_tasks.c: 31:    while (1) {
 [e :U 294 ]
 {
-"30
-[; ;user_tasks.c: 30:       LATDbits.LATD2 = ~PORTDbits.RD2;
+"32
+[; ;user_tasks.c: 32:       LATDbits.LATD2 = ~PORTDbits.RD2;
 [e = . . _LATDbits 0 2 -> ~ -> . . _PORTDbits 0 2 `i `uc ]
-"31
-[; ;user_tasks.c: 31:    }
+"33
+[; ;user_tasks.c: 33:       delay_task(30);
+[e ( _delay_task (1 -> -> 30 `i `ui ]
+"34
+[; ;user_tasks.c: 34:    }
 }
 [e :U 293 ]
 [e $U 294  ]
 [e :U 295 ]
-"32
-[; ;user_tasks.c: 32: }
+"35
+[; ;user_tasks.c: 35: }
 [e :UE 292 ]
 }

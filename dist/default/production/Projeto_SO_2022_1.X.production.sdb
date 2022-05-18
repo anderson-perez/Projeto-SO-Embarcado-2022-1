@@ -10,7 +10,7 @@ RUNNING 1
 WAITING 2
 TERMINATED 3
 ]
-"26 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\scheduler.c
+"13 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\scheduler.c
 [e E2560 . `uc
 READY 0
 RUNNING 1
@@ -40,31 +40,39 @@ TERMINATED 3
 "8 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 "15 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\Umul16.c
-[v ___wmul __wmul `R(ui  1 e 2 0 ]
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+[v i1___wmul __wmul `(ui  1 e 2 0 ]
+[v i2___wmul __wmul `(ui  1 e 2 0 ]
 "15 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
 "10 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
 [v _isr_INTERRUPTS isr_INTERRUPTS `IIH(v  1 e 1 0 ]
-"25
+"45
 [v _config_os config_os `(v  1 e 1 0 ]
-"42
+"71
 [v _create_task create_task `(v  1 e 1 0 ]
-"62
+"100
 [v _start_os start_os `(v  1 e 1 0 ]
+"116
+[v _delay_task delay_task `(v  1 e 1 0 ]
 "3 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"21 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\scheduler.c
-[v _FIFO_scheduler FIFO_scheduler `(ui  1 e 2 0 ]
-"3 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
+"19 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\scheduler.c
+[v _PRIOR_scheduler PRIOR_scheduler `(ui  1 e 2 0 ]
+[v i2_PRIOR_scheduler PRIOR_scheduler `(ui  1 e 2 0 ]
+"49
+[v _scheduler scheduler `(ui  1 e 2 0 ]
+[v i2_scheduler scheduler `(ui  1 e 2 0 ]
+"4 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
 [v _config_tasks config_tasks `(v  1 e 1 0 ]
-"13
-[v _task_1 task_1 `R(v  1 e 1 0 ]
-"20
-[v _task_2 task_2 `R(v  1 e 1 0 ]
-"27
-[v _task_3 task_3 `R(v  1 e 1 0 ]
+"14
+[v _task_1 task_1 `(v  1 e 1 0 ]
+"21
+[v _task_2 task_2 `(v  1 e 1 0 ]
+"29
+[v _task_3 task_3 `(v  1 e 1 0 ]
 [s S69 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
@@ -115,7 +123,7 @@ TERMINATED 3
 ]
 [u S118 . 1 `S100 1 . 1 0 `S109 1 . 1 0 ]
 [v _LATDbits LATDbits `VES118  1 e 1 @3980 ]
-[s S304 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S311 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -125,7 +133,7 @@ TERMINATED 3
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1732
-[s S313 . 1 `uc 1 RB0 1 0 :1:0 
+[s S320 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -134,8 +142,8 @@ TERMINATED 3
 `uc 1 RB6 1 0 :1:6 
 `uc 1 RB7 1 0 :1:7 
 ]
-[u S322 . 1 `S304 1 . 1 0 `S313 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES322  1 e 1 @3987 ]
+[u S329 . 1 `S311 1 . 1 0 `S320 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES329  1 e 1 @3987 ]
 [s S60 . 1 `uc 1 TRISD0 1 0 :1:0 
 `uc 1 TRISD1 1 0 :1:1 
 `uc 1 TRISD2 1 0 :1:2 
@@ -148,13 +156,32 @@ TERMINATED 3
 "2176
 [u S78 . 1 `S60 1 . 1 0 `S69 1 . 1 0 ]
 [v _TRISDbits TRISDbits `VES78  1 e 1 @3989 ]
+[s S351 . 1 `uc 1 T0PS 1 0 :3:0 
+`uc 1 PSA 1 0 :1:3 
+`uc 1 T0SE 1 0 :1:4 
+`uc 1 T0CS 1 0 :1:5 
+`uc 1 T08BIT 1 0 :1:6 
+`uc 1 TMR0ON 1 0 :1:7 
+]
+"6192
+[s S358 . 1 `uc 1 T0PS0 1 0 :1:0 
+`uc 1 T0PS1 1 0 :1:1 
+`uc 1 T0PS2 1 0 :1:2 
+`uc 1 T0PS3 1 0 :1:3 
+`uc 1 . 1 0 :2:4 
+`uc 1 T016BIT 1 0 :1:6 
+]
+[u S365 . 1 `S351 1 . 1 0 `S358 1 . 1 0 ]
+[v _T0CONbits T0CONbits `VES365  1 e 1 @4053 ]
+"6252
+[v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
 "6273
 [v _STATUS STATUS `VEuc  1 e 1 @4056 ]
 "6400
 [v _BSR BSR `VEuc  1 e 1 @4064 ]
 "6463
 [v _WREG WREG `VEuc  1 e 1 @4072 ]
-[s S246 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S252 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -164,7 +191,7 @@ TERMINATED 3
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "6725
-[s S255 . 1 `uc 1 . 1 0 :1:0 
+[s S261 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -173,102 +200,218 @@ TERMINATED 3
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S264 . 1 `uc 1 . 1 0 :6:0 
+[s S270 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[u S268 . 1 `S246 1 . 1 0 `S255 1 . 1 0 `S264 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES268  1 e 1 @4082 ]
+[u S274 . 1 `S252 1 . 1 0 `S261 1 . 1 0 `S270 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES274  1 e 1 @4082 ]
 "6905
 [v _STKPTR STKPTR `VEuc  1 e 1 @4092 ]
 "6978
 [v _TOS TOS `VEum  1 e 3 @4093 ]
-[s S232 TCB 114 `ui 1 task_ID 2 0 `ui 1 task_PRIOR 2 2 `*.37R(v 1 task_PTR 2 4 `[32]um 1 task_CONTEXT 96 6 `um 1 task_BSR_reg 3 102 `um 1 task_WORK_reg 3 105 `um 1 task_STATUS_reg 3 108 `ui 1 task_stack_real_size 2 111 `E2560 1 task_STATE 1 113 ]
+[s S237 TCB 116 `ui 1 task_ID 2 0 `ui 1 task_PRIOR 2 2 `*.37(v 1 task_PTR 2 4 `[32]um 1 task_CONTEXT 96 6 `um 1 task_BSR_reg 3 102 `um 1 task_WORK_reg 3 105 `um 1 task_STATUS_reg 3 108 `ui 1 task_stack_real_size 2 111 `E2560 1 task_STATE 1 113 `ui 1 delay_waiting 2 114 ]
 "6 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
-[s S242 READY_queue 460 `[4]S232 1 tasks_list 456 0 `ui 1 tasks_installed 2 456 `ui 1 task_running 2 458 ]
-[v _ready_queue ready_queue `S242  1 e 460 0 ]
+[s S248 READY_queue 468 `[4]S237 1 tasks_list 464 0 `ui 1 tasks_installed 2 464 `ui 1 task_running 2 466 ]
+[v _ready_queue ready_queue `S248  1 e 468 0 ]
+"7
+[v _rr_quantum_control rr_quantum_control `ui  1 e 2 0 ]
+"14
+[v __ccovbit1_6 _ccovbit1_6 `VEb  1 e 0 0 ]
+"16
+[v __ccovbit2_7 _ccovbit2_7 `VEb  1 e 0 0 ]
+"24
+[v __ccovbit7_8 _ccovbit7_8 `VEb  1 e 0 0 ]
+"26
+[v __ccovbit8_9 _ccovbit8_9 `VEb  1 e 0 0 ]
+"29
+[v __ccovbit11_10 _ccovbit11_10 `VEb  1 e 0 0 ]
+"32
+[v __ccovbit16_11 _ccovbit16_11 `VEb  1 e 0 0 ]
+"35
+[v __ccovbit25_12 _ccovbit25_12 `VEb  1 e 0 0 ]
+[v __ccovbit27_13 _ccovbit27_13 `VEb  1 e 0 0 ]
+"39
+[v __ccovbit39_14 _ccovbit39_14 `VEb  1 e 0 0 ]
+[v __ccovbit41_15 _ccovbit41_15 `VEb  1 e 0 0 ]
+[v __ccovbit44_16 _ccovbit44_16 `VEb  1 e 0 0 ]
+[v __ccovbit46_17 _ccovbit46_17 `VEb  1 e 0 0 ]
+"43
+[v __ccovbit51_18 _ccovbit51_18 `VEb  1 e 0 0 ]
+"67
+[v __ccovbit3_19 _ccovbit3_19 `VEb  1 e 0 0 ]
+"85
+[v __ccovbit7_20 _ccovbit7_20 `VEb  1 e 0 0 ]
+"107
+[v __ccovbit2_21 _ccovbit2_21 `VEb  1 e 0 0 ]
+"120
+[v __ccovbit10_22 _ccovbit10_22 `VEb  1 e 0 0 ]
+[v __ccovbit12_23 _ccovbit12_23 `VEb  1 e 0 0 ]
+"122
+[v __ccovbit24_24 _ccovbit24_24 `VEb  1 e 0 0 ]
+[v __ccovbit26_25 _ccovbit26_25 `VEb  1 e 0 0 ]
+[v __ccovbit29_26 _ccovbit29_26 `VEb  1 e 0 0 ]
+"123
+[v __ccovbit33_27 _ccovbit33_27 `VEb  1 e 0 0 ]
+"18 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\main.c
+[v __ccovbit6_1 _ccovbit6_1 `VEb  1 e 0 0 ]
+"29 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\scheduler.c
+[v __ccovbit5_28 _ccovbit5_28 `VEb  1 e 0 0 ]
+[v __ccovbit5_33 _ccovbit5_33 `VEb  1 e 0 0 ]
+"32
+[v __ccovbit7_29 _ccovbit7_29 `VEb  1 e 0 0 ]
+[v __ccovbit7_34 _ccovbit7_34 `VEb  1 e 0 0 ]
+"34
+[v __ccovbit9_30 _ccovbit9_30 `VEb  1 e 0 0 ]
+[v __ccovbit9_35 _ccovbit9_35 `VEb  1 e 0 0 ]
+"37
+[v __ccovbit13_31 _ccovbit13_31 `VEb  1 e 0 0 ]
+[v __ccovbit13_36 _ccovbit13_36 `VEb  1 e 0 0 ]
+"62
+[v __ccovbit3_32 _ccovbit3_32 `VEb  1 e 0 0 ]
+[v __ccovbit3_37 _ccovbit3_37 `VEb  1 e 0 0 ]
+"12 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
+[v __ccovbit1_2 _ccovbit1_2 `VEb  1 e 0 0 ]
+"17
+[v __ccovbit1_3 _ccovbit1_3 `VEb  1 e 0 0 ]
+"24
+[v __ccovbit1_4 _ccovbit1_4 `VEb  1 e 0 0 ]
+"33
+[v __ccovbit2_5 _ccovbit2_5 `VEb  1 e 0 0 ]
 "3 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
 "21
 } 0
-"62 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
+"100 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
 [v _start_os start_os `(v  1 e 1 0 ]
 {
-"66
+"107
 } 0
-"42
+"71
 [v _create_task create_task `(v  1 e 1 0 ]
 {
-[s S232 TCB 114 `ui 1 task_ID 2 0 `ui 1 task_PRIOR 2 2 `*.37R(v 1 task_PTR 2 4 `[32]um 1 task_CONTEXT 96 6 `um 1 task_BSR_reg 3 102 `um 1 task_WORK_reg 3 105 `um 1 task_STATUS_reg 3 108 `ui 1 task_stack_real_size 2 111 `E2560 1 task_STATE 1 113 ]
-"44
-[v create_task@new_task new_task `S232  1 a 114 0 ]
-"42
-[v create_task@id id `ui  1 p 2 31 ]
-[v create_task@prior prior `ui  1 p 2 33 ]
-[v create_task@task task `*.37R(v  1 p 2 35 ]
-"55
+[s S237 TCB 116 `ui 1 task_ID 2 0 `ui 1 task_PRIOR 2 2 `*.37(v 1 task_PTR 2 4 `[32]um 1 task_CONTEXT 96 6 `um 1 task_BSR_reg 3 102 `um 1 task_WORK_reg 3 105 `um 1 task_STATUS_reg 3 108 `ui 1 task_stack_real_size 2 111 `E2560 1 task_STATE 1 113 `ui 1 delay_waiting 2 114 ]
+"73
+[v create_task@new_task new_task `S237  1 a 116 12 ]
+"71
+[v create_task@id id `ui  1 p 2 6 ]
+[v create_task@prior prior `ui  1 p 2 8 ]
+[v create_task@task task `*.37(v  1 p 2 10 ]
+"85
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\Umul16.c
-[v ___wmul __wmul `R(ui  1 e 2 0 ]
+[v ___wmul __wmul `(ui  1 e 2 0 ]
 {
 "17
-[v ___wmul@product product `ui  1 a 2 0 ]
+[v ___wmul@product product `ui  1 a 2 4 ]
 "15
-[v ___wmul@multiplier multiplier `ui  1 p 2 -2 ]
-[v ___wmul@multiplicand multiplicand `ui  1 p 2 -4 ]
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
 "53
-} 2
-"25 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
+} 0
+"45 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
 [v _config_os config_os `(v  1 e 1 0 ]
 {
-"38
+"67
 } 0
-"3 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
+"4 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
 [v _config_tasks config_tasks `(v  1 e 1 0 ]
 {
-"11
+"12
 } 0
-"13
-[v _task_1 task_1 `R(v  1 e 1 0 ]
+"14
+[v _task_1 task_1 `(v  1 e 1 0 ]
 {
-"18
+"19
 } 0
-"20
-[v _task_2 task_2 `R(v  1 e 1 0 ]
+"21
+[v _task_2 task_2 `(v  1 e 1 0 ]
+{
+"27
+} 0
+"29
+[v _task_3 task_3 `(v  1 e 1 0 ]
+{
+"35
+} 0
+"116 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
+[v _delay_task delay_task `(v  1 e 1 0 ]
+{
+"122
+[v delay_task@task_pos_473 task_pos `ui  1 a 2 69 ]
+[v delay_task@p_context_474 p_context `ui  1 a 2 65 ]
+"120
+[v delay_task@task_pos task_pos `ui  1 a 2 67 ]
+[v delay_task@p_context p_context `ui  1 a 2 63 ]
+"116
+[v delay_task@time time `ui  1 p 2 58 ]
+"123
+} 0
+"49 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\scheduler.c
+[v _scheduler scheduler `(ui  1 e 2 0 ]
+{
+"51
+[v scheduler@task_to_run task_to_run `ui  1 a 2 56 ]
+"62
+} 0
+"19
+[v _PRIOR_scheduler PRIOR_scheduler `(ui  1 e 2 0 ]
 {
 "25
+[v PRIOR_scheduler@y y `ui  1 a 2 52 ]
+"21
+[v PRIOR_scheduler@task_to_run task_to_run `ui  1 a 2 50 ]
+[v PRIOR_scheduler@menor_prioridade menor_prioridade `ui  1 a 2 48 ]
+"37
 } 0
-"27
-[v _task_3 task_3 `R(v  1 e 1 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\Umul16.c
+[v i1___wmul __wmul `(ui  1 e 2 0 ]
 {
-"32
+"17
+[v i1___wmul@product product `ui  1 a 2 42 ]
+"15
+[v i1___wmul@multiplier multiplier `ui  1 p 2 38 ]
+[v i1___wmul@multiplicand multiplicand `ui  1 p 2 40 ]
+"53
 } 0
 "10 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
 [v _isr_INTERRUPTS isr_INTERRUPTS `IIH(v  1 e 1 0 ]
 {
+"39
+[v isr_INTERRUPTS@task_pos_429 task_pos `ui  1 a 2 35 ]
+[v isr_INTERRUPTS@p_context_430 p_context `ui  1 a 2 29 ]
+"35
+[v isr_INTERRUPTS@task_pos task_pos `ui  1 a 2 33 ]
+[v isr_INTERRUPTS@p_context p_context `ui  1 a 2 27 ]
 "21
-[v isr_INTERRUPTS@task_pos_383 task_pos `ui  1 a 2 29 ]
-[v isr_INTERRUPTS@p_context_384 p_context `ui  1 a 2 25 ]
-"17
-[v isr_INTERRUPTS@task_pos task_pos `ui  1 a 2 27 ]
-[v isr_INTERRUPTS@p_context p_context `ui  1 a 2 23 ]
-"23
+[v isr_INTERRUPTS@i i `i  1 a 2 31 ]
+"43
 } 0
-"21 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\scheduler.c
-[v _FIFO_scheduler FIFO_scheduler `(ui  1 e 2 0 ]
+"49 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\scheduler.c
+[v i2_scheduler scheduler `(ui  1 e 2 0 ]
 {
-"23
-[v FIFO_scheduler@task_to_run task_to_run `ui  1 a 2 9 ]
-"29
+"51
+[v i2scheduler@task_to_run task_to_run `ui  1 a 2 18 ]
+"62
 } 0
-"7 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\lwmod.c
-[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"19
+[v i2_PRIOR_scheduler PRIOR_scheduler `(ui  1 e 2 0 ]
 {
-"10
-[v ___lwmod@counter counter `uc  1 a 1 4 ]
-"7
-[v ___lwmod@dividend dividend `ui  1 p 2 0 ]
-[v ___lwmod@divisor divisor `ui  1 p 2 2 ]
 "25
+[v i2PRIOR_scheduler@y y `ui  1 a 2 14 ]
+"21
+[v i2PRIOR_scheduler@task_to_run task_to_run `ui  1 a 2 12 ]
+[v i2PRIOR_scheduler@menor_prioridade menor_prioridade `ui  1 a 2 10 ]
+"37
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\Umul16.c
+[v i2___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v i2___wmul@product product `ui  1 a 2 4 ]
+"15
+[v i2___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v i2___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
 } 0

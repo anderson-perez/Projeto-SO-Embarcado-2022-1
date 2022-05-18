@@ -4619,16 +4619,14 @@ unsigned char __t3rd16on(void);
 # 4 "./user_conf.h" 2
 
 
+# 1 "./types.h" 1
+# 6 "./user_conf.h" 2
+
+
 #pragma config PBADEN = OFF
 #pragma config WDT = OFF
 # 4 "./types.h" 2
-
-
-
-
-
-
-
+# 14 "./types.h"
 typedef unsigned char byte;
 typedef unsigned int u_int;
 typedef void(*f_task)(void);
@@ -4644,6 +4642,7 @@ typedef struct TCB {
     __uint24 task_STATUS_reg;
     u_int task_stack_real_size;
     state_t task_STATE;
+    u_int delay_waiting;
 } TCB_t;
 
 typedef struct READY_queue {
@@ -4660,6 +4659,30 @@ void task_1();
 void task_2();
 void task_3();
 # 1 "user_tasks.c" 2
+
+# 1 "./kernel.h" 1
+
+
+
+
+
+
+extern READY_queue_t ready_queue;
+
+
+
+void __attribute__((picinterrupt(("")))) isr_INTERRUPTS();
+void config_os();
+
+
+
+void create_task(u_int id, u_int prior, f_task task);
+void change_task_state(state_t new_state);
+void start_os();
+void exit_task();
+void task_idle();
+void delay_task(u_int time);
+# 2 "user_tasks.c" 2
 
 
 void config_tasks()
@@ -4683,6 +4706,7 @@ void task_2()
 {
    while (1) {
       LATDbits.LATD1 = ~PORTDbits.RD1;
+
    }
 }
 
@@ -4690,5 +4714,6 @@ void task_3()
 {
    while (1) {
       LATDbits.LATD2 = ~PORTDbits.RD2;
+      delay_task(30);
    }
 }

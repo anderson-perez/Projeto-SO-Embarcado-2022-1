@@ -4619,16 +4619,14 @@ unsigned char __t3rd16on(void);
 # 4 "./user_conf.h" 2
 
 
+# 1 "./types.h" 1
+# 6 "./user_conf.h" 2
+
+
 #pragma config PBADEN = OFF
 #pragma config WDT = OFF
 # 4 "./types.h" 2
-
-
-
-
-
-
-
+# 14 "./types.h"
 typedef unsigned char byte;
 typedef unsigned int u_int;
 typedef void(*f_task)(void);
@@ -4644,6 +4642,7 @@ typedef struct TCB {
     __uint24 task_STATUS_reg;
     u_int task_stack_real_size;
     state_t task_STATE;
+    u_int delay_waiting;
 } TCB_t;
 
 typedef struct READY_queue {
@@ -4686,6 +4685,9 @@ void config_os();
 void create_task(u_int id, u_int prior, f_task task);
 void change_task_state(state_t new_state);
 void start_os();
+void exit_task();
+void task_idle();
+void delay_task(u_int time);
 # 7 "./so.h" 2
 # 1 "main.c" 2
 
@@ -4696,8 +4698,8 @@ int main()
    config_os();
 
 
-   create_task(1, 1, task_1);
-   create_task(2, 1, task_2);
+   create_task(1, 3, task_1);
+   create_task(2, 2, task_2);
    create_task(3, 1, task_3);
 
 

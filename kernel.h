@@ -16,6 +16,9 @@ void config_os();
 void create_task(u_int id, u_int prior, f_task task);
 void change_task_state(state_t new_state);
 void start_os();
+void exit_task();
+TASK task_idle();
+void delay_task(u_int time);
 
 // Rotinas para salvar e restaurar o contexto de uma tarefa
 #define SAVE_CONTEXT(STATE) { \

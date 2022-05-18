@@ -11,7 +11,6 @@
 #define PRIOR_SCHEDULER                 2
 #define FIFO_SCHEDULER                  3
 
-
 typedef unsigned char byte;
 typedef unsigned int u_int;
 typedef void(*f_task)(void);
@@ -27,6 +26,7 @@ typedef struct TCB {
     __uint24 task_STATUS_reg;
     u_int task_stack_real_size;
     state_t task_STATE;
+    u_int delay_waiting;
 } TCB_t;
 
 typedef struct READY_queue {
