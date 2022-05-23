@@ -1,4 +1,5 @@
 #include "scheduler.h"
+#include "kernel.h"
 
 // Acesso a fila de aptos
 extern READY_queue_t ready_queue;
@@ -6,12 +7,17 @@ extern READY_queue_t ready_queue;
 
 u_int RR_scheduler()
 {
-   u_int task_to_run;
+   u_int task_to_run, times = 0;
    
    do {
+   
       // Escolha da tarefa que será executada (ordem de chegada)
       task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
-   } while (ready_queue.tasks_list[task_to_run].task_STATE != READY);
+
+      if (++times == ready_queue.tasks_installed) return 0; 
+   
+   } while (ready_queue.tasks_list[task_to_run].task_STATE != READY && 
+            ready_queue.tasks_list[task_to_run].task_PTR != task_idle);
    
    return task_to_run;
 }
@@ -38,25 +44,28 @@ u_int PRIOR_scheduler()
 
 u_int FIFO_scheduler()
 {
-   u_int task_to_run;
+   u_int task_to_run, times = 0;
    
-   // Escolha da tarefa que será executada (ordem de chegada)
-   task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
+   do {
+   
+      // Escolha da tarefa que será executada (ordem de chegada)
+      task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
+
+      if (++times == ready_queue.tasks_installed) return 0; 
+   
+   } while (ready_queue.tasks_list[task_to_run].task_STATE != READY && 
+            ready_queue.tasks_list[task_to_run].task_PTR != task_idle);
    
    return task_to_run;
 }
 
-u_int scheduler()
+void scheduler()
 {
-   u_int task_to_run;
-   
    #if DEFAULT_SCHEDULER == RR_SCHEDULER
-   task_to_run = RR_scheduler();
+   ready_queue.task_running = RR_scheduler();
    #elif DEFAULT_SCHEDULER == PRIOR_SCHEDULER
-   task_to_run = PRIOR_scheduler();
+   ready_queue.task_running = PRIOR_scheduler();
    #else
-   task_to_run = FIFO_scheduler();
-   #endif   
-   
-   return task_to_run;
+   ready_queue.task_running = FIFO_scheduler();
+   #endif
 }

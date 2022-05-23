@@ -12,7 +12,8 @@
 #define MAX_TASKS_SCHEDULER         4
 #define STACK_SIZE                  32
 
-#define DEFAULT_SCHEDULER           PRIOR_SCHEDULER
+#define DEFAULT_SCHEDULER           RR_SCHEDULER
+#define DEBUG_TASK_IDLE             ENABLE
 
 
 #endif	/* USER_CONF_H */

@@ -4626,7 +4626,7 @@ unsigned char __t3rd16on(void);
 #pragma config PBADEN = OFF
 #pragma config WDT = OFF
 # 4 "./types.h" 2
-# 14 "./types.h"
+# 18 "./types.h"
 typedef unsigned char byte;
 typedef unsigned int u_int;
 typedef void(*f_task)(void);
@@ -4646,7 +4646,7 @@ typedef struct TCB {
 } TCB_t;
 
 typedef struct READY_queue {
-    TCB_t tasks_list[4];
+    TCB_t tasks_list[4 +1];
     u_int tasks_installed;
     u_int task_running;
 } READY_queue_t;
@@ -4658,8 +4658,32 @@ typedef struct READY_queue {
 u_int RR_scheduler();
 u_int PRIOR_scheduler();
 u_int FIFO_scheduler();
-u_int scheduler();
+void scheduler();
 # 1 "scheduler.c" 2
+
+# 1 "./kernel.h" 1
+
+
+
+
+
+
+extern READY_queue_t ready_queue;
+
+
+
+void __attribute__((picinterrupt(("")))) isr_INTERRUPTS();
+void config_os();
+
+
+
+void create_task(u_int id, u_int prior, f_task task);
+void yield_task();
+void start_os();
+void exit_task();
+void task_idle();
+void delay_task(u_int time);
+# 2 "scheduler.c" 2
 
 
 
@@ -4668,12 +4692,17 @@ extern READY_queue_t ready_queue;
 
 u_int RR_scheduler()
 {
-   u_int task_to_run;
+   u_int task_to_run, times = 0;
 
    do {
 
+
       task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
-   } while (ready_queue.tasks_list[task_to_run].task_STATE != READY);
+
+      if (++times == ready_queue.tasks_installed) return 0;
+
+   } while (ready_queue.tasks_list[task_to_run].task_STATE != READY &&
+            ready_queue.tasks_list[task_to_run].task_PTR != task_idle);
 
    return task_to_run;
 }
@@ -4700,25 +4729,28 @@ u_int PRIOR_scheduler()
 
 u_int FIFO_scheduler()
 {
-   u_int task_to_run;
+   u_int task_to_run, times = 0;
+
+   do {
 
 
-   task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
+      task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
+
+      if (++times == ready_queue.tasks_installed) return 0;
+
+   } while (ready_queue.tasks_list[task_to_run].task_STATE != READY &&
+            ready_queue.tasks_list[task_to_run].task_PTR != task_idle);
 
    return task_to_run;
 }
 
-u_int scheduler()
+void scheduler()
 {
-   u_int task_to_run;
+
+   ready_queue.task_running = RR_scheduler();
 
 
 
 
-   task_to_run = PRIOR_scheduler();
 
-
-
-
-   return task_to_run;
 }

@@ -27,18 +27,25 @@ void __interrupt() isr_INTERRUPTS()
             }
          }
       }
-   //#if DEFAULT_SCHEDULER == RR_SCHEDULER
+   #if DEFAULT_SCHEDULER == RR_SCHEDULER
       rr_quantum_control  -= 1;
       if (rr_quantum_control == 0) {
          rr_quantum_control = RR_QUANTUM;
          // Salva contexto da tarefa que está em execução
          SAVE_CONTEXT(READY);
          // Chama o escalonador para selecionar outra tarefa para executar
-         ready_queue.task_running = scheduler();
+         scheduler();
          // Restaura o contexto da tarefa que irá executar
          RESTORE_CONTEXT();
       }
-   //#endif
+   #elif DEFAULT_SCHEDULER == PRIOR_SCHEDULER
+         // Salva contexto da tarefa que está em execução
+         SAVE_CONTEXT(READY);
+         // Chama o escalonador para selecionar outra tarefa para executar
+         scheduler();
+         // Restaura o contexto da tarefa que irá executar
+         RESTORE_CONTEXT();
+   #endif
    }
 }
 
@@ -46,7 +53,16 @@ void config_os()
 {
    // Ajusta estrutura de dados do kernel
    ready_queue.task_running      = 0;
-   ready_queue.tasks_installed   = 0;  
+   ready_queue.tasks_installed   = 0;
+   
+   __asm("GLOBAL _task_idle");
+   
+   // Cria a tarefa idle()
+   create_task(0, 0, task_idle);
+   
+   #if DEBUG_TASK_IDLE == ENABLE
+   TRISCbits.RC0  =              0;
+   #endif
    
    // Configuração das interrupções
    // Int0
@@ -84,16 +100,28 @@ void create_task(u_int id, u_int prior, f_task task)
    ready_queue.tasks_installed                        += 1;
 }
 
-void change_task_state(state_t new_state)
+void yield_task()
 {
-   
+   GLOBAL_INTERRUPTS_DISABLE();
+   ready_queue.tasks_list[ready_queue.task_running].task_STATE = READY;
+   scheduler();
+   RESTORE_CONTEXT();
 }
 
 void exit_task()
 {
    GLOBAL_INTERRUPTS_DISABLE();
    ready_queue.tasks_list[ready_queue.task_running].task_STATE = TERMINATED;
-   ready_queue.task_running = scheduler();
+   scheduler();
+   RESTORE_CONTEXT();
+}
+
+void delay_task(u_int time)
+{
+   GLOBAL_INTERRUPTS_DISABLE();
+   ready_queue.tasks_list[ready_queue.task_running].delay_waiting = time;
+   SAVE_CONTEXT(WAITING);
+   scheduler();
    RESTORE_CONTEXT();
 }
 
@@ -109,15 +137,10 @@ void start_os()
 TASK task_idle()
 {
    while (1) {
+      #if DEBUG_TASK_IDLE == ENABLE
+      LATCbits.LATC0 = ~PORTCbits.RC0;
+      #else
       Nop();
+      #endif
    }
-}
-
-void delay_task(u_int time)
-{
-   GLOBAL_INTERRUPTS_DISABLE();
-   ready_queue.tasks_list[ready_queue.task_running].delay_waiting = time;
-   SAVE_CONTEXT(WAITING);
-   ready_queue.task_running = scheduler();
-   RESTORE_CONTEXT();
 }

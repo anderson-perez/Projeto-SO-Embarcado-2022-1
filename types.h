@@ -11,6 +11,10 @@
 #define PRIOR_SCHEDULER                 2
 #define FIFO_SCHEDULER                  3
 
+#define ENABLE                          1
+#define DISABLE                         0
+
+
 typedef unsigned char byte;
 typedef unsigned int u_int;
 typedef void(*f_task)(void);
@@ -30,7 +34,7 @@ typedef struct TCB {
 } TCB_t;
 
 typedef struct READY_queue {
-    TCB_t tasks_list[MAX_TASKS_SCHEDULER];
+    TCB_t tasks_list[MAX_TASKS_SCHEDULER+1];  // User tasks + task idle()
     u_int tasks_installed;
     u_int task_running;    
 } READY_queue_t;

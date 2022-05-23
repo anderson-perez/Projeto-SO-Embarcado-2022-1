@@ -14,7 +14,7 @@ void config_os();
 
 // Chamadas de sistema
 void create_task(u_int id, u_int prior, f_task task);
-void change_task_state(state_t new_state);
+void yield_task();
 void start_os();
 void exit_task();
 TASK task_idle();

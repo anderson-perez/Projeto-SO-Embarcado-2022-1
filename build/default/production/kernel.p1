@@ -4,13 +4,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;kernel.c: 6: READY_queue_t ready_queue;
 [c E2560 0 1 2 3 .. ]
 [n E2560 . READY RUNNING WAITING TERMINATED  ]
-"19 ./types.h
-[; ;./types.h: 19: typedef struct TCB {
+"23 ./types.h
+[; ;./types.h: 23: typedef struct TCB {
 [s S281 `ui 1 `ui 1 `*F2570 1 `um -> 32 `i `um 1 `um 1 `um 1 `ui 1 `E2560 1 `ui 1 ]
 [n S281 TCB task_ID task_PRIOR task_PTR task_CONTEXT task_BSR_reg task_WORK_reg task_STATUS_reg task_stack_real_size task_STATE delay_waiting ]
-"32
-[; ;./types.h: 32: typedef struct READY_queue {
-[s S282 `S281 -> 4 `i `ui 1 `ui 1 ]
+"36
+[; ;./types.h: 36: typedef struct READY_queue {
+[s S282 `S281 -> 5 `i `ui 1 `ui 1 ]
 [n S282 READY_queue tasks_list tasks_installed task_running ]
 [t ~ __interrupt . k ]
 [t T42 __interrupt ]
@@ -52,9 +52,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6905: extern volatile unsigned char STKPTR __attribute__((address(0xFFC)));
 [v _STKPTR `Vuc ~T0 @X0 0 e@4092 ]
 "11 ./scheduler.h
-[; ;./scheduler.h: 11: u_int scheduler();
-[v _scheduler `(ui ~T0 @X0 0 e? ]
-"1711 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
+[; ;./scheduler.h: 11: void scheduler();
+[v _scheduler `(v ~T0 @X0 0 e? ]
+[v F2588 `(v ~T0 @X0 0 tf ]
+"16 ./kernel.h
+[; ;./kernel.h: 16: void create_task(u_int id, u_int prior, f_task task);
+[v _create_task `(v ~T0 @X0 0 ef3`ui`ui`*F2588 ]
+"20
+[; ;./kernel.h: 20: void task_idle();
+[v _task_idle `(v ~T0 @X0 0 e? ]
+[v F2617 `(v ~T0 @X0 0 tf ]
+"1933 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1933:     struct {
+[s S72 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S72 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"1943
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1943:     struct {
+[s S73 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S73 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"1932
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1932: typedef union {
+[u S71 `S72 1 `S73 1 ]
+[n S71 . . . ]
+"1954
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1954: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
+[v _TRISCbits `VS71 ~T0 @X0 0 e@3988 ]
+"1711
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1711:     struct {
 [s S66 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S66 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
@@ -87,11 +110,50 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6 ./user_tasks.h
 [; ;./user_tasks.h: 6: void config_tasks();
 [v _config_tasks `(v ~T0 @X0 0 e? ]
-[v F2619 `(v ~T0 @X0 0 tf ]
-[v F2623 `(v ~T0 @X0 0 tf ]
-"8 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\builtins.h
-[v ___nop `(v ~T0 @X0 0 ef ]
-[p i ___nop ]
+[v F2620 `(v ~T0 @X0 0 tf ]
+[v F2624 `(v ~T0 @X0 0 tf ]
+"1208 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1208:     struct {
+[s S51 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S51 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
+"1218
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1218:     struct {
+[s S52 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S52 . LC0 LC1 LC2 LC3 LC4 LC5 LC6 LC7 ]
+"1207
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1207: typedef union {
+[u S50 `S51 1 `S52 1 ]
+[n S50 . . . ]
+"1229
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1229: extern volatile LATCbits_t LATCbits __attribute__((address(0xF8B)));
+[v _LATCbits `VS50 ~T0 @X0 0 e@3979 ]
+"457
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 457:     struct {
+[s S23 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S23 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"467
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 467:     struct {
+[s S24 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S24 . T1OSO T1OSI CCP1 SCK SDI SDO TX RX ]
+"477
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 477:     struct {
+[s S25 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S25 . T13CKI CCP2 . SCL SDA . CK DT ]
+"487
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 487:     struct {
+[s S26 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S26 . T1CKI . P1A ]
+"492
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 492:     struct {
+[s S27 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S27 . . PA2 PA1 ]
+"456
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 456: typedef union {
+[u S22 `S23 1 `S24 1 `S25 1 `S26 1 `S27 1 ]
+[n S22 . . . . . . ]
+"498
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 498: extern volatile PORTCbits_t PORTCbits __attribute__((address(0xF82)));
+[v _PORTCbits `VS22 ~T0 @X0 0 e@3970 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 55: __asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
@@ -632,8 +694,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 295 ]
 }
 "37
-[; ;kernel.c: 37:          ready_queue.task_running = scheduler();
-[e = . _ready_queue 2 ( _scheduler ..  ]
+[; ;kernel.c: 37:          scheduler();
+[e ( _scheduler ..  ]
 "39
 [; ;kernel.c: 39:          { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
 {
@@ -677,328 +739,380 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;kernel.c: 40:       }
 }
 [e :U 293 ]
-"42
-[; ;kernel.c: 42:    }
+"49
+[; ;kernel.c: 49:    }
 }
 [e :U 286 ]
 [e :U 285 ]
-"43
-[; ;kernel.c: 43: }
+"50
+[; ;kernel.c: 50: }
 [e :UE 283 ]
 }
-"45
-[; ;kernel.c: 45: void config_os()
+"52
+[; ;kernel.c: 52: void config_os()
 [v _config_os `(v ~T0 @X0 1 ef ]
-"46
-[; ;kernel.c: 46: {
+"53
+[; ;kernel.c: 53: {
 {
 [e :U _config_os ]
 [f ]
-"48
-[; ;kernel.c: 48:    ready_queue.task_running = 0;
-[e = . _ready_queue 2 -> -> 0 `i `ui ]
-"49
-[; ;kernel.c: 49:    ready_queue.tasks_installed = 0;
-[e = . _ready_queue 1 -> -> 0 `i `ui ]
-"53
-[; ;kernel.c: 53:    TRISBbits.RB0 = 1;
-[e = . . _TRISBbits 1 0 -> -> 1 `i `uc ]
-"54
-[; ;kernel.c: 54:    INTCONbits.INT0IE = 1;
-[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
 "55
-[; ;kernel.c: 55:    INTCONbits.INT0IF = 0;
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-"57
-[; ;kernel.c: 57:    INTCONbits.PEIE = 1;
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;kernel.c: 55:    ready_queue.task_running = 0;
+[e = . _ready_queue 2 -> -> 0 `i `ui ]
+"56
+[; ;kernel.c: 56:    ready_queue.tasks_installed = 0;
+[e = . _ready_queue 1 -> -> 0 `i `ui ]
 "58
-[; ;kernel.c: 58:    INTCONbits.TMR0IE = 1;
-[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
-"59
-[; ;kernel.c: 59:    INTCONbits.TMR0IF = 0;
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"60
-[; ;kernel.c: 60:    T0CONbits.TMR0ON = 0;
-[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+[; ;kernel.c: 58:    __asm("GLOBAL _task_idle");
+[; <" GLOBAL _task_idle ;# ">
 "61
-[; ;kernel.c: 61:    T0CONbits.T0CS = 0;
+[; ;kernel.c: 61:    create_task(0, 0, task_idle);
+[e ( _create_task (3 , , -> -> 0 `i `ui -> -> 0 `i `ui -> &U _task_idle `*F2617 ]
+"64
+[; ;kernel.c: 64:    TRISCbits.RC0 = 0;
+[e = . . _TRISCbits 1 0 -> -> 0 `i `uc ]
+"69
+[; ;kernel.c: 69:    TRISBbits.RB0 = 1;
+[e = . . _TRISBbits 1 0 -> -> 1 `i `uc ]
+"70
+[; ;kernel.c: 70:    INTCONbits.INT0IE = 1;
+[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
+"71
+[; ;kernel.c: 71:    INTCONbits.INT0IF = 0;
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+"73
+[; ;kernel.c: 73:    INTCONbits.PEIE = 1;
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+"74
+[; ;kernel.c: 74:    INTCONbits.TMR0IE = 1;
+[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
+"75
+[; ;kernel.c: 75:    INTCONbits.TMR0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"76
+[; ;kernel.c: 76:    T0CONbits.TMR0ON = 0;
+[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+"77
+[; ;kernel.c: 77:    T0CONbits.T0CS = 0;
 [e = . . _T0CONbits 0 3 -> -> 0 `i `uc ]
-"62
-[; ;kernel.c: 62:    T0CONbits.PSA = 0;
+"78
+[; ;kernel.c: 78:    T0CONbits.PSA = 0;
 [e = . . _T0CONbits 0 1 -> -> 0 `i `uc ]
-"63
-[; ;kernel.c: 63:    T0CONbits.T0PS = 0b101;
+"79
+[; ;kernel.c: 79:    T0CONbits.T0PS = 0b101;
 [e = . . _T0CONbits 0 0 -> -> 5 `i `uc ]
-"66
-[; ;kernel.c: 66:    config_tasks();
+"82
+[; ;kernel.c: 82:    config_tasks();
 [e ( _config_tasks ..  ]
-"67
-[; ;kernel.c: 67: }
+"83
+[; ;kernel.c: 83: }
 [e :UE 309 ]
 }
-"71
-[; ;kernel.c: 71: void create_task(u_int id, u_int prior, f_task task)
-[v _create_task `(v ~T0 @X0 1 ef3`ui`ui`*F2619 ]
-"72
-[; ;kernel.c: 72: {
+"87
+[; ;kernel.c: 87: void create_task(u_int id, u_int prior, f_task task)
+[v _create_task `(v ~T0 @X0 1 ef3`ui`ui`*F2620 ]
+"88
+[; ;kernel.c: 88: {
 {
 [e :U _create_task ]
-"71
-[; ;kernel.c: 71: void create_task(u_int id, u_int prior, f_task task)
+"87
+[; ;kernel.c: 87: void create_task(u_int id, u_int prior, f_task task)
 [v _id `ui ~T0 @X0 1 r1 ]
 [v _prior `ui ~T0 @X0 1 r2 ]
-[v _task `*F2623 ~T0 @X0 1 r3 ]
-"72
-[; ;kernel.c: 72: {
+[v _task `*F2624 ~T0 @X0 1 r3 ]
+"88
+[; ;kernel.c: 88: {
 [f ]
-"73
-[; ;kernel.c: 73:    TCB_t new_task;
+"89
+[; ;kernel.c: 89:    TCB_t new_task;
 [v _new_task `S281 ~T0 @X0 1 a ]
-"76
-[; ;kernel.c: 76:    new_task.task_ID = id;
+"92
+[; ;kernel.c: 92:    new_task.task_ID = id;
 [e = . _new_task 0 _id ]
-"77
-[; ;kernel.c: 77:    new_task.task_PRIOR = prior;
+"93
+[; ;kernel.c: 93:    new_task.task_PRIOR = prior;
 [e = . _new_task 1 _prior ]
-"78
-[; ;kernel.c: 78:    new_task.task_PTR = task;
+"94
+[; ;kernel.c: 94:    new_task.task_PTR = task;
 [e = . _new_task 2 _task ]
-"79
-[; ;kernel.c: 79:    new_task.task_STATE = READY;
+"95
+[; ;kernel.c: 95:    new_task.task_STATE = READY;
 [e = . _new_task 8 . `E2560 0 ]
-"80
-[; ;kernel.c: 80:    new_task.task_stack_real_size = 0;
+"96
+[; ;kernel.c: 96:    new_task.task_stack_real_size = 0;
 [e = . _new_task 7 -> -> 0 `i `ui ]
-"81
-[; ;kernel.c: 81:    new_task.delay_waiting = 0;
+"97
+[; ;kernel.c: 97:    new_task.delay_waiting = 0;
 [e = . _new_task 9 -> -> 0 `i `ui ]
-"83
-[; ;kernel.c: 83:    ready_queue.tasks_list[ready_queue.tasks_installed] = new_task;
+"99
+[; ;kernel.c: 99:    ready_queue.tasks_list[ready_queue.tasks_installed] = new_task;
 [e = *U + &U . _ready_queue 0 * -> . _ready_queue 1 `ux -> -> # *U &U . _ready_queue 0 `ui `ux _new_task ]
-"84
-[; ;kernel.c: 84:    ready_queue.tasks_installed += 1;
+"100
+[; ;kernel.c: 100:    ready_queue.tasks_installed += 1;
 [e =+ . _ready_queue 1 -> -> 1 `i `ui ]
-"85
-[; ;kernel.c: 85: }
+"101
+[; ;kernel.c: 101: }
 [e :UE 310 ]
 }
-"87
-[; ;kernel.c: 87: void change_task_state(state_t new_state)
-[v _change_task_state `(v ~T0 @X0 1 ef1`E2560 ]
-"88
-[; ;kernel.c: 88: {
+"103
+[; ;kernel.c: 103: void yield_task()
+[v _yield_task `(v ~T0 @X0 1 ef ]
+"104
+[; ;kernel.c: 104: {
 {
-[e :U _change_task_state ]
-"87
-[; ;kernel.c: 87: void change_task_state(state_t new_state)
-[v _new_state `E2560 ~T0 @X0 1 r1 ]
-"88
-[; ;kernel.c: 88: {
+[e :U _yield_task ]
 [f ]
-"90
-[; ;kernel.c: 90: }
-[e :UE 311 ]
-}
-"92
-[; ;kernel.c: 92: void exit_task()
-[v _exit_task `(v ~T0 @X0 1 ef ]
-"93
-[; ;kernel.c: 93: {
-{
-[e :U _exit_task ]
-[f ]
-"94
-[; ;kernel.c: 94:    INTCONbits.GIE = 0;
+"105
+[; ;kernel.c: 105:    INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"95
-[; ;kernel.c: 95:    ready_queue.tasks_list[ready_queue.task_running].task_STATE = TERMINATED;
-[e = . *U + &U . _ready_queue 0 * -> . _ready_queue 2 `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 3 ]
-"96
-[; ;kernel.c: 96:    ready_queue.task_running = scheduler();
-[e = . _ready_queue 2 ( _scheduler ..  ]
-"97
-[; ;kernel.c: 97:    { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+"106
+[; ;kernel.c: 106:    ready_queue.tasks_list[ready_queue.task_running].task_STATE = READY;
+[e = . *U + &U . _ready_queue 0 * -> . _ready_queue 2 `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 0 ]
+"107
+[; ;kernel.c: 107:    scheduler();
+[e ( _scheduler ..  ]
+"108
+[; ;kernel.c: 108:    { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
 {
 [v _task_pos `ui ~T0 @X0 1 a ]
 [e = _task_pos . _ready_queue 2 ]
 [v _p_context `ui ~T0 @X0 1 a ]
 [e = _p_context . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 ]
-[e :U 315 ]
+[e :U 314 ]
 {
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
 [e = _STKPTR -> -> 0 `i `uc ]
-[e $ ! > . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 -> -> 0 `i `ui 316  ]
+[e $ ! > . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 -> -> 0 `i `ui 315  ]
 {
 [e = _BSR -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 4 `uc ]
 [e = _WREG -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 5 `uc ]
 [e = _STATUS -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 6 `uc ]
-[e $U 317  ]
-[e :U 318 ]
+[e $U 316  ]
+[e :U 317 ]
 {
 [e =- _p_context -> -> 1 `i `ui ]
 [; <" PUSH ;# ">
 [e = _TOS *U + &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 * -> _p_context `ux -> -> # *U &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 `ui `ux ]
 }
-[e :U 317 ]
-[e $ != _p_context -> -> 0 `i `ui 318  ]
-[e :U 319 ]
-}
-[e $U 320  ]
 [e :U 316 ]
+[e $ != _p_context -> -> 0 `i `ui 317  ]
+[e :U 318 ]
+}
+[e $U 319  ]
+[e :U 315 ]
 {
 [; <" PUSH ;# ">
 [e = _TOS -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 2 `um ]
 }
-[e :U 320 ]
+[e :U 319 ]
 [e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 1 ]
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
 }
-[e :U 314 ]
-}
-"98
-[; ;kernel.c: 98: }
-[e :UE 312 ]
-}
-"100
-[; ;kernel.c: 100: void start_os()
-[v _start_os `(v ~T0 @X0 1 ef ]
-"101
-[; ;kernel.c: 101: {
-{
-[e :U _start_os ]
-[f ]
-"103
-[; ;kernel.c: 103:    INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"105
-[; ;kernel.c: 105:    T0CONbits.TMR0ON = 1;
-[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
-"106
-[; ;kernel.c: 106:    TMR0 = 64;
-[e = _TMR0 -> -> 64 `i `us ]
-"107
-[; ;kernel.c: 107: }
-[e :UE 321 ]
+[e :U 313 ]
 }
 "109
-[; ;kernel.c: 109: void task_idle()
-[v _task_idle `(v ~T0 @X0 1 ef ]
-"110
-[; ;kernel.c: 110: {
-{
-[e :U _task_idle ]
-[f ]
+[; ;kernel.c: 109: }
+[e :UE 311 ]
+}
 "111
-[; ;kernel.c: 111:    while (1) {
+[; ;kernel.c: 111: void exit_task()
+[v _exit_task `(v ~T0 @X0 1 ef ]
+"112
+[; ;kernel.c: 112: {
+{
+[e :U _exit_task ]
+[f ]
+"113
+[; ;kernel.c: 113:    INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"114
+[; ;kernel.c: 114:    ready_queue.tasks_list[ready_queue.task_running].task_STATE = TERMINATED;
+[e = . *U + &U . _ready_queue 0 * -> . _ready_queue 2 `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 3 ]
+"115
+[; ;kernel.c: 115:    scheduler();
+[e ( _scheduler ..  ]
+"116
+[; ;kernel.c: 116:    { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+{
+[v _task_pos `ui ~T0 @X0 1 a ]
+[e = _task_pos . _ready_queue 2 ]
+[v _p_context `ui ~T0 @X0 1 a ]
+[e = _p_context . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 ]
+[e :U 323 ]
+{
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[e = _STKPTR -> -> 0 `i `uc ]
+[e $ ! > . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 -> -> 0 `i `ui 324  ]
+{
+[e = _BSR -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 4 `uc ]
+[e = _WREG -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 5 `uc ]
+[e = _STATUS -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 6 `uc ]
+[e $U 325  ]
+[e :U 326 ]
+{
+[e =- _p_context -> -> 1 `i `ui ]
+[; <" PUSH ;# ">
+[e = _TOS *U + &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 * -> _p_context `ux -> -> # *U &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 `ui `ux ]
+}
+[e :U 325 ]
+[e $ != _p_context -> -> 0 `i `ui 326  ]
+[e :U 327 ]
+}
+[e $U 328  ]
 [e :U 324 ]
 {
-"112
-[; ;kernel.c: 112:       __nop();
-[e ( ___nop ..  ]
-"113
-[; ;kernel.c: 113:    }
+[; <" PUSH ;# ">
+[e = _TOS -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 2 `um ]
 }
-[e :U 323 ]
-[e $U 324  ]
-[e :U 325 ]
-"114
-[; ;kernel.c: 114: }
-[e :UE 322 ]
+[e :U 328 ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 1 ]
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
 }
-"116
-[; ;kernel.c: 116: void delay_task(u_int time)
-[v _delay_task `(v ~T0 @X0 1 ef1`ui ]
+[e :U 322 ]
+}
 "117
-[; ;kernel.c: 117: {
+[; ;kernel.c: 117: }
+[e :UE 320 ]
+}
+"119
+[; ;kernel.c: 119: void delay_task(u_int time)
+[v _delay_task `(v ~T0 @X0 1 ef1`ui ]
+"120
+[; ;kernel.c: 120: {
 {
 [e :U _delay_task ]
-"116
-[; ;kernel.c: 116: void delay_task(u_int time)
-[v _time `ui ~T0 @X0 1 r1 ]
-"117
-[; ;kernel.c: 117: {
-[f ]
-"118
-[; ;kernel.c: 118:    INTCONbits.GIE = 0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
 "119
-[; ;kernel.c: 119:    ready_queue.tasks_list[ready_queue.task_running].delay_waiting = time;
-[e = . *U + &U . _ready_queue 0 * -> . _ready_queue 2 `ux -> -> # *U &U . _ready_queue 0 `ui `ux 9 _time ]
+[; ;kernel.c: 119: void delay_task(u_int time)
+[v _time `ui ~T0 @X0 1 r1 ]
 "120
-[; ;kernel.c: 120:    { u_int p_context = 0, task_pos = ready_queue.task_running;do { INTCONbits.GIE = 0; if (ready_queue.tasks_list[task_pos].task_STATE == RUNNING) { ready_queue.tasks_list[task_pos].task_BSR_reg = BSR; ready_queue.tasks_list[task_pos].task_WORK_reg = WREG; ready_queue.tasks_list[task_pos].task_STATUS_reg = STATUS; do { ready_queue.tasks_list[task_pos].task_CONTEXT[p_context] = TOS; __asm("POP"); p_context += 1; } while (STKPTR); ready_queue.tasks_list[task_pos].task_stack_real_size = p_context; ready_queue.tasks_list[task_pos].task_STATE = WAITING; } INTCONbits.GIE = 1; } while(0); };
+[; ;kernel.c: 120: {
+[f ]
+"121
+[; ;kernel.c: 121:    INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"122
+[; ;kernel.c: 122:    ready_queue.tasks_list[ready_queue.task_running].delay_waiting = time;
+[e = . *U + &U . _ready_queue 0 * -> . _ready_queue 2 `ux -> -> # *U &U . _ready_queue 0 `ui `ux 9 _time ]
+"123
+[; ;kernel.c: 123:    { u_int p_context = 0, task_pos = ready_queue.task_running;do { INTCONbits.GIE = 0; if (ready_queue.tasks_list[task_pos].task_STATE == RUNNING) { ready_queue.tasks_list[task_pos].task_BSR_reg = BSR; ready_queue.tasks_list[task_pos].task_WORK_reg = WREG; ready_queue.tasks_list[task_pos].task_STATUS_reg = STATUS; do { ready_queue.tasks_list[task_pos].task_CONTEXT[p_context] = TOS; __asm("POP"); p_context += 1; } while (STKPTR); ready_queue.tasks_list[task_pos].task_stack_real_size = p_context; ready_queue.tasks_list[task_pos].task_STATE = WAITING; } INTCONbits.GIE = 1; } while(0); };
 {
 [v _p_context `ui ~T0 @X0 1 a ]
 [e = _p_context -> -> 0 `i `ui ]
 [v _task_pos `ui ~T0 @X0 1 a ]
 [e = _task_pos . _ready_queue 2 ]
-[e :U 329 ]
+[e :U 332 ]
 {
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-[e $ ! == -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 `ui -> . `E2560 1 `ui 330  ]
+[e $ ! == -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 `ui -> . `E2560 1 `ui 333  ]
 {
 [e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 4 -> _BSR `um ]
 [e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 5 -> _WREG `um ]
 [e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 6 -> _STATUS `um ]
-[e :U 333 ]
+[e :U 336 ]
 {
 [e = *U + &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 * -> _p_context `ux -> -> # *U &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 `ui `ux _TOS ]
 [; <" POP ;# ">
 [e =+ _p_context -> -> 1 `i `ui ]
 }
-[e $ != -> _STKPTR `i -> 0 `i 333  ]
-[e :U 332 ]
+[e $ != -> _STKPTR `i -> 0 `i 336  ]
+[e :U 335 ]
 [e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 _p_context ]
 [e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 2 ]
 }
-[e :U 330 ]
+[e :U 333 ]
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
 }
-[e :U 328 ]
+[e :U 331 ]
 }
-"121
-[; ;kernel.c: 121:    ready_queue.task_running = scheduler();
-[e = . _ready_queue 2 ( _scheduler ..  ]
-"122
-[; ;kernel.c: 122:    { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+"124
+[; ;kernel.c: 124:    scheduler();
+[e ( _scheduler ..  ]
+"125
+[; ;kernel.c: 125:    { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
 {
 [v _task_pos `ui ~T0 @X0 1 a ]
 [e = _task_pos . _ready_queue 2 ]
 [v _p_context `ui ~T0 @X0 1 a ]
 [e = _p_context . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 ]
-[e :U 336 ]
+[e :U 339 ]
 {
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
 [e = _STKPTR -> -> 0 `i `uc ]
-[e $ ! > . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 -> -> 0 `i `ui 337  ]
+[e $ ! > . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 -> -> 0 `i `ui 340  ]
 {
 [e = _BSR -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 4 `uc ]
 [e = _WREG -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 5 `uc ]
 [e = _STATUS -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 6 `uc ]
-[e $U 338  ]
-[e :U 339 ]
+[e $U 341  ]
+[e :U 342 ]
 {
 [e =- _p_context -> -> 1 `i `ui ]
 [; <" PUSH ;# ">
 [e = _TOS *U + &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 * -> _p_context `ux -> -> # *U &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 `ui `ux ]
 }
-[e :U 338 ]
-[e $ != _p_context -> -> 0 `i `ui 339  ]
-[e :U 340 ]
+[e :U 341 ]
+[e $ != _p_context -> -> 0 `i `ui 342  ]
+[e :U 343 ]
 }
-[e $U 341  ]
-[e :U 337 ]
+[e $U 344  ]
+[e :U 340 ]
 {
 [; <" PUSH ;# ">
 [e = _TOS -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 2 `um ]
 }
-[e :U 341 ]
+[e :U 344 ]
 [e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 1 ]
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
 }
-[e :U 335 ]
+[e :U 338 ]
 }
-"123
-[; ;kernel.c: 123: }
-[e :UE 326 ]
+"126
+[; ;kernel.c: 126: }
+[e :UE 329 ]
+}
+"128
+[; ;kernel.c: 128: void start_os()
+[v _start_os `(v ~T0 @X0 1 ef ]
+"129
+[; ;kernel.c: 129: {
+{
+[e :U _start_os ]
+[f ]
+"131
+[; ;kernel.c: 131:    INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"133
+[; ;kernel.c: 133:    T0CONbits.TMR0ON = 1;
+[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
+"134
+[; ;kernel.c: 134:    TMR0 = 64;
+[e = _TMR0 -> -> 64 `i `us ]
+"135
+[; ;kernel.c: 135: }
+[e :UE 345 ]
+}
+"137
+[; ;kernel.c: 137: void task_idle()
+[v _task_idle `(v ~T0 @X0 1 ef ]
+"138
+[; ;kernel.c: 138: {
+{
+[e :U _task_idle ]
+[f ]
+"139
+[; ;kernel.c: 139:    while (1) {
+[e :U 348 ]
+{
+"141
+[; ;kernel.c: 141:       LATCbits.LATC0 = ~PORTCbits.RC0;
+[e = . . _LATCbits 0 0 -> ~ -> . . _PORTCbits 0 0 `i `uc ]
+"145
+[; ;kernel.c: 145:    }
+}
+[e :U 347 ]
+[e $U 348  ]
+[e :U 349 ]
+"146
+[; ;kernel.c: 146: }
+[e :UE 346 ]
 }

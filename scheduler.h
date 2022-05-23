@@ -8,7 +8,7 @@
 u_int RR_scheduler();
 u_int PRIOR_scheduler();
 u_int FIFO_scheduler();
-u_int scheduler();
+void scheduler();
 
 
 #endif	/* SCHEDULER_H */

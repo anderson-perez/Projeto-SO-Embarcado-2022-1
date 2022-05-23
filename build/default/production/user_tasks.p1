@@ -506,72 +506,93 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _task_1 ]
 [f ]
 "16
-[; ;user_tasks.c: 16:    while (1) {
+[; ;user_tasks.c: 16:    u_int flag = 1;
+[v _flag `ui ~T0 @X0 1 a ]
+[e = _flag -> -> 1 `i `ui ]
+"17
+[; ;user_tasks.c: 17:    while (1) {
 [e :U 286 ]
 {
-"17
-[; ;user_tasks.c: 17:       LATDbits.LATD0 = ~PORTDbits.RD0;
-[e = . . _LATDbits 0 0 -> ~ -> . . _PORTDbits 0 0 `i `uc ]
 "18
-[; ;user_tasks.c: 18:    }
+[; ;user_tasks.c: 18:       LATDbits.LATD0 = ~PORTDbits.RD0;
+[e = . . _LATDbits 0 0 -> ~ -> . . _PORTDbits 0 0 `i `uc ]
+"19
+[; ;user_tasks.c: 19:       if (flag) {
+[e $ ! != _flag -> -> 0 `i `ui 288  ]
+{
+"20
+[; ;user_tasks.c: 20:          flag = 0;
+[e = _flag -> -> 0 `i `ui ]
+"21
+[; ;user_tasks.c: 21:          delay_task(600);
+[e ( _delay_task (1 -> -> 600 `i `ui ]
+"22
+[; ;user_tasks.c: 22:       }
+}
+[e :U 288 ]
+"23
+[; ;user_tasks.c: 23:    }
 }
 [e :U 285 ]
 [e $U 286  ]
 [e :U 287 ]
-"19
-[; ;user_tasks.c: 19: }
+"24
+[; ;user_tasks.c: 24: }
 [e :UE 284 ]
 }
-"21
-[; ;user_tasks.c: 21: void task_2()
+"26
+[; ;user_tasks.c: 26: void task_2()
 [v _task_2 `(v ~T0 @X0 1 ef ]
-"22
-[; ;user_tasks.c: 22: {
+"27
+[; ;user_tasks.c: 27: {
 {
 [e :U _task_2 ]
 [f ]
-"23
-[; ;user_tasks.c: 23:    while (1) {
-[e :U 290 ]
-{
-"24
-[; ;user_tasks.c: 24:       LATDbits.LATD1 = ~PORTDbits.RD1;
-[e = . . _LATDbits 0 1 -> ~ -> . . _PORTDbits 0 1 `i `uc ]
-"26
-[; ;user_tasks.c: 26:    }
-}
-[e :U 289 ]
-[e $U 290  ]
+"28
+[; ;user_tasks.c: 28:    while (1) {
 [e :U 291 ]
-"27
-[; ;user_tasks.c: 27: }
-[e :UE 288 ]
-}
+{
 "29
-[; ;user_tasks.c: 29: void task_3()
-[v _task_3 `(v ~T0 @X0 1 ef ]
+[; ;user_tasks.c: 29:       LATDbits.LATD1 = ~PORTDbits.RD1;
+[e = . . _LATDbits 0 1 -> ~ -> . . _PORTDbits 0 1 `i `uc ]
 "30
-[; ;user_tasks.c: 30: {
+[; ;user_tasks.c: 30:       delay_task(800);
+[e ( _delay_task (1 -> -> 800 `i `ui ]
+"31
+[; ;user_tasks.c: 31:    }
+}
+[e :U 290 ]
+[e $U 291  ]
+[e :U 292 ]
+"32
+[; ;user_tasks.c: 32: }
+[e :UE 289 ]
+}
+"34
+[; ;user_tasks.c: 34: void task_3()
+[v _task_3 `(v ~T0 @X0 1 ef ]
+"35
+[; ;user_tasks.c: 35: {
 {
 [e :U _task_3 ]
 [f ]
-"31
-[; ;user_tasks.c: 31:    while (1) {
-[e :U 294 ]
-{
-"32
-[; ;user_tasks.c: 32:       LATDbits.LATD2 = ~PORTDbits.RD2;
-[e = . . _LATDbits 0 2 -> ~ -> . . _PORTDbits 0 2 `i `uc ]
-"33
-[; ;user_tasks.c: 33:       delay_task(30);
-[e ( _delay_task (1 -> -> 30 `i `ui ]
-"34
-[; ;user_tasks.c: 34:    }
-}
-[e :U 293 ]
-[e $U 294  ]
+"36
+[; ;user_tasks.c: 36:    while (1) {
 [e :U 295 ]
-"35
-[; ;user_tasks.c: 35: }
-[e :UE 292 ]
+{
+"37
+[; ;user_tasks.c: 37:       LATDbits.LATD2 = ~PORTDbits.RD2;
+[e = . . _LATDbits 0 2 -> ~ -> . . _PORTDbits 0 2 `i `uc ]
+"38
+[; ;user_tasks.c: 38:       delay_task(1000);
+[e ( _delay_task (1 -> -> 1000 `i `ui ]
+"39
+[; ;user_tasks.c: 39:    }
+}
+[e :U 294 ]
+[e $U 295  ]
+[e :U 296 ]
+"40
+[; ;user_tasks.c: 40: }
+[e :UE 293 ]
 }

@@ -13,8 +13,13 @@ void config_tasks()
 
 TASK task_1()
 {
+   u_int flag = 1;
    while (1) {
       LATDbits.LATD0 = ~PORTDbits.RD0;
+      if (flag) {
+         flag = 0;
+         delay_task(600);
+      }
    }
 }
 
@@ -22,7 +27,7 @@ TASK task_2()
 {
    while (1) {
       LATDbits.LATD1 = ~PORTDbits.RD1;
-      //delay_task(500);
+      delay_task(800);
    }
 }
 
@@ -30,7 +35,7 @@ TASK task_3()
 {
    while (1) {
       LATDbits.LATD2 = ~PORTDbits.RD2;
-      delay_task(30);
+      delay_task(1000);
    }
 }
 
