@@ -1,7 +1,34 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"47 ./types.h
+[; ;./types.h: 47: typedef struct sync_queue {
+[s S283 `ui -> 4 `i `ui 1 `ui 1 `ui 1 ]
+[n S283 sync_queue queue input_pos output_pos nr_of_tasks_bloqued ]
+"54
+[; ;./types.h: 54: typedef struct mutex {
+[s S284 `uc 1 `S283 1 ]
+[n S284 mutex mutex_flag mutex_bloqued_queue ]
+"6699 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6699:     struct {
+[s S275 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S275 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+"6709
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6709:     struct {
+[s S276 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S276 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+"6719
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6719:     struct {
+[s S277 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S277 . . GIEL GIEH ]
+"6698
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6698: typedef union {
+[u S274 `S275 1 `S276 1 `S277 1 ]
+[n S274 . . . . ]
+"6725
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6725: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
+[v _INTCONbits `VS274 ~T0 @X0 0 e@4082 ]
 [v F2574 `(v ~T0 @X0 0 tf ]
-"15 scheduler.c
-[; ;scheduler.c: 15:       task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
+"20 sync.c
+[; ;sync.c: 20:       resource->mutex_bloqued_queue.queue[resource->mutex_bloqued_queue.input_pos] = ready_queue.task_running;
 [c E2560 0 1 2 3 4 5 .. ]
 [n E2560 . READY RUNNING WAITING W_MUTEX W_SEM TERMINATED  ]
 "28 ./types.h
@@ -12,14 +39,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./types.h: 41: typedef struct READY_queue {
 [s S282 `S281 -> 5 `i `ui 1 `ui 1 ]
 [n S282 READY_queue tasks_list tasks_installed task_running ]
-"5 scheduler.c
-[; ;scheduler.c: 5: extern READY_queue_t ready_queue;
+"7 ./kernel.h
+[; ;./kernel.h: 7: extern READY_queue_t ready_queue;
 [v _ready_queue `S282 ~T0 @X0 0 e ]
-"20 ./kernel.h
-[; ;./kernel.h: 20: void task_idle();
-[v _task_idle `(v ~T0 @X0 0 e? ]
-[v F2626 `(v ~T0 @X0 0 tf ]
-[v F2637 `(v ~T0 @X0 0 tf ]
+"6400 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6400: extern volatile unsigned char BSR __attribute__((address(0xFE0)));
+[v _BSR `Vuc ~T0 @X0 0 e@4064 ]
+"6463
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6463: extern volatile unsigned char WREG __attribute__((address(0xFE8)));
+[v _WREG `Vuc ~T0 @X0 0 e@4072 ]
+"6273
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6273: extern volatile unsigned char STATUS __attribute__((address(0xFD8)));
+[v _STATUS `Vuc ~T0 @X0 0 e@4056 ]
+"6978
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6978: extern volatile __uint24 TOS __attribute__((address(0xFFD)));
+[v _TOS `Vum ~T0 @X0 0 e@4093 ]
+"6905
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 6905: extern volatile unsigned char STKPTR __attribute__((address(0xFFC)));
+[v _STKPTR `Vuc ~T0 @X0 0 e@4092 ]
+"11 ./scheduler.h
+[; ;./scheduler.h: 11: void scheduler();
+[v _scheduler `(v ~T0 @X0 0 e? ]
+"59 ./types.h
+[; ;./types.h: 59: typedef struct semaphore {
+[s S285 `i 1 `S283 1 ]
+[n S285 semaphore sem_value sem_bloqued_queue ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 55: __asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
@@ -438,157 +482,327 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x PBADEN = OFF ]
 "9
 [p x WDT    = OFF ]
-"8 scheduler.c
-[; ;scheduler.c: 8: u_int RR_scheduler()
-[v _RR_scheduler `(ui ~T0 @X0 1 ef ]
-"9
-[; ;scheduler.c: 9: {
+"6 sync.c
+[; ;sync.c: 6: void init_mutex(mutex_t *resource)
+[v _init_mutex `(v ~T0 @X0 1 ef1`*S284 ]
+"7
+[; ;sync.c: 7: {
 {
-[e :U _RR_scheduler ]
+[e :U _init_mutex ]
+"6
+[; ;sync.c: 6: void init_mutex(mutex_t *resource)
+[v _resource `*S284 ~T0 @X0 1 r1 ]
+"7
+[; ;sync.c: 7: {
 [f ]
+"8
+[; ;sync.c: 8:    resource->mutex_flag = 0;
+[e = . *U _resource 0 -> -> 0 `i `uc ]
+"9
+[; ;sync.c: 9:    resource->mutex_bloqued_queue.nr_of_tasks_bloqued = 0;
+[e = . . *U _resource 1 3 -> -> 0 `i `ui ]
 "10
-[; ;scheduler.c: 10:    u_int task_to_run, times = 0;
-[v _task_to_run `ui ~T0 @X0 1 a ]
-[v _times `ui ~T0 @X0 1 a ]
-[e = _times -> -> 0 `i `ui ]
+[; ;sync.c: 10:    resource->mutex_bloqued_queue.input_pos = 0;
+[e = . . *U _resource 1 1 -> -> 0 `i `ui ]
+"11
+[; ;sync.c: 11:    resource->mutex_bloqued_queue.output_pos = 0;
+[e = . . *U _resource 1 2 -> -> 0 `i `ui ]
 "12
-[; ;scheduler.c: 12:    do {
-[e :U 289 ]
-{
-"15
-[; ;scheduler.c: 15:       task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
-[e = _task_to_run % + . _ready_queue 2 -> -> 1 `i `ui . _ready_queue 1 ]
-"17
-[; ;scheduler.c: 17:       if (++times == ready_queue.tasks_installed) return 0;
-[e $ ! == =+ _times -> -> 1 `i `ui . _ready_queue 1 290  ]
-[e ) -> -> 0 `i `ui ]
-[e $UE 286  ]
-[e :U 290 ]
-"19
-[; ;scheduler.c: 19:    } while (ready_queue.tasks_list[task_to_run].task_STATE != READY &&
-}
-[e $ && != -> . *U + &U . _ready_queue 0 * -> _task_to_run `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 `ui -> . `E2560 0 `ui != . *U + &U . _ready_queue 0 * -> _task_to_run `ux -> -> # *U &U . _ready_queue 0 `ui `ux 2 -> &U _task_idle `*F2626 289  ]
-[e :U 288 ]
-"22
-[; ;scheduler.c: 22:    return task_to_run;
-[e ) _task_to_run ]
-[e $UE 286  ]
-"23
-[; ;scheduler.c: 23: }
+[; ;sync.c: 12: }
 [e :UE 286 ]
 }
-"25
-[; ;scheduler.c: 25: u_int PRIOR_scheduler()
-[v _PRIOR_scheduler `(ui ~T0 @X0 1 ef ]
-"26
-[; ;scheduler.c: 26: {
+"14
+[; ;sync.c: 14: void lock(mutex_t *resource)
+[v _lock `(v ~T0 @X0 1 ef1`*S284 ]
+"15
+[; ;sync.c: 15: {
 {
-[e :U _PRIOR_scheduler ]
+[e :U _lock ]
+"14
+[; ;sync.c: 14: void lock(mutex_t *resource)
+[v _resource `*S284 ~T0 @X0 1 r1 ]
+"15
+[; ;sync.c: 15: {
 [f ]
-"27
-[; ;scheduler.c: 27:    u_int task_to_run, menor_prioridade;
-[v _task_to_run `ui ~T0 @X0 1 a ]
-[v _menor_prioridade `ui ~T0 @X0 1 a ]
-"31
-[; ;scheduler.c: 31:    u_int x, y;
-[v _x `ui ~T0 @X0 1 a ]
-[v _y `ui ~T0 @X0 1 a ]
-"32
-[; ;scheduler.c: 32:    task_to_run = 0;
-[e = _task_to_run -> -> 0 `i `ui ]
-"33
-[; ;scheduler.c: 33:    menor_prioridade = ready_queue.tasks_list[task_to_run].task_PRIOR;
-[e = _menor_prioridade . *U + &U . _ready_queue 0 * -> _task_to_run `ux -> -> # *U &U . _ready_queue 0 `ui `ux 1 ]
-"34
-[; ;scheduler.c: 34:    for (y = 1; y < ready_queue.tasks_installed; y++) {
+"16
+[; ;sync.c: 16:    INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"17
+[; ;sync.c: 17:    if (!resource->mutex_flag) resource->mutex_flag = 1;
+[e $ ! ! != -> . *U _resource 0 `i -> 0 `i 288  ]
+[e = . *U _resource 0 -> -> 1 `i `uc ]
+[e $U 289  ]
+"18
+[; ;sync.c: 18:    else {
+[e :U 288 ]
 {
-[e = _y -> -> 1 `i `ui ]
-[e $U 295  ]
+"20
+[; ;sync.c: 20:       resource->mutex_bloqued_queue.queue[resource->mutex_bloqued_queue.input_pos] = ready_queue.task_running;
+[e = *U + &U . . *U _resource 1 0 * -> . . *U _resource 1 1 `ux -> -> # *U &U . . *U _resource 1 0 `ui `ux . _ready_queue 2 ]
+"21
+[; ;sync.c: 21:       resource->mutex_bloqued_queue.input_pos = (resource->mutex_bloqued_queue.input_pos+1) % 4;
+[e = . . *U _resource 1 1 % + . . *U _resource 1 1 -> -> 1 `i `ui -> -> 4 `i `ui ]
+"22
+[; ;sync.c: 22:       resource->mutex_bloqued_queue.nr_of_tasks_bloqued++;
+[e ++ . . *U _resource 1 3 -> -> 1 `i `ui ]
+"23
+[; ;sync.c: 23:       { u_int p_context = 0, task_pos = ready_queue.task_running;do { INTCONbits.GIE = 0; if (ready_queue.tasks_list[task_pos].task_STATE == RUNNING) { ready_queue.tasks_list[task_pos].task_BSR_reg = BSR; ready_queue.tasks_list[task_pos].task_WORK_reg = WREG; ready_queue.tasks_list[task_pos].task_STATUS_reg = STATUS; do { ready_queue.tasks_list[task_pos].task_CONTEXT[p_context] = TOS; __asm("POP"); p_context += 1; } while (STKPTR); ready_queue.tasks_list[task_pos].task_stack_real_size = p_context; ready_queue.tasks_list[task_pos].task_STATE = W_MUTEX; } INTCONbits.GIE = 1; } while(0); };
+{
+[v _p_context `ui ~T0 @X0 1 a ]
+[e = _p_context -> -> 0 `i `ui ]
+[v _task_pos `ui ~T0 @X0 1 a ]
+[e = _task_pos . _ready_queue 2 ]
 [e :U 292 ]
 {
-"35
-[; ;scheduler.c: 35:        if ((ready_queue.tasks_list[y].task_PRIOR < menor_prioridade) &&
-[e $ ! && < . *U + &U . _ready_queue 0 * -> _y `ux -> -> # *U &U . _ready_queue 0 `ui `ux 1 _menor_prioridade == -> . *U + &U . _ready_queue 0 * -> _y `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 `ui -> . `E2560 0 `ui 296  ]
-"36
-[; ;scheduler.c: 36:           (ready_queue.tasks_list[y].task_STATE == READY)) {
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[e $ ! == -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 `ui -> . `E2560 1 `ui 293  ]
 {
-"37
-[; ;scheduler.c: 37:             menor_prioridade = ready_queue.tasks_list[y].task_PRIOR;
-[e = _menor_prioridade . *U + &U . _ready_queue 0 * -> _y `ux -> -> # *U &U . _ready_queue 0 `ui `ux 1 ]
-"38
-[; ;scheduler.c: 38:             task_to_run = y;
-[e = _task_to_run _y ]
-"39
-[; ;scheduler.c: 39:          }
-}
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 4 -> _BSR `um ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 5 -> _WREG `um ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 6 -> _STATUS `um ]
 [e :U 296 ]
-"40
-[; ;scheduler.c: 40:    }
-}
-[e ++ _y -> -> 1 `i `ui ]
-[e :U 295 ]
-[e $ < _y . _ready_queue 1 292  ]
-[e :U 293 ]
-}
-"42
-[; ;scheduler.c: 42:    return task_to_run;
-[e ) _task_to_run ]
-[e $UE 291  ]
-"43
-[; ;scheduler.c: 43: }
-[e :UE 291 ]
-}
-"45
-[; ;scheduler.c: 45: u_int FIFO_scheduler()
-[v _FIFO_scheduler `(ui ~T0 @X0 1 ef ]
-"46
-[; ;scheduler.c: 46: {
 {
-[e :U _FIFO_scheduler ]
-[f ]
-"47
-[; ;scheduler.c: 47:    u_int task_to_run, times = 0;
-[v _task_to_run `ui ~T0 @X0 1 a ]
-[v _times `ui ~T0 @X0 1 a ]
-[e = _times -> -> 0 `i `ui ]
-"49
-[; ;scheduler.c: 49:    do {
+[e = *U + &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 * -> _p_context `ux -> -> # *U &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 `ui `ux _TOS ]
+[; <" POP ;# ">
+[e =+ _p_context -> -> 1 `i `ui ]
+}
+[e $ != -> _STKPTR `i -> 0 `i 296  ]
+[e :U 295 ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 _p_context ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 3 ]
+}
+[e :U 293 ]
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+}
+[e :U 291 ]
+}
+"24
+[; ;sync.c: 24:       scheduler();
+[e ( _scheduler ..  ]
+"25
+[; ;sync.c: 25:       { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+{
+[v _task_pos `ui ~T0 @X0 1 a ]
+[e = _task_pos . _ready_queue 2 ]
+[v _p_context `ui ~T0 @X0 1 a ]
+[e = _p_context . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 ]
+[e :U 299 ]
+{
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[e = _STKPTR -> -> 0 `i `uc ]
+[e $ ! > . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 -> -> 0 `i `ui 300  ]
+{
+[e = _BSR -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 4 `uc ]
+[e = _WREG -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 5 `uc ]
+[e = _STATUS -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 6 `uc ]
+[e $U 301  ]
+[e :U 302 ]
+{
+[e =- _p_context -> -> 1 `i `ui ]
+[; <" PUSH ;# ">
+[e = _TOS *U + &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 * -> _p_context `ux -> -> # *U &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 `ui `ux ]
+}
+[e :U 301 ]
+[e $ != _p_context -> -> 0 `i `ui 302  ]
+[e :U 303 ]
+}
+[e $U 304  ]
 [e :U 300 ]
 {
-"52
-[; ;scheduler.c: 52:       task_to_run = (ready_queue.task_running + 1) % ready_queue.tasks_installed;
-[e = _task_to_run % + . _ready_queue 2 -> -> 1 `i `ui . _ready_queue 1 ]
-"54
-[; ;scheduler.c: 54:       if (++times == ready_queue.tasks_installed) return 0;
-[e $ ! == =+ _times -> -> 1 `i `ui . _ready_queue 1 301  ]
-[e ) -> -> 0 `i `ui ]
-[e $UE 297  ]
-[e :U 301 ]
-"56
-[; ;scheduler.c: 56:    } while (ready_queue.tasks_list[task_to_run].task_STATE != READY &&
+[; <" PUSH ;# ">
+[e = _TOS -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 2 `um ]
 }
-[e $ && != -> . *U + &U . _ready_queue 0 * -> _task_to_run `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 `ui -> . `E2560 0 `ui != . *U + &U . _ready_queue 0 * -> _task_to_run `ux -> -> # *U &U . _ready_queue 0 `ui `ux 2 -> &U _task_idle `*F2637 300  ]
-[e :U 299 ]
-"59
-[; ;scheduler.c: 59:    return task_to_run;
-[e ) _task_to_run ]
-[e $UE 297  ]
-"60
-[; ;scheduler.c: 60: }
-[e :UE 297 ]
+[e :U 304 ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 1 ]
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
 }
-"62
-[; ;scheduler.c: 62: void scheduler()
-[v _scheduler `(v ~T0 @X0 1 ef ]
-"63
-[; ;scheduler.c: 63: {
+[e :U 298 ]
+}
+"26
+[; ;sync.c: 26:    }
+}
+[e :U 289 ]
+"27
+[; ;sync.c: 27:    INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"28
+[; ;sync.c: 28: }
+[e :UE 287 ]
+}
+"30
+[; ;sync.c: 30: void unlock(mutex_t *resource)
+[v _unlock `(v ~T0 @X0 1 ef1`*S284 ]
+"31
+[; ;sync.c: 31: {
 {
-[e :U _scheduler ]
+[e :U _unlock ]
+"30
+[; ;sync.c: 30: void unlock(mutex_t *resource)
+[v _resource `*S284 ~T0 @X0 1 r1 ]
+"31
+[; ;sync.c: 31: {
 [f ]
-"65
-[; ;scheduler.c: 65:    ready_queue.task_running = RR_scheduler();
-[e = . _ready_queue 2 ( _RR_scheduler ..  ]
-"71
-[; ;scheduler.c: 71: }
-[e :UE 302 ]
+"32
+[; ;sync.c: 32:    INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"33
+[; ;sync.c: 33:    resource->mutex_flag = 0;
+[e = . *U _resource 0 -> -> 0 `i `uc ]
+"34
+[; ;sync.c: 34:    if (resource->mutex_bloqued_queue.nr_of_tasks_bloqued > 0) {
+[e $ ! > . . *U _resource 1 3 -> -> 0 `i `ui 306  ]
+{
+"36
+[; ;sync.c: 36:       ready_queue.tasks_list[resource->mutex_bloqued_queue.queue[resource->mutex_bloqued_queue.output_pos]].task_STATE = READY;
+[e = . *U + &U . _ready_queue 0 * -> *U + &U . . *U _resource 1 0 * -> . . *U _resource 1 2 `ux -> -> # *U &U . . *U _resource 1 0 `ui `ux `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 0 ]
+"37
+[; ;sync.c: 37:       resource->mutex_bloqued_queue.output_pos = (resource->mutex_bloqued_queue.output_pos+1) % 4;
+[e = . . *U _resource 1 2 % + . . *U _resource 1 2 -> -> 1 `i `ui -> -> 4 `i `ui ]
+"38
+[; ;sync.c: 38:       resource->mutex_bloqued_queue.nr_of_tasks_bloqued--;
+[e -- . . *U _resource 1 3 -> -> 1 `i `ui ]
+"39
+[; ;sync.c: 39:       { u_int p_context = 0, task_pos = ready_queue.task_running;do { INTCONbits.GIE = 0; if (ready_queue.tasks_list[task_pos].task_STATE == RUNNING) { ready_queue.tasks_list[task_pos].task_BSR_reg = BSR; ready_queue.tasks_list[task_pos].task_WORK_reg = WREG; ready_queue.tasks_list[task_pos].task_STATUS_reg = STATUS; do { ready_queue.tasks_list[task_pos].task_CONTEXT[p_context] = TOS; __asm("POP"); p_context += 1; } while (STKPTR); ready_queue.tasks_list[task_pos].task_stack_real_size = p_context; ready_queue.tasks_list[task_pos].task_STATE = READY; } INTCONbits.GIE = 1; } while(0); };
+{
+[v _p_context `ui ~T0 @X0 1 a ]
+[e = _p_context -> -> 0 `i `ui ]
+[v _task_pos `ui ~T0 @X0 1 a ]
+[e = _task_pos . _ready_queue 2 ]
+[e :U 309 ]
+{
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[e $ ! == -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 `ui -> . `E2560 1 `ui 310  ]
+{
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 4 -> _BSR `um ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 5 -> _WREG `um ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 6 -> _STATUS `um ]
+[e :U 313 ]
+{
+[e = *U + &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 * -> _p_context `ux -> -> # *U &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 `ui `ux _TOS ]
+[; <" POP ;# ">
+[e =+ _p_context -> -> 1 `i `ui ]
+}
+[e $ != -> _STKPTR `i -> 0 `i 313  ]
+[e :U 312 ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 _p_context ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 0 ]
+}
+[e :U 310 ]
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+}
+[e :U 308 ]
+}
+"40
+[; ;sync.c: 40:       scheduler();
+[e ( _scheduler ..  ]
+"41
+[; ;sync.c: 41:       { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+{
+[v _task_pos `ui ~T0 @X0 1 a ]
+[e = _task_pos . _ready_queue 2 ]
+[v _p_context `ui ~T0 @X0 1 a ]
+[e = _p_context . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 ]
+[e :U 316 ]
+{
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[e = _STKPTR -> -> 0 `i `uc ]
+[e $ ! > . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 7 -> -> 0 `i `ui 317  ]
+{
+[e = _BSR -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 4 `uc ]
+[e = _WREG -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 5 `uc ]
+[e = _STATUS -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 6 `uc ]
+[e $U 318  ]
+[e :U 319 ]
+{
+[e =- _p_context -> -> 1 `i `ui ]
+[; <" PUSH ;# ">
+[e = _TOS *U + &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 * -> _p_context `ux -> -> # *U &U . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 3 `ui `ux ]
+}
+[e :U 318 ]
+[e $ != _p_context -> -> 0 `i `ui 319  ]
+[e :U 320 ]
+}
+[e $U 321  ]
+[e :U 317 ]
+{
+[; <" PUSH ;# ">
+[e = _TOS -> . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 2 `um ]
+}
+[e :U 321 ]
+[e = . *U + &U . _ready_queue 0 * -> _task_pos `ux -> -> # *U &U . _ready_queue 0 `ui `ux 8 . `E2560 1 ]
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+}
+[e :U 315 ]
+}
+"42
+[; ;sync.c: 42:    }
+}
+[e :U 306 ]
+"43
+[; ;sync.c: 43:    INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"44
+[; ;sync.c: 44: }
+[e :UE 305 ]
+}
+"47
+[; ;sync.c: 47: void sem_init(semaphore_t *resource, int nr_of_instances)
+[v _sem_init `(v ~T0 @X0 1 ef2`*S285`i ]
+"48
+[; ;sync.c: 48: {
+{
+[e :U _sem_init ]
+"47
+[; ;sync.c: 47: void sem_init(semaphore_t *resource, int nr_of_instances)
+[v _resource `*S285 ~T0 @X0 1 r1 ]
+[v _nr_of_instances `i ~T0 @X0 1 r2 ]
+"48
+[; ;sync.c: 48: {
+[f ]
+"49
+[; ;sync.c: 49:    resource->sem_value = nr_of_instances;
+[e = . *U _resource 0 _nr_of_instances ]
+"50
+[; ;sync.c: 50:    resource->sem_bloqued_queue.input_pos = 0;
+[e = . . *U _resource 1 1 -> -> 0 `i `ui ]
+"51
+[; ;sync.c: 51:    resource->sem_bloqued_queue.output_pos = 0;
+[e = . . *U _resource 1 2 -> -> 0 `i `ui ]
+"52
+[; ;sync.c: 52: }
+[e :UE 322 ]
+}
+"54
+[; ;sync.c: 54: void sem_wait(semaphore_t *resource)
+[v _sem_wait `(v ~T0 @X0 1 ef1`*S285 ]
+"55
+[; ;sync.c: 55: {
+{
+[e :U _sem_wait ]
+"54
+[; ;sync.c: 54: void sem_wait(semaphore_t *resource)
+[v _resource `*S285 ~T0 @X0 1 r1 ]
+"55
+[; ;sync.c: 55: {
+[f ]
+"57
+[; ;sync.c: 57: }
+[e :UE 323 ]
+}
+"59
+[; ;sync.c: 59: void sem_post(semaphore_t *resource)
+[v _sem_post `(v ~T0 @X0 1 ef1`*S285 ]
+"60
+[; ;sync.c: 60: {
+{
+[e :U _sem_post ]
+"59
+[; ;sync.c: 59: void sem_post(semaphore_t *resource)
+[v _resource `*S285 ~T0 @X0 1 r1 ]
+"60
+[; ;sync.c: 60: {
+[f ]
+"62
+[; ;sync.c: 62: }
+[e :UE 324 ]
 }

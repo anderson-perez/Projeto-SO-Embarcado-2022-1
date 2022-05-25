@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "sync.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-# 1 "./so.h" 1
+# 1 "sync.c" 2
+# 1 "./sync.h" 1
 
 
 
@@ -4669,21 +4669,19 @@ typedef struct semaphore {
     int sem_value;
     sync_queue_t sem_bloqued_queue;
 } semaphore_t;
-# 4 "./so.h" 2
-
-
-# 1 "./user_tasks.h" 1
+# 4 "./sync.h" 2
 
 
 
+void init_mutex(mutex_t *resource);
+void lock(mutex_t *resource);
+void unlock(mutex_t *resource);
 
 
-void config_tasks();
-
-void task_1();
-void task_2();
-void task_3();
-# 6 "./so.h" 2
+void sem_init(semaphore_t *resource, int nr_of_instances);
+void sem_wait(semaphore_t *resource);
+void sem_post(semaphore_t *resource);
+# 1 "sync.c" 2
 
 # 1 "./kernel.h" 1
 
@@ -4707,26 +4705,78 @@ void start_os();
 void exit_task();
 void task_idle();
 void delay_task(u_int time);
-# 7 "./so.h" 2
-# 1 "main.c" 2
+# 2 "sync.c" 2
+
+# 1 "./scheduler.h" 1
 
 
-int main()
+
+
+
+
+
+u_int RR_scheduler();
+u_int PRIOR_scheduler();
+u_int FIFO_scheduler();
+void scheduler();
+# 3 "sync.c" 2
+
+
+
+void init_mutex(mutex_t *resource)
+{
+   resource->mutex_flag = 0;
+   resource->mutex_bloqued_queue.nr_of_tasks_bloqued = 0;
+   resource->mutex_bloqued_queue.input_pos = 0;
+   resource->mutex_bloqued_queue.output_pos = 0;
+}
+
+void lock(mutex_t *resource)
+{
+   INTCONbits.GIE = 0;
+   if (!resource->mutex_flag) resource->mutex_flag = 1;
+   else {
+
+      resource->mutex_bloqued_queue.queue[resource->mutex_bloqued_queue.input_pos] = ready_queue.task_running;
+      resource->mutex_bloqued_queue.input_pos = (resource->mutex_bloqued_queue.input_pos+1) % 4;
+      resource->mutex_bloqued_queue.nr_of_tasks_bloqued++;
+      { u_int p_context = 0, task_pos = ready_queue.task_running;do { INTCONbits.GIE = 0; if (ready_queue.tasks_list[task_pos].task_STATE == RUNNING) { ready_queue.tasks_list[task_pos].task_BSR_reg = BSR; ready_queue.tasks_list[task_pos].task_WORK_reg = WREG; ready_queue.tasks_list[task_pos].task_STATUS_reg = STATUS; do { ready_queue.tasks_list[task_pos].task_CONTEXT[p_context] = TOS; __asm("POP"); p_context += 1; } while (STKPTR); ready_queue.tasks_list[task_pos].task_stack_real_size = p_context; ready_queue.tasks_list[task_pos].task_STATE = W_MUTEX; } INTCONbits.GIE = 1; } while(0); };
+      scheduler();
+      { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+   }
+   INTCONbits.GIE = 1;
+}
+
+void unlock(mutex_t *resource)
+{
+   INTCONbits.GIE = 0;
+   resource->mutex_flag = 0;
+   if (resource->mutex_bloqued_queue.nr_of_tasks_bloqued > 0) {
+
+      ready_queue.tasks_list[resource->mutex_bloqued_queue.queue[resource->mutex_bloqued_queue.output_pos]].task_STATE = READY;
+      resource->mutex_bloqued_queue.output_pos = (resource->mutex_bloqued_queue.output_pos+1) % 4;
+      resource->mutex_bloqued_queue.nr_of_tasks_bloqued--;
+      { u_int p_context = 0, task_pos = ready_queue.task_running;do { INTCONbits.GIE = 0; if (ready_queue.tasks_list[task_pos].task_STATE == RUNNING) { ready_queue.tasks_list[task_pos].task_BSR_reg = BSR; ready_queue.tasks_list[task_pos].task_WORK_reg = WREG; ready_queue.tasks_list[task_pos].task_STATUS_reg = STATUS; do { ready_queue.tasks_list[task_pos].task_CONTEXT[p_context] = TOS; __asm("POP"); p_context += 1; } while (STKPTR); ready_queue.tasks_list[task_pos].task_stack_real_size = p_context; ready_queue.tasks_list[task_pos].task_STATE = READY; } INTCONbits.GIE = 1; } while(0); };
+      scheduler();
+      { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
+   }
+   INTCONbits.GIE = 1;
+}
+
+
+void sem_init(semaphore_t *resource, int nr_of_instances)
+{
+   resource->sem_value = nr_of_instances;
+   resource->sem_bloqued_queue.input_pos = 0;
+   resource->sem_bloqued_queue.output_pos = 0;
+}
+
+void sem_wait(semaphore_t *resource)
 {
 
-   config_os();
+}
 
+void sem_post(semaphore_t *resource)
+{
 
-   create_task(1, 3, task_1);
-   create_task(2, 2, task_2);
-   create_task(3, 1, task_3);
-
-
-   start_os();
-
-   while (1) {
-
-   }
-
-   return 0;
 }

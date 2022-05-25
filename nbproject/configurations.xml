@@ -10,6 +10,7 @@
       <itemPath>scheduler.h</itemPath>
       <itemPath>types.h</itemPath>
       <itemPath>user_conf.h</itemPath>
+      <itemPath>sync.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -22,6 +23,7 @@
       <itemPath>user_tasks.c</itemPath>
       <itemPath>kernel.c</itemPath>
       <itemPath>scheduler.c</itemPath>
+      <itemPath>sync.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

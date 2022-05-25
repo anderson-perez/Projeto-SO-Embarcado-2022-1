@@ -3,4 +3,5 @@ user_tasks.c  \
 user_tasks.h  \
 types.h  \
 user_conf.h  \
-kernel.h 
+kernel.h  \
+sync.h 

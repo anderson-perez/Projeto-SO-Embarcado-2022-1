@@ -4626,11 +4626,13 @@ unsigned char __t3rd16on(void);
 #pragma config PBADEN = OFF
 #pragma config WDT = OFF
 # 4 "./types.h" 2
-# 18 "./types.h"
+# 21 "./types.h"
 typedef unsigned char byte;
 typedef unsigned int u_int;
 typedef void(*f_task)(void);
-typedef enum {READY = 0, RUNNING, WAITING, TERMINATED} state_t;
+typedef enum {READY = 0, RUNNING, WAITING, W_MUTEX, W_SEM, TERMINATED} state_t;
+typedef u_int pos_in_ready_queue;
+typedef unsigned char boolean;
 
 typedef struct TCB {
     u_int task_ID;
@@ -4650,6 +4652,23 @@ typedef struct READY_queue {
     u_int tasks_installed;
     u_int task_running;
 } READY_queue_t;
+
+typedef struct sync_queue {
+    pos_in_ready_queue queue[4];
+    u_int input_pos;
+    u_int output_pos;
+    u_int nr_of_tasks_bloqued;
+} sync_queue_t;
+
+typedef struct mutex {
+    boolean mutex_flag;
+    sync_queue_t mutex_bloqued_queue;
+} mutex_t;
+
+typedef struct semaphore {
+    int sem_value;
+    sync_queue_t sem_bloqued_queue;
+} semaphore_t;
 # 4 "./kernel.h" 2
 
 

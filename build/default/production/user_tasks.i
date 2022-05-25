@@ -4626,11 +4626,13 @@ unsigned char __t3rd16on(void);
 #pragma config PBADEN = OFF
 #pragma config WDT = OFF
 # 4 "./types.h" 2
-# 18 "./types.h"
+# 21 "./types.h"
 typedef unsigned char byte;
 typedef unsigned int u_int;
 typedef void(*f_task)(void);
-typedef enum {READY = 0, RUNNING, WAITING, TERMINATED} state_t;
+typedef enum {READY = 0, RUNNING, WAITING, W_MUTEX, W_SEM, TERMINATED} state_t;
+typedef u_int pos_in_ready_queue;
+typedef unsigned char boolean;
 
 typedef struct TCB {
     u_int task_ID;
@@ -4650,6 +4652,23 @@ typedef struct READY_queue {
     u_int tasks_installed;
     u_int task_running;
 } READY_queue_t;
+
+typedef struct sync_queue {
+    pos_in_ready_queue queue[4];
+    u_int input_pos;
+    u_int output_pos;
+    u_int nr_of_tasks_bloqued;
+} sync_queue_t;
+
+typedef struct mutex {
+    boolean mutex_flag;
+    sync_queue_t mutex_bloqued_queue;
+} mutex_t;
+
+typedef struct semaphore {
+    int sem_value;
+    sync_queue_t sem_bloqued_queue;
+} semaphore_t;
 # 4 "./user_tasks.h" 2
 
 
@@ -4684,6 +4703,25 @@ void task_idle();
 void delay_task(u_int time);
 # 2 "user_tasks.c" 2
 
+# 1 "./sync.h" 1
+
+
+
+
+
+
+void init_mutex(mutex_t *resource);
+void lock(mutex_t *resource);
+void unlock(mutex_t *resource);
+
+
+void sem_init(semaphore_t *resource, int nr_of_instances);
+void sem_wait(semaphore_t *resource);
+void sem_post(semaphore_t *resource);
+# 3 "user_tasks.c" 2
+
+
+mutex_t m_test;
 
 void config_tasks()
 {
@@ -4692,26 +4730,28 @@ void config_tasks()
    TRISDbits.RD2 = 0;
 
 
+   init_mutex(&m_test);
+
+
    __asm("GLOBAL _task_1, _task_2, _task_3");
 }
 
 void task_1()
 {
-   u_int flag = 1;
    while (1) {
       LATDbits.LATD0 = ~PORTDbits.RD0;
-      if (flag) {
-         flag = 0;
-         delay_task(600);
-      }
+      lock(&m_test);
+      delay_task(600);
+      unlock(&m_test);
    }
 }
 
 void task_2()
 {
    while (1) {
+      lock(&m_test);
       LATDbits.LATD1 = ~PORTDbits.RD1;
-      delay_task(800);
+      unlock(&m_test);
    }
 }
 
@@ -4719,6 +4759,6 @@ void task_3()
 {
    while (1) {
       LATDbits.LATD2 = ~PORTDbits.RD2;
-      delay_task(1000);
+      delay_task(10);
    }
 }
