@@ -1,4 +1,4 @@
-# 1 "user_tasks.c"
+# 1 "memory.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "user_tasks.c" 2
-# 1 "./user_tasks.h" 1
+# 1 "memory.c" 2
+# 1 "./memory.h" 1
 
 
 
@@ -4669,62 +4669,7 @@ typedef struct semaphore {
     int sem_value;
     sync_queue_t sem_bloqued_queue;
 } semaphore_t;
-# 4 "./user_tasks.h" 2
-
-
-void config_tasks();
-
-void task_1();
-void task_2();
-void task_3();
-# 1 "user_tasks.c" 2
-
-# 1 "./kernel.h" 1
-
-
-
-
-
-
-extern READY_queue_t ready_queue;
-
-
-
-void __attribute__((picinterrupt(("")))) isr_INTERRUPTS();
-void config_os();
-
-
-
-
-
-
-void create_task(u_int id, u_int prior, f_task task);
-
-void yield_task();
-void start_os();
-void exit_task();
-void task_idle();
-void delay_task(u_int time);
-# 2 "user_tasks.c" 2
-
-# 1 "./sync.h" 1
-
-
-
-
-
-
-void init_mutex(mutex_t *resource);
-void lock(mutex_t *resource);
-void unlock(mutex_t *resource);
-
-
-void sem_init(semaphore_t *resource, int nr_of_instances);
-void sem_wait(semaphore_t *resource);
-void sem_post(semaphore_t *resource);
-# 3 "user_tasks.c" 2
-
-# 1 "./memory.h" 1
+# 4 "./memory.h" 2
 # 19 "./memory.h"
 typedef union _SALLOC
 {
@@ -4760,50 +4705,157 @@ byte _uDynamicHeap[0x200];
 byte * SRAMalloc(byte nBytes);
 void SRAMfree(byte * pSRAM);
 void SRAMInitHeap(void);
-# 4 "user_tasks.c" 2
-
-
-mutex_t m_test;
-
-
-void config_tasks()
+# 1 "memory.c" 2
+# 114 "memory.c"
+     byte _SRAMmerge(SALLOC * pSegA);
+# 144 "memory.c"
+byte * SRAMalloc( byte nBytes)
 {
-   TRISDbits.RD0 = 0;
-   TRISDbits.RD1 = 0;
-   TRISDbits.RD2 = 0;
+ SALLOC * pHeap;
+ SALLOC * temp;
+      SALLOC segHeader;
+      byte segLen;
 
 
-   init_mutex(&m_test);
+ if (nBytes > (0x7F - 1)) return (0);
 
 
-   __asm("GLOBAL _task_1, _task_2, _task_3");
-}
+ pHeap = (SALLOC *)_uDynamicHeap;
 
-void task_1()
-{
+ while (1)
+ {
+
+  segHeader = *pHeap;
 
 
-   while (1) {
-      LATDbits.LATD0 = ~PORTDbits.RD0;
-      lock(&m_test);
-      delay_task(600);
-      unlock(&m_test);
+  segLen = segHeader.bits.count - 1;
+
+
+  if (segHeader.byte == 0) return (0);
+
+
+  if (!(segHeader.bits.alloc))
+  {
+
+   if (nBytes > segLen)
+   {
+
+    if (!(_SRAMmerge(pHeap))) pHeap += segHeader.bits.count;
    }
-}
+   else
 
-void task_2()
-{
-   while (1) {
-      lock(&m_test);
-      LATDbits.LATD1 = ~PORTDbits.RD1;
-      unlock(&m_test);
-   }
-}
 
-void task_3()
-{
-   while (1) {
-      LATDbits.LATD2 = ~PORTDbits.RD2;
-      delay_task(10);
+
+   if (nBytes == segLen)
+   {
+
+    (*pHeap).bits.alloc = 1;
+
+
+    return ((unsigned char *)(pHeap + 1));
    }
+
+
+   else
+   {
+
+    (*pHeap).byte = nBytes + 0x81;
+
+
+    temp = pHeap + 1;
+
+
+    pHeap += (nBytes + 1);
+
+
+    (*pHeap).byte = segLen - nBytes;
+
+
+    return ((unsigned char *) temp);
+   }
+  }
+
+
+  else
+  {
+   pHeap += segHeader.bits.count;
+  }
+ }
+}
+# 240 "memory.c"
+void SRAMfree(byte * pSRAM)
+{
+
+ (*(SALLOC *)(pSRAM - 1)).bits.alloc = 0;
+}
+# 266 "memory.c"
+void SRAMInitHeap(void)
+{
+ byte * pHeap;
+      unsigned int count;
+
+ pHeap = _uDynamicHeap;
+ count = 0x200 -1;
+
+ while (1)
+ {
+  if (count > 0x7F)
+  {
+   *pHeap = 0x7F;
+   pHeap += 0x7F;
+   count = count - 0x7F;
+  }
+  else
+  {
+   *pHeap = count;
+   *(pHeap + count) = 0;
+   return;
+  }
+ }
+}
+# 312 "memory.c"
+     byte _SRAMmerge(SALLOC * pSegA)
+{
+ SALLOC * pSegB;
+      SALLOC uSegA, uSegB, uSum;
+
+
+
+ pSegB = pSegA + (*pSegA).byte;
+
+
+ uSegA = *pSegA;
+ uSegB = *pSegB;
+
+
+ if (uSegB.byte == 0) return (0);
+
+
+ if (uSegA.bits.alloc || uSegB.bits.alloc) return (0);
+
+
+ if (uSegA.bits.count == 0x7F) return (0);
+
+
+ uSum.byte = uSegA.byte + uSegB.byte;
+
+
+
+
+
+ if ((uSum.byte) > 0x7F)
+ {
+  (*pSegA).byte = 0x7F;
+  pSegA += 0x7F;
+  pSegB += uSegB.byte;
+  (*pSegA).byte = pSegB - pSegA;
+
+  return (0x7F);
+ }
+
+
+ else
+ {
+  return ((*pSegA).byte = uSum.byte);
+ }
 }

@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 18F4520 ]
 [d frameptr 4065 ]
-"6 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
+"7 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
 [e E2560 . `uc
 READY 0
 RUNNING 1
@@ -21,7 +21,7 @@ W_MUTEX 3
 W_SEM 4
 TERMINATED 5
 ]
-"20 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\sync.c
+"21 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\sync.c
 [e E2560 . `uc
 READY 0
 RUNNING 1
@@ -58,20 +58,22 @@ TERMINATED 5
 [v ___lmul __lmul `R(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `R(uo  1 e 8 0 ]
-"10 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
+"11 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
 [v _isr_INTERRUPTS isr_INTERRUPTS `IIH(v  1 e 1 0 ]
-"52
+"53
 [v _config_os config_os `R(v  1 e 1 0 ]
-"87
+"108
 [v _create_task create_task `R(v  1 e 1 0 ]
-"119
+"140
 [v _delay_task delay_task `R(v  1 e 1 0 ]
-"128
+"149
 [v _start_os start_os `R(v  1 e 1 0 ]
-"137
+"162
 [v _task_idle task_idle `R(v  1 e 1 0 ]
 "3 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\main.c
 [v _main main `R(i  1 e 2 0 ]
+"312 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\memory.c
+[v __SRAMmerge _SRAMmerge `R(uc  1 e 1 0 ]
 "8 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\scheduler.c
 [v _RR_scheduler RR_scheduler `R(ui  1 e 2 0 ]
 "62
@@ -80,17 +82,17 @@ TERMINATED 5
 [v _init_mutex init_mutex `R(v  1 e 1 0 ]
 "14
 [v _lock lock `R(v  1 e 1 0 ]
-"30
+"31
 [v _unlock unlock `R(v  1 e 1 0 ]
-"7 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
+"9 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
 [v _config_tasks config_tasks `R(v  1 e 1 0 ]
-"20
+"22
 [v _task_1 task_1 `R(v  1 e 1 0 ]
-"30
+"34
 [v _task_2 task_2 `R(v  1 e 1 0 ]
-"39
+"43
 [v _task_3 task_3 `R(v  1 e 1 0 ]
-[s S359 . 1 `uc 1 RC0 1 0 :1:0 
+[s S360 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -100,7 +102,7 @@ TERMINATED 5
 `uc 1 RC7 1 0 :1:7 
 ]
 "498 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
-[s S514 . 1 `uc 1 T1OSO 1 0 :1:0 
+[s S515 . 1 `uc 1 T1OSO 1 0 :1:0 
 `uc 1 T1OSI 1 0 :1:1 
 `uc 1 CCP1 1 0 :1:2 
 `uc 1 SCK 1 0 :1:3 
@@ -109,7 +111,7 @@ TERMINATED 5
 `uc 1 TX 1 0 :1:6 
 `uc 1 RX 1 0 :1:7 
 ]
-[s S523 . 1 `uc 1 T13CKI 1 0 :1:0 
+[s S524 . 1 `uc 1 T13CKI 1 0 :1:0 
 `uc 1 CCP2 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 SCL 1 0 :1:3 
@@ -118,16 +120,16 @@ TERMINATED 5
 `uc 1 CK 1 0 :1:6 
 `uc 1 DT 1 0 :1:7 
 ]
-[s S532 . 1 `uc 1 T1CKI 1 0 :1:0 
+[s S533 . 1 `uc 1 T1CKI 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 P1A 1 0 :1:2 
 ]
-[s S536 . 1 `uc 1 . 1 0 :1:0 
+[s S537 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PA2 1 0 :1:1 
 `uc 1 PA1 1 0 :1:2 
 ]
-[u S540 . 1 `S359 1 . 1 0 `S514 1 . 1 0 `S523 1 . 1 0 `S532 1 . 1 0 `S536 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES540  1 e 1 @3970 ]
+[u S541 . 1 `S360 1 . 1 0 `S515 1 . 1 0 `S524 1 . 1 0 `S533 1 . 1 0 `S537 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES541  1 e 1 @3970 ]
 [s S77 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
@@ -157,7 +159,7 @@ TERMINATED 5
 ]
 [u S179 . 1 `S77 1 . 1 0 `S162 1 . 1 0 `S171 1 . 1 0 `S176 1 . 1 0 ]
 [v _PORTDbits PORTDbits `VES179  1 e 1 @3971 ]
-[s S465 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S466 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -167,7 +169,7 @@ TERMINATED 5
 `uc 1 LATC7 1 0 :1:7 
 ]
 "1229
-[s S474 . 1 `uc 1 LC0 1 0 :1:0 
+[s S475 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -176,8 +178,8 @@ TERMINATED 5
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S483 . 1 `S465 1 . 1 0 `S474 1 . 1 0 ]
-[v _LATCbits LATCbits `VES483  1 e 1 @3979 ]
+[u S484 . 1 `S466 1 . 1 0 `S475 1 . 1 0 ]
+[v _LATCbits LATCbits `VES484  1 e 1 @3979 ]
 [s S113 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
@@ -199,7 +201,7 @@ TERMINATED 5
 ]
 [u S131 . 1 `S113 1 . 1 0 `S122 1 . 1 0 ]
 [v _LATDbits LATDbits `VES131  1 e 1 @3980 ]
-[s S390 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S391 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -209,7 +211,7 @@ TERMINATED 5
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1732
-[s S399 . 1 `uc 1 RB0 1 0 :1:0 
+[s S400 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -218,9 +220,9 @@ TERMINATED 5
 `uc 1 RB6 1 0 :1:6 
 `uc 1 RB7 1 0 :1:7 
 ]
-[u S408 . 1 `S390 1 . 1 0 `S399 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES408  1 e 1 @3987 ]
-[s S350 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S409 . 1 `S391 1 . 1 0 `S400 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES409  1 e 1 @3987 ]
+[s S351 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -230,8 +232,8 @@ TERMINATED 5
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1954
-[u S368 . 1 `S350 1 . 1 0 `S359 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES368  1 e 1 @3988 ]
+[u S369 . 1 `S351 1 . 1 0 `S360 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES369  1 e 1 @3988 ]
 [s S68 . 1 `uc 1 TRISD0 1 0 :1:0 
 `uc 1 TRISD1 1 0 :1:1 
 `uc 1 TRISD2 1 0 :1:2 
@@ -244,7 +246,7 @@ TERMINATED 5
 "2176
 [u S86 . 1 `S68 1 . 1 0 `S77 1 . 1 0 ]
 [v _TRISDbits TRISDbits `VES86  1 e 1 @3989 ]
-[s S430 . 1 `uc 1 T0PS 1 0 :3:0 
+[s S431 . 1 `uc 1 T0PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -252,15 +254,15 @@ TERMINATED 5
 `uc 1 TMR0ON 1 0 :1:7 
 ]
 "6192
-[s S437 . 1 `uc 1 T0PS0 1 0 :1:0 
+[s S438 . 1 `uc 1 T0PS0 1 0 :1:0 
 `uc 1 T0PS1 1 0 :1:1 
 `uc 1 T0PS2 1 0 :1:2 
 `uc 1 T0PS3 1 0 :1:3 
 `uc 1 . 1 0 :2:4 
 `uc 1 T016BIT 1 0 :1:6 
 ]
-[u S444 . 1 `S430 1 . 1 0 `S437 1 . 1 0 ]
-[v _T0CONbits T0CONbits `VES444  1 e 1 @4053 ]
+[u S445 . 1 `S431 1 . 1 0 `S438 1 . 1 0 ]
+[v _T0CONbits T0CONbits `VES445  1 e 1 @4053 ]
 "6252
 [v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
 "6273
@@ -269,7 +271,7 @@ TERMINATED 5
 [v _BSR BSR `VEuc  1 e 1 @4064 ]
 "6463
 [v _WREG WREG `VEuc  1 e 1 @4072 ]
-[s S284 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S285 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -279,7 +281,7 @@ TERMINATED 5
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "6725
-[s S293 . 1 `uc 1 . 1 0 :1:0 
+[s S294 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -288,60 +290,60 @@ TERMINATED 5
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S302 . 1 `uc 1 . 1 0 :6:0 
+[s S303 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[u S306 . 1 `S284 1 . 1 0 `S293 1 . 1 0 `S302 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES306  1 e 1 @4082 ]
+[u S307 . 1 `S285 1 . 1 0 `S294 1 . 1 0 `S303 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES307  1 e 1 @4082 ]
 "6905
 [v _STKPTR STKPTR `VEuc  1 e 1 @4092 ]
 "6978
 [v _TOS TOS `VEum  1 e 3 @4093 ]
-[s S269 TCB 116 `ui 1 task_ID 2 0 `ui 1 task_PRIOR 2 2 `*.37R(v 1 task_PTR 2 4 `[32]um 1 task_CONTEXT 96 6 `um 1 task_BSR_reg 3 102 `um 1 task_WORK_reg 3 105 `um 1 task_STATUS_reg 3 108 `ui 1 task_stack_real_size 2 111 `E2560 1 task_STATE 1 113 `ui 1 delay_waiting 2 114 ]
-"6 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
-[s S280 READY_queue 584 `[5]S269 1 tasks_list 580 0 `ui 1 tasks_installed 2 580 `ui 1 task_running 2 582 ]
-[v _ready_queue ready_queue `S280  1 e 584 0 ]
-"7
+[s S270 TCB 116 `ui 1 task_ID 2 0 `ui 1 task_PRIOR 2 2 `*.37R(v 1 task_PTR 2 4 `[32]um 1 task_CONTEXT 96 6 `um 1 task_BSR_reg 3 102 `um 1 task_WORK_reg 3 105 `um 1 task_STATUS_reg 3 108 `ui 1 task_stack_real_size 2 111 `E2560 1 task_STATE 1 113 `ui 1 delay_waiting 2 114 ]
+"7 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
+[s S281 READY_queue 584 `[5]S270 1 tasks_list 580 0 `ui 1 tasks_installed 2 580 `ui 1 task_running 2 582 ]
+[v _ready_queue ready_queue `S281  1 e 584 0 ]
+"8
 [v _rr_quantum_control rr_quantum_control `ui  1 e 2 0 ]
-"14
+"15
 [v __ccovbit1_6 _ccovbit1_6 `VEb  1 e 0 0 ]
-"16
+"17
 [v __ccovbit2_7 _ccovbit2_7 `VEb  1 e 0 0 ]
-"24
+"25
 [v __ccovbit8_8 _ccovbit8_8 `VEb  1 e 0 0 ]
-"26
+"27
 [v __ccovbit9_9 _ccovbit9_9 `VEb  1 e 0 0 ]
-"29
+"30
 [v __ccovbit12_10 _ccovbit12_10 `VEb  1 e 0 0 ]
-"32
+"33
 [v __ccovbit17_11 _ccovbit17_11 `VEb  1 e 0 0 ]
-"35
+"36
 [v __ccovbit27_12 _ccovbit27_12 `VEb  1 e 0 0 ]
 [v __ccovbit29_13 _ccovbit29_13 `VEb  1 e 0 0 ]
-"39
+"40
 [v __ccovbit43_14 _ccovbit43_14 `VEb  1 e 0 0 ]
 [v __ccovbit45_15 _ccovbit45_15 `VEb  1 e 0 0 ]
 [v __ccovbit48_16 _ccovbit48_16 `VEb  1 e 0 0 ]
 [v __ccovbit50_17 _ccovbit50_17 `VEb  1 e 0 0 ]
-"50
+"51
 [v __ccovbit55_18 _ccovbit55_18 `VEb  1 e 0 0 ]
-"83
+"84
 [v __ccovbit14_19 _ccovbit14_19 `VEb  1 e 0 0 ]
-"101
+"122
 [v __ccovbit8_20 _ccovbit8_20 `VEb  1 e 0 0 ]
-"123
+"144
 [v __ccovbit11_21 _ccovbit11_21 `VEb  1 e 0 0 ]
 [v __ccovbit14_22 _ccovbit14_22 `VEb  1 e 0 0 ]
-"125
+"146
 [v __ccovbit28_23 _ccovbit28_23 `VEb  1 e 0 0 ]
 [v __ccovbit30_24 _ccovbit30_24 `VEb  1 e 0 0 ]
 [v __ccovbit33_25 _ccovbit33_25 `VEb  1 e 0 0 ]
-"126
+"147
 [v __ccovbit37_26 _ccovbit37_26 `VEb  1 e 0 0 ]
-"135
+"160
 [v __ccovbit2_27 _ccovbit2_27 `VEb  1 e 0 0 ]
-"141
+"166
 [v __ccovbit1_28 _ccovbit1_28 `VEb  1 e 0 0 ]
 "18 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\main.c
 [v __ccovbit3_1 _ccovbit3_1 `VEb  1 e 0 0 ]
@@ -357,71 +359,71 @@ TERMINATED 5
 [v __ccovbit1_33 _ccovbit1_33 `VEb  1 e 0 0 ]
 "12 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\sync.c
 [v __ccovbit4_34 _ccovbit4_34 `VEb  1 e 0 0 ]
-"17
+"18
 [v __ccovbit2_35 _ccovbit2_35 `VEb  1 e 0 0 ]
-"23
+"24
 [v __ccovbit16_36 _ccovbit16_36 `VEb  1 e 0 0 ]
 [v __ccovbit19_37 _ccovbit19_37 `VEb  1 e 0 0 ]
-"25
+"26
 [v __ccovbit33_38 _ccovbit33_38 `VEb  1 e 0 0 ]
 [v __ccovbit35_39 _ccovbit35_39 `VEb  1 e 0 0 ]
 [v __ccovbit38_40 _ccovbit38_40 `VEb  1 e 0 0 ]
 [v __ccovbit40_41 _ccovbit40_41 `VEb  1 e 0 0 ]
-"28
+"29
 [v __ccovbit44_42 _ccovbit44_42 `VEb  1 e 0 0 ]
-"39
+"42
 [v __ccovbit15_43 _ccovbit15_43 `VEb  1 e 0 0 ]
 [v __ccovbit18_44 _ccovbit18_44 `VEb  1 e 0 0 ]
-"41
+"44
 [v __ccovbit32_45 _ccovbit32_45 `VEb  1 e 0 0 ]
 [v __ccovbit34_46 _ccovbit34_46 `VEb  1 e 0 0 ]
 [v __ccovbit37_47 _ccovbit37_47 `VEb  1 e 0 0 ]
 [v __ccovbit39_48 _ccovbit39_48 `VEb  1 e 0 0 ]
-"44
+"47
 [v __ccovbit43_49 _ccovbit43_49 `VEb  1 e 0 0 ]
 [s S60 sync_queue 14 `[4]ui 1 queue 8 0 `ui 1 input_pos 2 8 `ui 1 output_pos 2 10 `ui 1 nr_of_tasks_bloqued 2 12 ]
-"5 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
+"6 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
 [s S65 mutex 15 `uc 1 mutex_flag 1 0 `S60 1 mutex_bloqued_queue 14 1 ]
 [v _m_test m_test `S65  1 e 15 0 ]
-"18
+"20
 [v __ccovbit2_2 _ccovbit2_2 `VEb  1 e 0 0 ]
-"26
+"30
 [v __ccovbit4_3 _ccovbit4_3 `VEb  1 e 0 0 ]
-"35
+"39
 [v __ccovbit3_4 _ccovbit3_4 `VEb  1 e 0 0 ]
-"43
+"47
 [v __ccovbit2_5 _ccovbit2_5 `VEb  1 e 0 0 ]
 "3 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\main.c
 [v _main main `R(i  1 e 2 0 ]
 {
 "21
 } 0
-"128 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
+"149 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
 [v _start_os start_os `R(v  1 e 1 0 ]
 {
-"135
+"160
 } 0
-"52
+"53
 [v _config_os config_os `R(v  1 e 1 0 ]
 {
-"83
+"84
 } 0
-"87
+"108
 [v _create_task create_task `R(v  1 e 1 0 ]
 {
-[s S269 TCB 116 `ui 1 task_ID 2 0 `ui 1 task_PRIOR 2 2 `*.37R(v 1 task_PTR 2 4 `[32]um 1 task_CONTEXT 96 6 `um 1 task_BSR_reg 3 102 `um 1 task_WORK_reg 3 105 `um 1 task_STATUS_reg 3 108 `ui 1 task_stack_real_size 2 111 `E2560 1 task_STATE 1 113 `ui 1 delay_waiting 2 114 ]
-"89
-[v _new_task new_task `S269  1 a 116 0 ]
-"87
+[s S270 TCB 116 `ui 1 task_ID 2 0 `ui 1 task_PRIOR 2 2 `*.37R(v 1 task_PTR 2 4 `[32]um 1 task_CONTEXT 96 6 `um 1 task_BSR_reg 3 102 `um 1 task_WORK_reg 3 105 `um 1 task_STATUS_reg 3 108 `ui 1 task_stack_real_size 2 111 `E2560 1 task_STATE 1 113 `ui 1 delay_waiting 2 114 ]
+"110
+[v _new_task new_task `S270  1 a 116 0 ]
+"108
 [v _id id `ui  1 p 2 -2 ]
 [v _prior prior `ui  1 p 2 -4 ]
 [v _task task `*.37R(v  1 p 2 -6 ]
-"101
+"122
 } 116
-"7 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
+"9 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
 [v _config_tasks config_tasks `R(v  1 e 1 0 ]
 {
-"18
+"20
 } 0
 "6 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\sync.c
 [v _init_mutex init_mutex `R(v  1 e 1 0 ]
@@ -431,53 +433,53 @@ TERMINATED 5
 [v _resource resource `*.39S65  1 p 2 -2 ]
 "12
 } 0
-"20 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
+"22 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
 [v _task_1 task_1 `R(v  1 e 1 0 ]
 {
-"28
+"32
 } 0
-"30 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\sync.c
+"31 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\sync.c
 [v _unlock unlock `R(v  1 e 1 0 ]
 {
-"41
+"44
 [v _task_pos task_pos `ui  1 a 2 0 ]
 [v _p_context p_context `ui  1 a 2 2 ]
-"39
+"42
 [v _task_pos task_pos `ui  1 a 2 4 ]
 [v _p_context p_context `ui  1 a 2 6 ]
 [s S60 sync_queue 14 `[4]ui 1 queue 8 0 `ui 1 input_pos 2 8 `ui 1 output_pos 2 10 `ui 1 nr_of_tasks_bloqued 2 12 ]
-"30
+"31
 [s S65 mutex 15 `uc 1 mutex_flag 1 0 `S60 1 mutex_bloqued_queue 14 1 ]
 [v _resource resource `*.39S65  1 p 2 -2 ]
-"44
+"47
 } 8
 "14
 [v _lock lock `R(v  1 e 1 0 ]
 {
-"25
+"26
 [v _task_pos task_pos `ui  1 a 2 0 ]
 [v _p_context p_context `ui  1 a 2 2 ]
-"23
+"24
 [v _task_pos task_pos `ui  1 a 2 4 ]
 [v _p_context p_context `ui  1 a 2 6 ]
 [s S60 sync_queue 14 `[4]ui 1 queue 8 0 `ui 1 input_pos 2 8 `ui 1 output_pos 2 10 `ui 1 nr_of_tasks_bloqued 2 12 ]
 "14
 [s S65 mutex 15 `uc 1 mutex_flag 1 0 `S60 1 mutex_bloqued_queue 14 1 ]
 [v _resource resource `*.39S65  1 p 2 -2 ]
-"28
+"29
 } 8
-"119 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
+"140 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
 [v _delay_task delay_task `R(v  1 e 1 0 ]
 {
-"125
+"146
 [v _task_pos task_pos `ui  1 a 2 0 ]
 [v _p_context p_context `ui  1 a 2 2 ]
-"123
+"144
 [v _task_pos task_pos `ui  1 a 2 4 ]
 [v _p_context p_context `ui  1 a 2 6 ]
-"119
+"140
 [v _time time `ui  1 p 2 -2 ]
-"126
+"147
 } 8
 "62 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\scheduler.c
 [v _scheduler scheduler `R(v  1 e 1 0 ]
@@ -502,33 +504,33 @@ TERMINATED 5
 [v _divisor divisor `ui  1 p 2 -4 ]
 "25
 } 1
-"30 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
+"34 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\user_tasks.c
 [v _task_2 task_2 `R(v  1 e 1 0 ]
 {
-"37
+"41
 } 0
-"39
+"43
 [v _task_3 task_3 `R(v  1 e 1 0 ]
 {
-"45
+"49
 } 0
-"137 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
+"162 F:\Usuários\Anderson\Aulas\Ensino\Graduação\Sistemas Operacionais Embarcados\Atividades Aulas\2022-1\Projeto_SO_2022_1.X\Projeto_SO_2022_1.X\kernel.c
 [v _task_idle task_idle `R(v  1 e 1 0 ]
 {
-"146
+"171
 } 0
-"10
+"11
 [v _isr_INTERRUPTS isr_INTERRUPTS `IIH(v  1 e 1 0 ]
 {
-"39
-[v isr_INTERRUPTS@task_pos_621 task_pos `ui  1 a 2 23 ]
-[v isr_INTERRUPTS@p_context_622 p_context `ui  1 a 2 17 ]
-"35
+"40
+[v isr_INTERRUPTS@task_pos_623 task_pos `ui  1 a 2 23 ]
+[v isr_INTERRUPTS@p_context_624 p_context `ui  1 a 2 17 ]
+"36
 [v isr_INTERRUPTS@task_pos task_pos `ui  1 a 2 21 ]
 [v isr_INTERRUPTS@p_context p_context `ui  1 a 2 15 ]
-"21
+"22
 [v isr_INTERRUPTS@i i `i  1 a 2 19 ]
-"50
+"51
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\Umul16.c
 [v ___wmul __wmul `R(ui  1 e 2 0 ]

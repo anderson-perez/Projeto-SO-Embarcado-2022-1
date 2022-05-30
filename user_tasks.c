@@ -1,8 +1,10 @@
 #include "user_tasks.h"
 #include "kernel.h"
 #include "sync.h"
+#include "memory.h"
 
 mutex_t m_test;
+//byte *mem_alloc_test;
 
 void config_tasks()
 {
@@ -19,6 +21,8 @@ void config_tasks()
 
 TASK task_1()
 {
+   //mem_alloc_test = SRAMalloc(10);
+   
    while (1) {
       LATDbits.LATD0 = ~PORTDbits.RD0;
       lock(&m_test);

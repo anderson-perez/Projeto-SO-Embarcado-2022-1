@@ -5,10 +5,10 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.20\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Projeto_SO_2022_1.X.production.sym \
   --cmf=dist/default/production\Projeto_SO_2022_1.X.production.cmf -z \
-  -Q18F4520 -oC:\Users\ander\AppData\Local\Temp\s2lg.2 \
+  -Q18F4520 -oC:\Users\ander\AppData\Local\Temp\se60.2 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Projeto_SO_2022_1.X.production.map -E1 \
-  -ver=XC8 Compiler --acfsm=1493 -ASTACK=080h-03B7h -pstack=STACK \
+  -ver=XC8 Compiler --acfsm=1493 -ASTACK=080h-01B7h -pstack=STACK \
   -ACODE=00h-07FFFh -ACONST=00h-07FFFh -ASMALLCONST=0600h-06FFhx122 \
   -AMEDIUMCONST=0600h-07FFFh -ACOMRAM=01h-07Fh -AABS1=00h-05FFh \
   -ABIGRAM=01h-05FFh -ARAM=080h-0FFh,0100h-01FFhx5 -ABANK0=080h-0FFh \
@@ -22,7 +22,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\ander\AppData\Local\Temp\s2lg.o \
+  C:\Users\ander\AppData\Local\Temp\se60.o \
   dist/default/production\Projeto_SO_2022_1.X.production.o 
 
 Object code version is 3.11
@@ -32,8 +32,8 @@ Machine type is 18F4520
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\ander\AppData\Local\Temp\s2lg.o
-                stack                                80       80      338       80       2
+C:\Users\ander\AppData\Local\Temp\se60.o
+                stack                                80       80      138       80       2
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                  C        C        8        4       0
@@ -64,7 +64,7 @@ dist/default/production\Projeto_SO_2022_1.X.production.o
                 text1                              1AAC     1AAC       10        4       0
                 text0                              18A0     18A0       66        4       0
                 cstackCOMRAM                         28       28       19        1       1
-                bssBIGRAM                           3B8      3B8      248      3B8       1
+                bssBIGRAM                           1B8      1B8      448      1B8       1
                 dataCOMRAM                           50       50        2        1       1
                 bssCOMRAM                            41       41        F        1       1
                 bitbssCOMRAM                          8        1       31        1       1     8
@@ -73,7 +73,7 @@ dist/default/production\Projeto_SO_2022_1.X.production.o
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
-                stack                                80       80      338         2
+                stack                                80       80      138         2
 
         CLASS   CODE           
                 intcode                               8        8        4         0
@@ -116,7 +116,7 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   ABS1           
 
         CLASS   BIGRAM         
-                bssBIGRAM                           3B8      3B8      248         1
+                bssBIGRAM                           1B8      1B8      448         1
 
         CLASS   RAM            
 
@@ -154,18 +154,16 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 reset_vec                      000000  000004  000004         0       0  CODE    
                 bitbssCOMRAM                   000001  000051  000052         1       1  COMRAM  
                 intcode                        000008  001AC6  001ACE         4       0  CODE    
-                stack                          000080  000338  0003B8        80       2  STACK   
-                bssBIGRAM                      0003B8  000248  000600       3B8       1  BIGRAM  
+                stack                          000080  000138  0001B8        80       2  STACK   
+                bssBIGRAM                      0001B8  000448  000600       1B8       1  BIGRAM  
 
 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
         BANK0            000080-0000FF               80
-        BANK1            000100-0001FF              100
-        BANK2            000200-0002FF              100
-        BANK3            000300-0003B7               B8
-        BIGRAM           000052-0003B7              366
+        BANK1            000100-0001B7               B8
+        BIGRAM           000052-0001B7              166
         CODE             000004-000007                4
                          001ACE-007FFF             6532
         COMRAM           000052-00007F               2E
@@ -173,7 +171,7 @@ UNUSED ADDRESS RANGES
                          001ACE-007FFF             6532
         EEDATA           F00000-F000FF              100
         MEDIUMCONST      001ACE-007FFF             6532
-        RAM              000080-0003B7              100
+        RAM              000080-0001B7               80
         SFR              000F80-000FFF               80
         SMALLCONST       001ACE-007FFF              100
 
@@ -253,9 +251,9 @@ __Hsfr                       sfr              000000
 __Hsmallconst                smallconst       000000
 __Hspace_0                   (abs)            001ACE
 __Hspace_1                   (abs)            000600
-__Hspace_2                   (abs)            0003B8
+__Hspace_2                   (abs)            0001B8
 __Hspace_4                   (abs)            60000E
-__Hstack                     stack            0003B8
+__Hstack                     stack            0001B8
 __Hstruct                    struct           000000
 __Htemp                      temp             000028
 __Htext                      text             000000
@@ -361,11 +359,11 @@ __Ltext8                     text8            000000
 __Ltext9                     text9            000000
 __S0                         (abs)            001ACE
 __S1                         (abs)            000600
-__S2                         (abs)            0003B8
+__S2                         (abs)            0001B8
 __S4                         (abs)            000000
 __S5                         (abs)            000000
-___inthi_sp                  stack            000194
-___intlo_sp                  stack            0002A6
+___inthi_sp                  stack            0000E8
+___intlo_sp                  stack            000150
 ___lwmod                     text12           0016AA
 ___param_bank                (abs)            000000
 ___rparam_used               (abs)            000001
@@ -826,7 +824,7 @@ __end_of_unlock              text7            000598
 __initialization             cinit            0019AA
 __mediumconst                mediumconst      000000
 __pbitbssCOMRAM              bitbssCOMRAM     000008
-__pbssBIGRAM                 bssBIGRAM        0003B8
+__pbssBIGRAM                 bssBIGRAM        0001B8
 __pbssCOMRAM                 bssCOMRAM        000041
 __pcinit                     cinit            0019AA
 __pcodecov_info              codecov_info     000000
@@ -874,6 +872,7 @@ __size_of_task_3             (abs)            000000
 __size_of_task_idle          (abs)            000000
 __size_of_unlock             (abs)            000000
 __smallconst                 smallconst       000000
+__uDynamicHeap               bssBIGRAM        000400
 _config_os                   text2            001906
 _config_tasks                text4            001A96
 _create_task                 text3            0015B8
@@ -883,7 +882,7 @@ _isr_INTERRUPTS              intcode          000008
 _lock                        text8            000598
 _m_test                      bssCOMRAM        000041
 _main                        text0            0018A0
-_ready_queue                 bssBIGRAM        0003B8
+_ready_queue                 bssBIGRAM        0001B8
 _rr_quantum_control          dataCOMRAM       000050
 _scheduler                   text10           001ABC
 _start_os                    text1            001AAC
@@ -901,9 +900,9 @@ intlevel2                    text             000000
 intlevel3                    text             000000
 isr_INTERRUPTS@i             cstackCOMRAM     00003B
 isr_INTERRUPTS@p_context     cstackCOMRAM     000037
-isr_INTERRUPTS@p_context_622 cstackCOMRAM     000039
+isr_INTERRUPTS@p_context_624 cstackCOMRAM     000039
 isr_INTERRUPTS@task_pos      cstackCOMRAM     00003D
-isr_INTERRUPTS@task_pos_621  cstackCOMRAM     00003F
+isr_INTERRUPTS@task_pos_623  cstackCOMRAM     00003F
 lltemp0                      temp             000008
 lltemp1                      temp             000010
 lltemp2                      temp             000018
@@ -911,7 +910,7 @@ lltemp3                      temp             000020
 ltemp0                       temp             000008
 ltemp1                       temp             00000C
 ltemp2                       temp             000010
-stackhi                      (abs)            0003B7
+stackhi                      (abs)            0001B7
 stacklo                      (abs)            000080
 start                        init             00000C
 start_initialization         cinit            0019AA
@@ -966,7 +965,7 @@ Total ram usage:        0 bytes
 
  *************** function _start_os *****************
  Defined at:
-		line 128 in file "kernel.c"
+		line 149 in file "kernel.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -996,7 +995,7 @@ Total ram usage:        0 bytes
 
  *************** function _config_os *****************
  Defined at:
-		line 52 in file "kernel.c"
+		line 53 in file "kernel.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1027,7 +1026,7 @@ Total ram usage:        0 bytes
 
  *************** function _create_task *****************
  Defined at:
-		line 87 in file "kernel.c"
+		line 108 in file "kernel.c"
  Parameters:    Size  Location     Type
   id              2  [STACK] unsigned int 
   prior           2  [STACK] unsigned int 
@@ -1061,7 +1060,7 @@ Total ram usage:        0 bytes
 
  *************** function _config_tasks *****************
  Defined at:
-		line 7 in file "user_tasks.c"
+		line 9 in file "user_tasks.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1122,7 +1121,7 @@ Total ram usage:        0 bytes
 
  *************** function _task_1 *****************
  Defined at:
-		line 20 in file "user_tasks.c"
+		line 22 in file "user_tasks.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1154,7 +1153,7 @@ Total ram usage:        0 bytes
 
  *************** function _unlock *****************
  Defined at:
-		line 30 in file "sync.c"
+		line 31 in file "sync.c"
  Parameters:    Size  Location     Type
   resource        2  [STACK] PTR struct mutex
 		 -> m_test(15), 
@@ -1224,7 +1223,7 @@ Total ram usage:        0 bytes
 
  *************** function _delay_task *****************
  Defined at:
-		line 119 in file "kernel.c"
+		line 140 in file "kernel.c"
  Parameters:    Size  Location     Type
   time            2  [STACK] unsigned int 
  Auto vars:     Size  Location     Type
@@ -1353,7 +1352,7 @@ Total ram usage:        0 bytes
 
  *************** function _task_2 *****************
  Defined at:
-		line 30 in file "user_tasks.c"
+		line 34 in file "user_tasks.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1384,7 +1383,7 @@ Total ram usage:        0 bytes
 
  *************** function _task_3 *****************
  Defined at:
-		line 39 in file "user_tasks.c"
+		line 43 in file "user_tasks.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1414,7 +1413,7 @@ Total ram usage:        0 bytes
 
  *************** function _task_idle *****************
  Defined at:
-		line 137 in file "kernel.c"
+		line 162 in file "kernel.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1445,7 +1444,7 @@ Total ram usage:        0 bytes
 
  *************** function _isr_INTERRUPTS *****************
  Defined at:
-		line 10 in file "kernel.c"
+		line 11 in file "kernel.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type

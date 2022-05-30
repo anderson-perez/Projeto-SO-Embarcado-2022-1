@@ -4699,7 +4699,11 @@ void config_os();
 
 
 
+
+
+
 void create_task(u_int id, u_int prior, f_task task);
+
 void yield_task();
 void start_os();
 void exit_task();
@@ -4734,6 +4738,7 @@ void init_mutex(mutex_t *resource)
 void lock(mutex_t *resource)
 {
    INTCONbits.GIE = 0;
+
    if (!resource->mutex_flag) resource->mutex_flag = 1;
    else {
 
@@ -4750,7 +4755,9 @@ void lock(mutex_t *resource)
 void unlock(mutex_t *resource)
 {
    INTCONbits.GIE = 0;
+
    resource->mutex_flag = 0;
+
    if (resource->mutex_bloqued_queue.nr_of_tasks_bloqued > 0) {
 
       ready_queue.tasks_list[resource->mutex_bloqued_queue.queue[resource->mutex_bloqued_queue.output_pos]].task_STATE = READY;

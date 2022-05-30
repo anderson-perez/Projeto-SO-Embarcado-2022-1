@@ -14,6 +14,7 @@ void init_mutex(mutex_t *resource)
 void lock(mutex_t *resource)
 {
    GLOBAL_INTERRUPTS_DISABLE();
+   // Verifica se o recurso está desbloqueado
    if (!resource->mutex_flag) resource->mutex_flag = TRUE;
    else {
       // Bloqueia o processo (recurso indisponível)
@@ -30,7 +31,9 @@ void lock(mutex_t *resource)
 void unlock(mutex_t *resource)
 {
    GLOBAL_INTERRUPTS_DISABLE();
+   // Desbloqueia processo
    resource->mutex_flag = FALSE;
+   // Verifica se existem processos bloqueados aguardando a liberação do recurso
    if (resource->mutex_bloqued_queue.nr_of_tasks_bloqued > 0) {
       // Desbloqueia o processo (recurso indisponível)
       ready_queue.tasks_list[resource->mutex_bloqued_queue.queue[resource->mutex_bloqued_queue.output_pos]].task_STATE = READY;

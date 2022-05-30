@@ -1,6 +1,7 @@
 #include "kernel.h"
 #include "user_tasks.h"
 #include "scheduler.h"
+#include "memory.h"
 
 // Declaração da fila de aptos
 READY_queue_t ready_queue;
@@ -61,7 +62,7 @@ void config_os()
    create_task(0, 0, task_idle);
    
    #if DEBUG_TASK_IDLE == ENABLE
-   TRISCbits.RC0  =              0;
+   TRISCbits.RC0                 = 0;
    #endif
    
    // Configuração das interrupções
@@ -84,6 +85,26 @@ void config_os()
 
 
 // Chamadas de sistema
+#if DYNAMIC_ALLOC
+void create_task(u_int id, u_int prior, f_task task, u_int stack_size)
+{
+   TCB_t new_task;
+   
+   // Cria uma nova tarefa
+   new_task.task_ID                 = id;
+   new_task.task_PRIOR              = prior;
+   new_task.task_PTR                = task;
+   new_task.task_STATE              = READY;
+   new_task.task_stack_real_size    = 0;
+   new_task.delay_waiting           = 0;
+   
+   new_task.task_CONTEXT = SRAMalloc(stack_size);
+   
+   ready_queue.tasks_list[ready_queue.tasks_installed] = new_task;
+   ready_queue.tasks_installed                        += 1;
+}
+
+#else
 void create_task(u_int id, u_int prior, f_task task)
 {
    TCB_t new_task;
@@ -99,7 +120,7 @@ void create_task(u_int id, u_int prior, f_task task)
    ready_queue.tasks_list[ready_queue.tasks_installed] = new_task;
    ready_queue.tasks_installed                        += 1;
 }
-
+#endif
 void yield_task()
 {
    GLOBAL_INTERRUPTS_DISABLE();
@@ -127,6 +148,10 @@ void delay_task(u_int time)
 
 void start_os()
 {
+   #if DYNAMIC_ALLOC
+   SRAMInitHeap();
+   #endif
+   
    // Habilita as interrupções
    GLOBAL_INTERRUPTS_ENABLE();
    // Inicializar o timer0

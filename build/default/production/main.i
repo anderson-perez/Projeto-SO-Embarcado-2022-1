@@ -4701,7 +4701,11 @@ void config_os();
 
 
 
+
+
+
 void create_task(u_int id, u_int prior, f_task task);
+
 void yield_task();
 void start_os();
 void exit_task();

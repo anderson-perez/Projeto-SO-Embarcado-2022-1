@@ -1,77 +1,15 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"47 ./types.h
-[; ;./types.h: 47: typedef struct sync_queue {
-[s S283 `ui -> 4 `i `ui 1 `ui 1 `ui 1 ]
-[n S283 sync_queue queue input_pos output_pos nr_of_tasks_bloqued ]
-"54
-[; ;./types.h: 54: typedef struct mutex {
-[s S284 `uc 1 `S283 1 ]
-[n S284 mutex mutex_flag mutex_bloqued_queue ]
-"2155 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 2155:     struct {
-[s S78 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S78 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
-"2165
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 2165:     struct {
-[s S79 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S79 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
-"2154
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 2154: typedef union {
-[u S77 `S78 1 `S79 1 ]
-[n S77 . . . ]
-"2176
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 2176: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF95)));
-[v _TRISDbits `VS77 ~T0 @X0 0 e@3989 ]
-"7 ./sync.h
-[; ;./sync.h: 7: void init_mutex(mutex_t *resource);
-[v _init_mutex `(v ~T0 @X0 0 ef1`*S284 ]
-"1320 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1320:     struct {
-[s S54 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S54 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
-"1330
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1330:     struct {
-[s S55 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S55 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
-"1319
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1319: typedef union {
-[u S53 `S54 1 `S55 1 ]
-[n S53 . . . ]
-"1341
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 1341: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
-[v _LATDbits `VS53 ~T0 @X0 0 e@3980 ]
-"639
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 639:     struct {
-[s S29 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S29 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
-"649
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 649:     struct {
-[s S30 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S30 . PSP0 PSP1 PSP2 PSP3 PSP4 PSP5 PSP6 PSP7 ]
-"659
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 659:     struct {
-[s S31 :5 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S31 . . P1B P1C P1D ]
-"665
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 665:     struct {
-[s S32 :7 `uc 1 :1 `uc 1 ]
-[n S32 . . SS2 ]
-"638
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 638: typedef union {
-[u S28 `S29 1 `S30 1 `S31 1 `S32 1 ]
-[n S28 . . . . . ]
-"670
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 670: extern volatile PORTDbits_t PORTDbits __attribute__((address(0xF83)));
-[v _PORTDbits `VS28 ~T0 @X0 0 e@3971 ]
-"8 ./sync.h
-[; ;./sync.h: 8: void lock(mutex_t *resource);
-[v _lock `(v ~T0 @X0 0 ef1`*S284 ]
-"25 ./kernel.h
-[; ;./kernel.h: 25: void delay_task(u_int time);
-[v _delay_task `(v ~T0 @X0 0 ef1`ui ]
-"9 ./sync.h
-[; ;./sync.h: 9: void unlock(mutex_t *resource);
-[v _unlock `(v ~T0 @X0 0 ef1`*S284 ]
+"23 ./memory.h
+[; ;./memory.h: 23:  {
+[s S287 :7 `uc 1 :1 `uc 1 ]
+[n S287 _BITS count alloc ]
+"20
+[; ;./memory.h: 20: {
+[u S286 `uc 1 `S287 1 ]
+[n S286 _SALLOC byte bits ]
+"114 memory.c
+[; ;memory.c: 114:      byte _SRAMmerge(SALLOC * pSegA);
+[v __SRAMmerge `(uc ~T0 @X0 0 ef1`*S286 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h: 55: __asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
@@ -492,126 +430,339 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x WDT    = OFF ]
 "37 ./memory.h
 [v __uDynamicHeap `uc ~T0 @X0 -> 512 `i e ]
-"6 user_tasks.c
-[; ;user_tasks.c: 6: mutex_t m_test;
-[v _m_test `S284 ~T0 @X0 1 e ]
-"9
-[; ;user_tasks.c: 9: void config_tasks()
-[v _config_tasks `(v ~T0 @X0 1 ef ]
-"10
-[; ;user_tasks.c: 10: {
+"144 memory.c
+[; ;memory.c: 144: byte * SRAMalloc( byte nBytes)
+[v _SRAMalloc `(*uc ~T0 @X0 1 ef1`uc ]
+"145
+[; ;memory.c: 145: {
 {
-[e :U _config_tasks ]
+[e :U _SRAMalloc ]
+"144
+[; ;memory.c: 144: byte * SRAMalloc( byte nBytes)
+[v _nBytes `uc ~T0 @X0 1 r1 ]
+"145
+[; ;memory.c: 145: {
 [f ]
-"11
-[; ;user_tasks.c: 11:    TRISDbits.RD0 = 0;
-[e = . . _TRISDbits 1 0 -> -> 0 `i `uc ]
-"12
-[; ;user_tasks.c: 12:    TRISDbits.RD1 = 0;
-[e = . . _TRISDbits 1 1 -> -> 0 `i `uc ]
-"13
-[; ;user_tasks.c: 13:    TRISDbits.RD2 = 0;
-[e = . . _TRISDbits 1 2 -> -> 0 `i `uc ]
-"16
-[; ;user_tasks.c: 16:    init_mutex(&m_test);
-[e ( _init_mutex (1 &U _m_test ]
-"19
-[; ;user_tasks.c: 19:    __asm("GLOBAL _task_1, _task_2, _task_3");
-[; <" GLOBAL _task_1, _task_2, _task_3 ;# ">
-"20
-[; ;user_tasks.c: 20: }
-[e :UE 288 ]
-}
-"22
-[; ;user_tasks.c: 22: void task_1()
-[v _task_1 `(v ~T0 @X0 1 ef ]
-"23
-[; ;user_tasks.c: 23: {
-{
-[e :U _task_1 ]
-[f ]
-"26
-[; ;user_tasks.c: 26:    while (1) {
+"146
+[; ;memory.c: 146:  SALLOC * pHeap;
+[v _pHeap `*S286 ~T0 @X0 1 a ]
+"147
+[; ;memory.c: 147:  SALLOC * temp;
+[v _temp `*S286 ~T0 @X0 1 a ]
+"148
+[; ;memory.c: 148:       SALLOC segHeader;
+[v _segHeader `S286 ~T0 @X0 1 a ]
+"149
+[; ;memory.c: 149:       byte segLen;
+[v _segLen `uc ~T0 @X0 1 a ]
+"152
+[; ;memory.c: 152:  if (nBytes > (0x7F - 1)) return (0);
+[e $ ! > -> _nBytes `i - -> 127 `i -> 1 `i 289  ]
+[e ) -> -> 0 `i `*uc ]
+[e $UE 288  ]
+[e :U 289 ]
+"155
+[; ;memory.c: 155:  pHeap = (SALLOC *)_uDynamicHeap;
+[e = _pHeap -> &U __uDynamicHeap `*S286 ]
+"157
+[; ;memory.c: 157:  while (1)
 [e :U 291 ]
+"158
+[; ;memory.c: 158:  {
 {
-"27
-[; ;user_tasks.c: 27:       LATDbits.LATD0 = ~PORTDbits.RD0;
-[e = . . _LATDbits 0 0 -> ~ -> . . _PORTDbits 0 0 `i `uc ]
-"28
-[; ;user_tasks.c: 28:       lock(&m_test);
-[e ( _lock (1 &U _m_test ]
-"29
-[; ;user_tasks.c: 29:       delay_task(600);
-[e ( _delay_task (1 -> -> 600 `i `ui ]
-"30
-[; ;user_tasks.c: 30:       unlock(&m_test);
-[e ( _unlock (1 &U _m_test ]
-"31
-[; ;user_tasks.c: 31:    }
+"160
+[; ;memory.c: 160:   segHeader = *pHeap;
+[e = _segHeader *U _pHeap ]
+"163
+[; ;memory.c: 163:   segLen = segHeader.bits.count - 1;
+[e = _segLen -> - -> . . _segHeader 1 0 `i -> 1 `i `uc ]
+"166
+[; ;memory.c: 166:   if (segHeader.byte == 0) return (0);
+[e $ ! == -> . _segHeader 0 `i -> 0 `i 293  ]
+[e ) -> -> 0 `i `*uc ]
+[e $UE 288  ]
+[e :U 293 ]
+"169
+[; ;memory.c: 169:   if (!(segHeader.bits.alloc))
+[e $ ! ! != -> . . _segHeader 1 1 `i -> 0 `i 294  ]
+"170
+[; ;memory.c: 170:   {
+{
+"172
+[; ;memory.c: 172:    if (nBytes > segLen)
+[e $ ! > -> _nBytes `i -> _segLen `i 295  ]
+"173
+[; ;memory.c: 173:    {
+{
+"175
+[; ;memory.c: 175:     if (!(_SRAMmerge(pHeap))) pHeap += segHeader.bits.count;
+[e $ ! ! != -> ( __SRAMmerge (1 _pHeap `i -> 0 `i 296  ]
+[e =+ _pHeap * -> -> . . _segHeader 1 0 `i `x -> -> # *U _pHeap `i `x ]
+[e :U 296 ]
+"176
+[; ;memory.c: 176:    }
+}
+[e $U 297  ]
+"177
+[; ;memory.c: 177:    else
+[e :U 295 ]
+"181
+[; ;memory.c: 181:    if (nBytes == segLen)
+[e $ ! == -> _nBytes `i -> _segLen `i 298  ]
+"182
+[; ;memory.c: 182:    {
+{
+"184
+[; ;memory.c: 184:     (*pHeap).bits.alloc = 1;
+[e = . . *U _pHeap 1 1 -> -> 1 `i `uc ]
+"187
+[; ;memory.c: 187:     return ((unsigned char *)(pHeap + 1));
+[e ) -> + _pHeap * -> -> 1 `i `x -> -> # *U _pHeap `i `x `*uc ]
+[e $UE 288  ]
+"188
+[; ;memory.c: 188:    }
+}
+[e $U 299  ]
+"191
+[; ;memory.c: 191:    else
+[e :U 298 ]
+"192
+[; ;memory.c: 192:    {
+{
+"194
+[; ;memory.c: 194:     (*pHeap).byte = nBytes + 0x81;
+[e = . *U _pHeap 0 -> + -> _nBytes `i -> 129 `i `uc ]
+"197
+[; ;memory.c: 197:     temp = pHeap + 1;
+[e = _temp + _pHeap * -> -> 1 `i `x -> -> # *U _pHeap `i `x ]
+"200
+[; ;memory.c: 200:     pHeap += (nBytes + 1);
+[e =+ _pHeap * -> + -> _nBytes `i -> 1 `i `x -> -> # *U _pHeap `i `x ]
+"203
+[; ;memory.c: 203:     (*pHeap).byte = segLen - nBytes;
+[e = . *U _pHeap 0 -> - -> _segLen `i -> _nBytes `i `uc ]
+"206
+[; ;memory.c: 206:     return ((unsigned char *) temp);
+[e ) -> _temp `*uc ]
+[e $UE 288  ]
+"207
+[; ;memory.c: 207:    }
+}
+[e :U 299 ]
+[e :U 297 ]
+"208
+[; ;memory.c: 208:   }
+}
+[e $U 300  ]
+"211
+[; ;memory.c: 211:   else
+[e :U 294 ]
+"212
+[; ;memory.c: 212:   {
+{
+"213
+[; ;memory.c: 213:    pHeap += segHeader.bits.count;
+[e =+ _pHeap * -> -> . . _segHeader 1 0 `i `x -> -> # *U _pHeap `i `x ]
+"214
+[; ;memory.c: 214:   }
+}
+[e :U 300 ]
+"215
+[; ;memory.c: 215:  }
 }
 [e :U 290 ]
 [e $U 291  ]
 [e :U 292 ]
-"32
-[; ;user_tasks.c: 32: }
-[e :UE 289 ]
+"216
+[; ;memory.c: 216: }
+[e :UE 288 ]
 }
-"34
-[; ;user_tasks.c: 34: void task_2()
-[v _task_2 `(v ~T0 @X0 1 ef ]
-"35
-[; ;user_tasks.c: 35: {
+"240
+[; ;memory.c: 240: void SRAMfree(byte * pSRAM)
+[v _SRAMfree `(v ~T0 @X0 1 ef1`*uc ]
+"241
+[; ;memory.c: 241: {
 {
-[e :U _task_2 ]
+[e :U _SRAMfree ]
+"240
+[; ;memory.c: 240: void SRAMfree(byte * pSRAM)
+[v _pSRAM `*uc ~T0 @X0 1 r1 ]
+"241
+[; ;memory.c: 241: {
 [f ]
-"36
-[; ;user_tasks.c: 36:    while (1) {
-[e :U 295 ]
-{
-"37
-[; ;user_tasks.c: 37:       lock(&m_test);
-[e ( _lock (1 &U _m_test ]
-"38
-[; ;user_tasks.c: 38:       LATDbits.LATD1 = ~PORTDbits.RD1;
-[e = . . _LATDbits 0 1 -> ~ -> . . _PORTDbits 0 1 `i `uc ]
-"39
-[; ;user_tasks.c: 39:       unlock(&m_test);
-[e ( _unlock (1 &U _m_test ]
-"40
-[; ;user_tasks.c: 40:    }
+"243
+[; ;memory.c: 243:  (*(SALLOC *)(pSRAM - 1)).bits.alloc = 0;
+[e = . . *U -> - _pSRAM * -> -> 1 `i `x -> -> # *U _pSRAM `i `x `*S286 1 1 -> -> 0 `i `uc ]
+"244
+[; ;memory.c: 244: }
+[e :UE 301 ]
 }
-[e :U 294 ]
-[e $U 295  ]
-[e :U 296 ]
-"41
-[; ;user_tasks.c: 41: }
-[e :UE 293 ]
-}
-"43
-[; ;user_tasks.c: 43: void task_3()
-[v _task_3 `(v ~T0 @X0 1 ef ]
-"44
-[; ;user_tasks.c: 44: {
+"266
+[; ;memory.c: 266: void SRAMInitHeap(void)
+[v _SRAMInitHeap `(v ~T0 @X0 1 ef ]
+"267
+[; ;memory.c: 267: {
 {
-[e :U _task_3 ]
+[e :U _SRAMInitHeap ]
 [f ]
-"45
-[; ;user_tasks.c: 45:    while (1) {
-[e :U 299 ]
+"268
+[; ;memory.c: 268:  byte * pHeap;
+[v _pHeap `*uc ~T0 @X0 1 a ]
+"269
+[; ;memory.c: 269:       unsigned int count;
+[v _count `ui ~T0 @X0 1 a ]
+"271
+[; ;memory.c: 271:  pHeap = _uDynamicHeap;
+[e = _pHeap &U __uDynamicHeap ]
+"272
+[; ;memory.c: 272:  count = 0x200 -1;
+[e = _count -> - -> 512 `i -> 1 `i `ui ]
+"274
+[; ;memory.c: 274:  while (1)
+[e :U 304 ]
+"275
+[; ;memory.c: 275:  {
 {
-"46
-[; ;user_tasks.c: 46:       LATDbits.LATD2 = ~PORTDbits.RD2;
-[e = . . _LATDbits 0 2 -> ~ -> . . _PORTDbits 0 2 `i `uc ]
-"47
-[; ;user_tasks.c: 47:       delay_task(10);
-[e ( _delay_task (1 -> -> 10 `i `ui ]
-"48
-[; ;user_tasks.c: 48:    }
+"276
+[; ;memory.c: 276:   if (count > 0x7F)
+[e $ ! > _count -> -> 127 `i `ui 306  ]
+"277
+[; ;memory.c: 277:   {
+{
+"278
+[; ;memory.c: 278:    *pHeap = 0x7F;
+[e = *U _pHeap -> -> 127 `i `uc ]
+"279
+[; ;memory.c: 279:    pHeap += 0x7F;
+[e =+ _pHeap * -> -> 127 `i `x -> -> # *U _pHeap `i `x ]
+"280
+[; ;memory.c: 280:    count = count - 0x7F;
+[e = _count - _count -> -> 127 `i `ui ]
+"281
+[; ;memory.c: 281:   }
 }
-[e :U 298 ]
-[e $U 299  ]
-[e :U 300 ]
-"49
-[; ;user_tasks.c: 49: }
-[e :UE 297 ]
+[e $U 307  ]
+"282
+[; ;memory.c: 282:   else
+[e :U 306 ]
+"283
+[; ;memory.c: 283:   {
+{
+"284
+[; ;memory.c: 284:    *pHeap = count;
+[e = *U _pHeap -> _count `uc ]
+"285
+[; ;memory.c: 285:    *(pHeap + count) = 0;
+[e = *U + _pHeap * -> _count `ux -> -> # *U _pHeap `ui `ux -> -> 0 `i `uc ]
+"286
+[; ;memory.c: 286:    return;
+[e $UE 302  ]
+"287
+[; ;memory.c: 287:   }
+}
+[e :U 307 ]
+"288
+[; ;memory.c: 288:  }
+}
+[e :U 303 ]
+[e $U 304  ]
+[e :U 305 ]
+"289
+[; ;memory.c: 289: }
+[e :UE 302 ]
+}
+"312
+[; ;memory.c: 312:      byte _SRAMmerge(SALLOC * pSegA)
+[v __SRAMmerge `(uc ~T0 @X0 1 ef1`*S286 ]
+"313
+[; ;memory.c: 313: {
+{
+[e :U __SRAMmerge ]
+"312
+[; ;memory.c: 312:      byte _SRAMmerge(SALLOC * pSegA)
+[v _pSegA `*S286 ~T0 @X0 1 r1 ]
+"313
+[; ;memory.c: 313: {
+[f ]
+"314
+[; ;memory.c: 314:  SALLOC * pSegB;
+[v _pSegB `*S286 ~T0 @X0 1 a ]
+"315
+[; ;memory.c: 315:       SALLOC uSegA, uSegB, uSum;
+[v _uSegA `S286 ~T0 @X0 1 a ]
+[v _uSegB `S286 ~T0 @X0 1 a ]
+[v _uSum `S286 ~T0 @X0 1 a ]
+"319
+[; ;memory.c: 319:  pSegB = pSegA + (*pSegA).byte;
+[e = _pSegB + _pSegA * -> -> . *U _pSegA 0 `i `x -> -> # *U _pSegA `i `x ]
+"322
+[; ;memory.c: 322:  uSegA = *pSegA;
+[e = _uSegA *U _pSegA ]
+"323
+[; ;memory.c: 323:  uSegB = *pSegB;
+[e = _uSegB *U _pSegB ]
+"326
+[; ;memory.c: 326:  if (uSegB.byte == 0) return (0);
+[e $ ! == -> . _uSegB 0 `i -> 0 `i 309  ]
+[e ) -> -> 0 `i `uc ]
+[e $UE 308  ]
+[e :U 309 ]
+"329
+[; ;memory.c: 329:  if (uSegA.bits.alloc || uSegB.bits.alloc) return (0);
+[e $ ! || != -> . . _uSegA 1 1 `i -> 0 `i != -> . . _uSegB 1 1 `i -> 0 `i 310  ]
+[e ) -> -> 0 `i `uc ]
+[e $UE 308  ]
+[e :U 310 ]
+"332
+[; ;memory.c: 332:  if (uSegA.bits.count == 0x7F) return (0);
+[e $ ! == -> . . _uSegA 1 0 `i -> 127 `i 311  ]
+[e ) -> -> 0 `i `uc ]
+[e $UE 308  ]
+[e :U 311 ]
+"335
+[; ;memory.c: 335:  uSum.byte = uSegA.byte + uSegB.byte;
+[e = . _uSum 0 -> + -> . _uSegA 0 `i -> . _uSegB 0 `i `uc ]
+"341
+[; ;memory.c: 341:  if ((uSum.byte) > 0x7F)
+[e $ ! > -> . _uSum 0 `i -> 127 `i 312  ]
+"342
+[; ;memory.c: 342:  {
+{
+"343
+[; ;memory.c: 343:   (*pSegA).byte = 0x7F;
+[e = . *U _pSegA 0 -> -> 127 `i `uc ]
+"344
+[; ;memory.c: 344:   pSegA += 0x7F;
+[e =+ _pSegA * -> -> 127 `i `x -> -> # *U _pSegA `i `x ]
+"345
+[; ;memory.c: 345:   pSegB += uSegB.byte;
+[e =+ _pSegB * -> -> . _uSegB 0 `i `x -> -> # *U _pSegB `i `x ]
+"346
+[; ;memory.c: 346:   (*pSegA).byte = pSegB - pSegA;
+[e = . *U _pSegA 0 -> / - -> _pSegB `x -> _pSegA `x -> -> # *U _pSegB `i `x `uc ]
+"348
+[; ;memory.c: 348:   return (0x7F);
+[e ) -> -> 127 `i `uc ]
+[e $UE 308  ]
+"349
+[; ;memory.c: 349:  }
+}
+[e $U 313  ]
+"352
+[; ;memory.c: 352:  else
+[e :U 312 ]
+"353
+[; ;memory.c: 353:  {
+{
+"354
+[; ;memory.c: 354:   return ((*pSegA).byte = uSum.byte);
+[e ) = . *U _pSegA 0 . _uSum 0 ]
+[e $UE 308  ]
+"355
+[; ;memory.c: 355:  }
+}
+[e :U 313 ]
+"356
+[; ;memory.c: 356: }
+[e :UE 308 ]
 }

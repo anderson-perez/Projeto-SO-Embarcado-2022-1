@@ -15,8 +15,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5 scheduler.c
 [; ;scheduler.c: 5: extern READY_queue_t ready_queue;
 [v _ready_queue `S282 ~T0 @X0 0 e ]
-"20 ./kernel.h
-[; ;./kernel.h: 20: void task_idle();
+"24 ./kernel.h
+[; ;./kernel.h: 24: void task_idle();
 [v _task_idle `(v ~T0 @X0 0 e? ]
 [v F2626 `(v ~T0 @X0 0 tf ]
 [v F2637 `(v ~T0 @X0 0 tf ]

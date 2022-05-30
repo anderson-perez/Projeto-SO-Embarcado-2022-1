@@ -14,6 +14,7 @@
 
 #define DEFAULT_SCHEDULER           RR_SCHEDULER
 #define DEBUG_TASK_IDLE             ENABLE
+#define DYNAMIC_ALLOC               DISABLE
 
 
 #endif	/* USER_CONF_H */

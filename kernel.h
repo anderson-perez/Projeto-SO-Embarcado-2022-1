@@ -13,7 +13,11 @@ void config_os();
 
 
 // Chamadas de sistema
+#if DYNAMIC_ALLOC
+void create_task(u_int id, u_int prior, f_task task, u_int stack_size);
+#else
 void create_task(u_int id, u_int prior, f_task task);
+#endif
 void yield_task();
 void start_os();
 void exit_task();

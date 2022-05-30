@@ -4682,7 +4682,11 @@ void config_os();
 
 
 
+
+
+
 void create_task(u_int id, u_int prior, f_task task);
+
 void yield_task();
 void start_os();
 void exit_task();
@@ -4716,6 +4720,44 @@ u_int PRIOR_scheduler();
 u_int FIFO_scheduler();
 void scheduler();
 # 3 "kernel.c" 2
+
+# 1 "./memory.h" 1
+# 19 "./memory.h"
+typedef union _SALLOC
+{
+ byte byte;
+ struct _BITS
+ {
+  unsigned count:7;
+  unsigned alloc:1;
+ }bits;
+}SALLOC;
+
+
+
+
+
+
+
+
+#pragma udata _SRAM_ALLOC_HEAP
+byte _uDynamicHeap[0x200];
+
+
+
+
+
+
+
+
+#pragma udata _SRAM_ALLOC
+
+
+
+byte * SRAMalloc(byte nBytes);
+void SRAMfree(byte * pSRAM);
+void SRAMInitHeap(void);
+# 4 "kernel.c" 2
 
 
 
@@ -4754,7 +4796,7 @@ void __attribute__((picinterrupt(("")))) isr_INTERRUPTS()
 
          { u_int task_pos = ready_queue.task_running;u_int p_context = ready_queue.tasks_list[task_pos].task_stack_real_size;do { INTCONbits.GIE = 0; STKPTR = 0; if (ready_queue.tasks_list[task_pos].task_stack_real_size > 0) { BSR = ready_queue.tasks_list[task_pos].task_BSR_reg; WREG = ready_queue.tasks_list[task_pos].task_WORK_reg; STATUS = ready_queue.tasks_list[task_pos].task_STATUS_reg; while (p_context) { p_context -= 1; __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_CONTEXT[p_context]; } } else { __asm("PUSH"); TOS = ready_queue.tasks_list[task_pos].task_PTR; } ready_queue.tasks_list[task_pos].task_STATE = RUNNING; INTCONbits.GIE = 1; } while(0); };
       }
-# 49 "kernel.c"
+# 50 "kernel.c"
    }
 }
 
@@ -4790,9 +4832,7 @@ void config_os()
 
    config_tasks();
 }
-
-
-
+# 108 "kernel.c"
 void create_task(u_int id, u_int prior, f_task task)
 {
    TCB_t new_task;
@@ -4836,6 +4876,10 @@ void delay_task(u_int time)
 
 void start_os()
 {
+
+
+
+
 
    INTCONbits.GIE = 1;
 
